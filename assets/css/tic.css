@@ -1,0 +1,83 @@
+body {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 10px;
+    margin: 0 auto;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+    border: 2px solid white;
+    transition: background-color 0.3s;
+}
+
+.cell.strike {
+    animation: strike 0.5s forwards;
+}
+
+@keyframes strike {
+    from {
+        background-color: black;
+    }
+    to {
+        background-color: white;
+        color: black;
+    }
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: white;
+}
+
+.fireworks-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+}
+
+.hidden {
+    display: none;
+}
+
+.fireworks {
+    max-width: 100%;
+}

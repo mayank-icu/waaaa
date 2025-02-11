@@ -1,0 +1,65 @@
+.game table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+.game table td,
+.game table th {
+  width: 48px;
+  height: 48px;
+  background-color: #eee;
+  padding: 0;
+}
+.game table .square {
+  position: relative;
+  border: 0;
+  background-color: #fff;
+  text-align: right;
+  vertical-align: bottom;
+  font-family: sans-serif;
+  font-size: 0.75em;
+  cursor: pointer;
+  z-index: 1;
+}
+.game table .square.black {
+  background-color: #555;
+}
+.game table .square.queen {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/56/Western_white_side_Queen.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
+}
+.game table .square.queen-1:after {
+  content: "1";
+}
+.game table .square.queen-2:after {
+  content: "2";
+}
+.game table .square.queen-3:after {
+  content: "3";
+}
+.game table .square.queen-4:after {
+  content: "4";
+}
+.game table .square.queen-5:after {
+  content: "5";
+}
+.game table .square.queen-6:after {
+  content: "6";
+}
+.game table .square.queen-7:after {
+  content: "7";
+}
+.game table .square.queen-8:after {
+  content: "8";
+}
+.game table .square.pressure {
+  z-index: 2;
+  box-shadow: inset 0 0 21px 0px #bbb;
+}
+.game table .square.pressure.white {
+  background-color: #ccc;
+}
+.game table .square.pressure.black {
+  background-color: #aaa;
+}
