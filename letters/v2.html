@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>A Letter For You : &#8835;</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/css/letterv2.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <script>
+// Ensure DOM content is fully loaded before attaching event listeners
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('replyButton').addEventListener('click', function () {
+        document.getElementById('popupForm').style.display = 'flex';
+    });
+
+    document.querySelector('.close-button').addEventListener('click', function () {
+        document.getElementById('popupForm').style.display = 'none';
+    });
+
+    window.addEventListener('click', function (event) {
+        const popupForm = document.getElementById('popupForm');
+        if (event.target === popupForm) {
+            popupForm.style.display = 'none';
+        }
+    });
+});
+
+
+  </script>
+  <style>
+    #replyButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.popup-form {
+    display: none;
+    position: fixed;
+    top: 0;
+    z-index: 9999999;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.form-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    max-width: 80%;
+}
+
+.close-button {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+  </style>
+</head>
+<body>
+  
+<div class='container'>
+  <div class='envelope-wrapper'>
+    <div class='envelope'>
+      <div class='letter'>
+        <div class='text'>
+          <span>Dear Dia,</span>
+          <p>
+            Congratulations on your upcoming volunteering at the theatre. I’m so proud of you for taking this step. I know it might feel a little challenging at first, but I believe in you and your ability to adapt and shine in this new role.✨
+          </p>
+          <p class='sincerely'>
+          Sincerely, <br>
+          Mayank&lt;3
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class='heart'></div>
+  </div>
+</div>
+<button id="replyButton">Reply</button>
+
+<div id="popupForm" class="popup-form">
+    <div class="form-content">
+        <span class="close-button">&times;</span>
+        <h2>Reply to Email</h2>
+        <form action="https://formspree.io/f/mjvqobge" method="POST">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
+
+<audio id="background-music" src="../assets/audios/song.mp3" autoplay loop></audio>
+<script>
+  // Optional: Ensure autoplay works in case browsers require interaction
+  const audio = document.getElementById('background-music');
+  document.addEventListener('DOMContentLoaded', () => {
+      audio.play().catch(error => console.log('Autoplay failed:', error));
+  });
+</script>
+<!-- partial -->
+  <script  src="../assets/js/letterv2.js"></script>
+
+</body>
+</html>

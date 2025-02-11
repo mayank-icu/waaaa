@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An apology letter for you ✨</title>
+    <style>
+
+.reply-button-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .reply-button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .reply-button:hover {
+        background-color: #45a049;
+    }
+
+    .reply-form-popup {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+        padding-top: 60px;
+    }
+
+    .reply-form-content {
+        background-color: white;
+        margin: 5% auto;
+        padding: 20px;
+        position: relative;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        animation: slideIn 0.3s;
+    }
+
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .reply-form-content h2 {
+        margin-top: 0;
+    }
+
+    .reply-form-content label {
+        display: block;
+        margin: 10px 0 5px;
+    }
+
+    .reply-form-content input[type="text"],
+    .reply-form-content input[type="email"],
+    .reply-form-content textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .reply-form-content button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .reply-form-content button[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    @keyframes slideIn {
+        from {transform: translateY(-50px); opacity: 0;}
+        to {transform: translateY(0); opacity: 1;}
+    }
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Caveat', cursive; /* Adding Caveat font */
+}
+
+.background-image {
+    background-image: url('../assets/images/page.jpg'); /* Add your background image path here */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter {
+   
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 80%;
+    position: relative;
+}
+
+.header {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.date {
+    font-size: 14px;
+}
+
+.content {
+    text-align: justify;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.typing-animation::after {
+    content: '|';
+    animation: blink-caret 0.75s infinite;
+    position: relative;
+    top: -0.1em;
+    margin-left: 0.1em;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.controls {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Initially hide the controls */
+        }
+        audio {
+            display: none; /* Hide the audio element */
+        }
+
+
+    </style>
+</head>
+<body>
+  
+
+    <div class="background-image">
+        <div class="letter">
+            <div class="header">
+                <span class="date" class="date-container" id="date-container"></span>
+            </div>
+            <div class="content">
+                
+                <p id="typed-text" class="typing-animation"></p>
+            </div>
+        </div>
+    </div>
+
+        <!-- Reply Button -->
+<div class="reply-button-container">
+    <button class="reply-button" onclick="openReplyForm()">Reply</button>
+  </div>
+
+    <audio id="background-audio" src="../assets/audios/forever.mp3" loop></audio>
+    <div class="controls" id="controls">
+        <p>Click to enable audio</p>
+        <button onclick="enableAudio()">Play Audio</button>
+    </div>
+
+
+
+    <!-- Reply Form Popup -->
+<div id="replyFormPopup" class="reply-form-popup">
+    <div class="reply-form-content">
+        <span class="close" onclick="closeReplyForm()">&times;</span>
+        <h2>Reply</h2>
+        <form action="https://formspree.io/f/mjvqobge" method="POST" onsubmit="showConfirmation(event)">
+            <label for="message">Your Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <p id="confirmationMessage" style="display:none;">Your message has been sent.</p>
+    </div>
+</div>
+
+<!-- JavaScript for Reply Form -->=
+<script>
+  function openReplyForm() {
+      document.getElementById('replyFormPopup').style.display = 'block';
+  }
+
+  function closeReplyForm() {
+      document.getElementById('replyFormPopup').style.display = 'none';
+  }
+
+  document.getElementById('replyForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from submitting the traditional way
+      var form = event.target;
+      var formData = new FormData(form);
+
+      fetch('https://formspree.io/f/mjvqobge', {
+          method: 'POST',
+          body: formData,
+          headers: {
+              'Accept': 'application/json'
+          }
+      }).then(function(response) {
+          if (response.ok) {
+              document.getElementById('confirmationMessage').textContent = 'Your message has been sent.';
+          } else {
+              document.getElementById('confirmationMessage').textContent = 'There was a problem sending your message. Please try again.';
+          }
+          document.getElementById('confirmationMessage').style.display = 'block';
+          form.style.display = 'none';
+      }).catch(function(error) {
+          document.getElementById('confirmationMessage').textContent = 'There was an error sending your message. Please try again.';
+          document.getElementById('confirmationMessage').style.display = 'block';
+      });
+  });
+</script>
+
+    <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+            const dateContainer = document.getElementById('date-container');
+            const currentDate = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = currentDate.toLocaleDateString('en-US', options);
+            dateContainer.textContent = formattedDate;
+        });
+
+const audio = document.getElementById('background-audio');
+        const controls = document.getElementById('controls');
+
+        function enableAudio() {
+            audio.play().then(() => {
+                controls.style.display = 'none'; // Hide the controls once audio plays
+            }).catch(e => {
+                console.log('Playback failed:', e);
+            });
+        }
+
+        window.addEventListener('load', () => {
+            audio.play().catch(e => {
+                console.log('Autoplay was prevented:', e);
+                controls.style.display = 'block'; // Show the controls if autoplay is prevented
+            });
+        });
+
+// Function to type text with realistic features
+function typeText(text, element) {
+    let index = 0;
+
+    function type() {
+        if (index < text.length) {
+            const char = text.charAt(index);
+            element.innerHTML += char;
+            if (char === '<') {
+                const endIndex = text.indexOf('>', index);
+                index = endIndex + 1;
+            } else {
+                index++;
+            }
+            setTimeout(type, getTypingSpeed(char)); // Adjust typing speed here (in milliseconds)
+        }
+    }
+
+    function getTypingSpeed(char) {
+        const typingSpeed = Math.random() * 50 + 25; // Random typing speed between 25ms and 75ms
+        if (char === ' ') {
+            return typingSpeed * 0.5; // Double speed for spaces
+        } else if (char === ',') {
+            return typingSpeed * 2; // Slower speed for commas
+        } else if (char === '.') {
+            return typingSpeed * 3; // Even slower speed for periods
+        } else if (char === '<') {
+            return 0; // No delay for opening tags
+        } else {
+            return typingSpeed;
+        }
+    }
+
+    // Start typing animation
+    type();
+}
+
+// Function to open the feedback popup
+function openPopup() {
+    const popup = document.getElementById('feedback-popup');
+    if (popup) {
+        popup.style.display = 'flex';
+    }
+}
+
+// Function to close the feedback popup
+function closePopup() {
+    const popup = document.getElementById('feedback-popup');
+    if (popup) {
+        popup.style.display = 'none';
+    }
+}
+
+// Function to handle feedback submission
+function submitFeedback() {
+    const feedbackTextarea = document.getElementById('feedback-textarea');
+    if (feedbackTextarea) {
+        const feedback = feedbackTextarea.value;
+        // Handle feedback submission (e.g., send to server, store locally, etc.)
+        console.log("Feedback submitted:", feedback);
+        // Close the popup after submission
+        closePopup();
+        // Clear the feedback textarea
+        feedbackTextarea.value = '';
+    }
+}
+
+// Add event listener to the feedback link to open the popup
+document.addEventListener('DOMContentLoaded', function() {
+    const feedbackLink = document.getElementById('feedback-link');
+    if (feedbackLink) {
+        feedbackLink.addEventListener('click', openPopup);
+    }
+
+    // Add event listener to the close button in the popup
+    const closeButton = document.querySelector('#feedback-popup .close');
+    if (closeButton) {
+        closeButton.addEventListener('click', closePopup);
+    }
+
+    // Add event listener to the submit button in the popup
+    const submitButton = document.querySelector('#feedback-popup button');
+    if (submitButton) {
+        submitButton.addEventListener('click', submitFeedback);
+    }
+
+    // Type the text with realistic features
+    const text = `Dear Mati,
+
+I’m sitting here, feeling like the biggest fool in the world. I know I’ve hurt you, and I’m so sorry. I didn’t mean for things to turn out this way, and I regret so much of what I did and said.
+
+You’ve always been so kind, so caring, and I took that for granted. I was selfish, only thinking about myself, and I didn’t consider your feelings like I should have. I see now how much pain I caused you, and it breaks my heart to know that I was the reason for your sadness.
+
+I’ve made so many mistakes, and I wish I could go back in time and fix them. I would do anything to change the way things happened, to take back the hurtful words and actions. But I know I can’t do that, and it’s something I have to live with.
+
+All I can do now is apologize from the bottom of my heart. I’m so sorry for making you feel unimportant, for not being there when you needed me, and for causing you pain. You didn’t deserve any of that, and I am so sorry that I let you down.
+
+I’m not perfect, but I’m trying to learn from my mistakes. I want to be a better person, someone who deserves to have you in their life. I know I have a long way to go, but I’m willing to do whatever it takes to show you that I can change.
+
+If you can find it in your heart to forgive me, I would be so grateful. But if you can’t, I understand that too. I just needed to tell you how sorry I am, and how much I wish things could be different.
+
+You will always be special to me, no matter what happens. I will never forget the kindness and love you showed me, and I will always regret the way I treated you.
+
+Thank you for everything, and I’m so sorry for the pain I caused. I hope one day you can forgive me.
+
+With all my heart,
+
+Mayank`;
+    const typedTextElement = document.getElementById('typed-text');
+    if (typedTextElement) {
+        typeText(text, typedTextElement);
+    }
+});
+
+
+    </script>
+
+</body>
+</html>
