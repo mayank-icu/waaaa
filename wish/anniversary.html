@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Congratulations Dia &lt;3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:900'>
+  <link rel="stylesheet" href="../assets/css/graduation.css">
+  <script>
+    window.onload = function() {
+        alert("Click anywhere to see the magic!");
+    };
+</script>
+</head>
+<body>
+
+
+<h1>Congratulations, Dia, on your upcoming volunteering &lt;3</h1>
+
+<canvas id="birthday"></canvas>
+
+<a href="../letters/v2.html"><div id="testbutton"></div></a>
+
+<audio id="background-music" src="../assets/audios/song.mp3" autoplay loop></audio>
+<script>
+  // Optional: Ensure autoplay works in case browsers require interaction
+  const audio = document.getElementById('background-music');
+  document.addEventListener('DOMContentLoaded', () => {
+      audio.play().catch(error => console.log('Autoplay failed:', error));
+  });
+</script>
+
+<script  src="../assets/js/graduation.js"></script>
+
+</body>
+</html>
