@@ -1,1 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Majesty - A Princess's Realm</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Cinzel:wght@400;500;600&display=swap');
+        
+        :root {
+            --royal-purple: #4a154b;
+            --deep-purple: #2d1b32;
+            --gold: #d4af37;
+            --light-gold: #f4e99b;
+            --rose-gold: #e8b4cb;
+            --silver: #c0c0c0;
+            --cream: #faf8f3;
+            --midnight: #1a0f1a;
+            --royal-blue: #1e3a8a;
+            --gradient-royal: linear-gradient(135deg, var(--midnight) 0%, var(--deep-purple) 25%, var(--royal-purple) 50%, var(--royal-blue) 75%, var(--deep-purple) 100%);
+            --gradient-gold: linear-gradient(45deg, var(--gold) 0%, var(--light-gold) 50%, var(--gold) 100%);
+            --gradient-rose: linear-gradient(45deg, var(--rose-gold) 0%, var(--light-gold) 50%, var(--rose-gold) 100%);
+            --shadow-royal: 0 15px 35px rgba(74, 21, 75, 0.3);
+            --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.2);
+            --font-royal: 'Playfair Display', serif;
+            --font-script: 'Great Vibes', cursive;
+            --font-elegant: 'Cormorant Garamond', serif;
+            --font-dance: 'Dancing Script', cursive;
+            --font-medieval: 'Cinzel', serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: var(--font-elegant);
+            background: var(--gradient-royal);
+            color: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* Loading Animation */
+        .loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--gradient-royal);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-spinner.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .royal-crown {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            animation: crownFloat 2s ease-in-out infinite;
+        }
+        
+        .crown-base {
+            width: 100%;
+            height: 20px;
+            background: var(--gradient-gold);
+            border-radius: 10px;
+            position: absolute;
+            bottom: 0;
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .crown-peak {
+            width: 15px;
+            height: 40px;
+            background: var(--gradient-gold);
+            position: absolute;
+            bottom: 20px;
+            border-radius: 8px 8px 0 0;
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .crown-peak:nth-child(2) { left: 10px; height: 30px; bottom: 20px; }
+        .crown-peak:nth-child(3) { left: 32.5px; height: 50px; bottom: 20px; }
+        .crown-peak:nth-child(4) { left: 55px; height: 30px; bottom: 20px; }
+        
+        .crown-gem {
+            width: 8px;
+            height: 8px;
+            background: #ff6b9d;
+            border-radius: 50%;
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px #ff6b9d;
+            animation: gemSparkle 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes crownFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        
+        @keyframes gemSparkle {
+            0%, 100% { box-shadow: 0 0 15px #ff6b9d; transform: translateX(-50%) scale(1); }
+            50% { box-shadow: 0 0 25px #ff6b9d, 0 0 35px #ff6b9d; transform: translateX(-50%) scale(1.2); }
+        }
+        
+        /* Navigation */
+        .royal-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(26, 15, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--gold);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-royal);
+        }
+        
+        .royal-nav.scrolled {
+            padding: 15px 50px;
+            background: rgba(26, 15, 26, 0.98);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .royal-logo {
+            font-family: var(--font-script);
+            font-size: 2.5rem;
+            font-weight: 600;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            position: relative;
+        }
+        
+        .royal-logo::before {
+            content: '👑';
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            animation: crownGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes crownGlow {
+            0%, 100% { filter: drop-shadow(0 0 5px var(--gold)); }
+            50% { filter: drop-shadow(0 0 15px var(--gold)) drop-shadow(0 0 25px var(--gold)); }
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-menu li a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: var(--font-medieval);
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-menu li a:hover {
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+        
+        .nav-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-gold);
+            transition: width 0.4s ease;
+            border-radius: 2px;
+        }
+        
+        .nav-menu li a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+        
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--gold);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 120px 20px 80px;
+            background: var(--gradient-royal);
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .hero-title {
+            font-family: var(--font-script);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+            animation: titleGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6)); }
+        }
+        
+        .hero-subtitle {
+            font-family: var(--font-royal);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            color: var(--light-gold);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            font-style: italic;
+        }
+        
+        .royal-cta {
+            display: inline-block;
+            padding: 18px 45px;
+            background: var(--gradient-gold);
+            color: var(--midnight);
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: var(--font-medieval);
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-gold);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        
+        .royal-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+            border-color: var(--gold);
+        }
+        
+        .royal-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s;
+        }
+        
+        .royal-cta:hover::before {
+            left: 100%;
+        }
+        
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: sparkleFloat 6s linear infinite;
+        }
+        
+        @keyframes sparkleFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(10vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+        }
+        
+        /* Story Section */
+        .story-section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--deep-purple) 0%, var(--royal-purple) 50%, var(--midnight) 100%);
+            position: relative;
+        }
+        
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-family: var(--font-royal);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+        
+        .section-description {
+            font-family: var(--font-elegant);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--light-gold);
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        
+        .story-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+        
+        .story-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px 30px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.5s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3);
+            border-color: var(--gold);
+        }
+        
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-gold);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+        
+        .story-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            display: block;
+            filter: drop-shadow(0 0 10px currentColor);
+            animation: iconBob 3s ease-in-out infinite;
+        }
+        
+        @keyframes iconBob {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .card-title {
+            font-family: var(--font-royal);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+        
+        .card-description {
+            font-family: var(--font-elegant);
+            font-size: 1.1rem;
+            color: var(--cream);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .card-button {
+            background: var(--gradient-rose);
+            color: var(--midnight);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-family: var(--font-medieval);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .card-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(232, 180, 203, 0.4);
+        }
+        
+        /* Enhanced Modal */
+        .story-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: var(--gradient-royal);
+            border-radius: 30px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 3px solid var(--gold);
+            box-shadow: var(--shadow-royal);
+            position: relative;
+            animation: modalSlideIn 0.5s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .modal-header {
+            padding: 40px 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .modal-title {
+            font-family: var(--font-royal);
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        
+        .modal-subtitle {
+            font-family: var(--font-elegant);
+            font-size: 1.2rem;
+            color: var(--light-gold);
+            font-style: italic;
+        }
+        
+        .modal-body {
+            padding: 30px 40px 40px;
+        }
+        
+        .modal-text {
+            font-family: var(--font-elegant);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--cream);
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        .modal-close:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        /* Magic Section */
+        .magic-section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--deep-purple) 50%, var(--royal-purple) 100%);
+            position: relative;
+        }
+        
+        .magic-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .magic-button {
+            background: var(--gradient-gold);
+            color: var(--midnight);
+            border: none;
+            padding: 20px 30px;
+            border-radius: 15px;
+            font-family: var(--font-medieval);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .magic-button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+        }
+        
+        .magic-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        .magic-button:active::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .theme-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+        
+        .theme-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .theme-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+        
+        .theme-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-gold);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .theme-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .theme-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .theme-title {
+            font-family: var(--font-royal);
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .theme-description {
+            font-family: var(--font-elegant);
+            color: var(--cream);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--midnight) 0%, var(--deep-purple) 50%, var(--royal-purple) 100%);
+            position: relative;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 60px auto 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 50px 40px;
+            border-radius: 25px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: var(--shadow-royal);
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            font-family: var(--font-medieval);
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            color: var(--cream);
+            font-family: var(--font-elegant);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .happiness-meter {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .happiness-label {
+            font-family: var(--font-royal);
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .happiness-slider {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            outline: none;
+            -webkit-appearance: none;
+            margin-bottom: 15px;
+        }
+        
+        .happiness-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 25px;
+            height: 25px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+        
+        .happiness-display {
+            font-family: var(--font-elegant);
+            font-size: 2rem;
+            color: var(--light-gold);
+            margin-top: 10px;
+        }
+        
+        .form-submit {
+            width: 100%;
+            padding: 18px;
+            background: var(--gradient-gold);
+            color: var(--midnight);
+            border: none;
+            border-radius: 15px;
+            font-family: var(--font-medieval);
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* Effect Containers */
+        .effect-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1500;
+        }
+        
+        .magic-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: particleFloat 2s ease-out forwards;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) translateY(-100px);
+            }
+        }
+        
+        .star-burst {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: starBurst 1.5s ease-out forwards;
+        }
+        
+        @keyframes starBurst {
+            0% {
+                opacity: 1;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2) rotate(360deg);
+            }
+        }
+        
+        .royal-shimmer {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+            animation: shimmerFall 3s ease-out forwards;
+        }
+        
+        @keyframes shimmerFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-50px) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .royal-nav {
+                padding: 15px 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(26, 15, 26, 0.98);
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+                border-top: 1px solid var(--gold);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-toggle {
+                display: flex;
+            }
+            
+            .hero-section {
+                padding: 100px 15px 60px;
+            }
+            
+            .section-container {
+                padding: 0 15px;
+            }
+            
+            .story-cards {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .magic-controls {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .theme-cards {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-form {
+                margin: 40px 20px 0;
+                padding: 30px 25px;
+            }
+            
+            .modal-content {
+                margin: 20px;
+                max-height: 90vh;
+            }
+            
+            .modal-header {
+                padding: 30px 25px 15px;
+            }
+            
+            .modal-body {
+                padding: 20px 25px 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .royal-logo {
+                font-size: 2rem;
+            }
+            
+            .royal-logo::before {
+                left: -30px;
+                font-size: 1.5rem;
+            }
+            
+            .story-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-card {
+                padding: 30px 20px;
+            }
+            
+            .magic-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--midnight);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-gold);
+            border-radius: 6px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+        
+        /* Additional Royal Elements */
+        .royal-divider {
+            width: 200px;
+            height: 2px;
+            background: var(--gradient-gold);
+            margin: 40px auto;
+            position: relative;
+        }
+        
+        .royal-divider::before {
+            content: '❋';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--deep-purple);
+            color: var(--gold);
+            padding: 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Special Effects */
+        .glowing-text {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
+        
+        .royal-glow {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+        
+        .floating-crown {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            animation: crownBob 4s ease-in-out infinite;
+            z-index: 1001;
+        }
+        
+        @keyframes crownBob {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        /* Additional Interactive Elements */
+        .interactive-element {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .interactive-element:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 15px currentColor);
+        }
+        
+        /* Message Display */
+        .message-display {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--gradient-royal);
+            color: var(--gold);
+            padding: 30px 40px;
+            border-radius: 20px;
+            border: 2px solid var(--gold);
+            box-shadow: var(--shadow-royal);
+            z-index: 3000;
+            text-align: center;
+            font-family: var(--font-royal);
+            font-size: 1.2rem;
+            max-width: 400px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .message-display.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .message-display .close-message {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="royal-crown">
+            <div class="crown-peak"></div>
+            <div class="crown-peak"></div>
+            <div class="crown-peak"></div>
+            <div class="crown-peak"></div>
+            <div class="crown-base">
+                <div class="crown-gem"></div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Floating Crown -->
+    <div class="floating-crown">👑</div>
+
+    <!-- Navigation -->
+    <nav class="royal-nav" id="navbar">
+        <div class="nav-container">
+            <div class="royal-logo">Royal Majesty</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#story">Royal Stories</a></li>
+                <li><a href="#magic">Magic Realm</a></li>
+                <li><a href="#contact">Royal Messages</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="floating-elements" id="floatingElements"></div>
+        <div class="hero-content fade-in">
+            <h1 class="hero-title glowing-text">Welcome to Your Royal Kingdom</h1>
+            <p class="hero-subtitle">Where elegance meets magic, and every moment is crafted with royal grace. Step into a realm where you reign supreme, surrounded by beauty, wonder, and endless possibilities.</p>
+            <a href="#story" class="royal-cta">Begin Your Royal Journey</a>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section" id="story">
+        <div class="section-container">
+            <h2 class="section-title fade-in">Royal Chronicles</h2>
+            <p class="section-description fade-in">Discover the magnificent tales that define your royal legacy. Each story is a chapter in your extraordinary journey, filled with courage, wisdom, and endless grace.</p>
+            
+            <div class="royal-divider fade-in"></div>
+            
+            <div class="story-cards">
+                <div class="story-card fade-in" data-story="courage">
+                    <span class="card-icon interactive-element">⚔️</span>
+                    <h3 class="card-title">The Crown of Courage</h3>
+                    <p class="card-description">In the grand halls of bravery, where fear dare not tread, stands a princess whose courage shines brighter than the finest jewels in her crown.</p>
+                    <button class="card-button">Read Your Tale</button>
+                </div>
+                
+                <div class="story-card fade-in" data-story="wisdom">
+                    <span class="card-icon interactive-element">📚</span>
+                    <h3 class="card-title">The Scroll of Wisdom</h3>
+                    <p class="card-description">Within the royal library of life, knowledge flows like golden rivers, and wisdom blooms like the most precious roses in the palace garden.</p>
+                    <button class="card-button">Discover Your Wisdom</button>
+                </div>
+                
+                <div class="story-card fade-in" data-story="grace">
+                    <span class="card-icon interactive-element">👑</span>
+                    <h3 class="card-title">The Dance of Grace</h3>
+                    <p class="card-description">Every step taken with elegance, every word spoken with kindness - this is the royal dance that makes the entire kingdom shine with beauty.</p>
+                    <button class="card-button">Experience Your Grace</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Magic Section -->
+    <section class="magic-section" id="magic">
+        <div class="section-container">
+            <h2 class="section-title fade-in">Enchanted Realm</h2>
+            <p class="section-description fade-in">Command the mystical forces that shape your royal domain. With each magical gesture, witness the power that flows through your royal bloodline.</p>
+            
+            <div class="royal-divider fade-in"></div>
+            
+            <div class="magic-controls fade-in">
+                <button class="magic-button" data-effect="stardust">✨ Summon Stardust</button>
+                <button class="magic-button" data-effect="golden-rain">🌟 Golden Rain</button>
+                <button class="magic-button" data-effect="royal-sparkles">💫 Royal Sparkles</button>
+                <button class="magic-button" data-effect="crown-blessing">👑 Crown Blessing</button>
+            </div>
+            
+            <div class="theme-cards">
+                <div class="theme-card slide-in-left" data-theme="sunset">
+                    <span class="theme-icon">🌅</span>
+                    <h3 class="theme-title">Golden Sunset Palace</h3>
+                    <p class="theme-description">Transform your realm into a majestic sunset kingdom, where golden light dances across crystal spires.</p>
+                </div>
+                
+                <div class="theme-card fade-in" data-theme="starlight">
+                    <span class="theme-icon">⭐</span>
+                    <h3 class="theme-title">Starlight Cathedral</h3>
+                    <p class="theme-description">Enter a celestial sanctuary where stars illuminate the sacred halls of your divine palace.</p>
+                </div>
+                
+                <div class="theme-card slide-in-right" data-theme="aurora">
+                    <span class="theme-icon">🌌</span>
+                    <h3 class="theme-title">Aurora Throne Room</h3>
+                    <p class="theme-description">Witness the dancing auroras that crown your throne with ethereal beauty and cosmic power.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="section-container">
+            <h2 class="section-title fade-in">Royal Messages</h2>
+            <p class="section-description fade-in">Send forth your royal decree or share your thoughts with the court. Your voice carries the power to inspire and enchant.</p>
+            
+            <div class="royal-divider fade-in"></div>
+            
+            <form class="contact-form fade-in" id="royalForm">
+                <div class="form-group">
+                    <label class="form-label" for="subject">Royal Subject</label>
+                    <input type="text" class="form-input" id="subject" name="subject" placeholder="Enter the subject of your royal message..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="message">Your Royal Message</label>
+                    <textarea class="form-textarea" id="message" name="message" placeholder="Share your thoughts, dreams, or royal proclamations..." required></textarea>
+                </div>
+                
+                <div class="happiness-meter">
+                    <label class="happiness-label" for="happiness">How Royal Do You Feel Today?</label>
+                    <input type="range" class="happiness-slider" id="happiness" name="happiness" min="1" max="10" value="7">
+                    <div class="happiness-display" id="happinessDisplay">✨ Royally Delighted ✨</div>
+                </div>
+                
+                <button type="submit" class="form-submit">Send Royal Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Story Modal -->
+    <div class="story-modal" id="storyModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-subtitle" id="modalSubtitle"></p>
+            </div>
+            <div class="modal-body">
+                <p class="modal-text" id="modalText"></p>
+                <button class="royal-cta" onclick="closeStoryModal()">Continue Your Royal Journey</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Effect Container -->
+    <div class="effect-container" id="effectContainer"></div>
+
+    <!-- Message Display -->
+    <div class="message-display" id="messageDisplay">
+        <span class="close-message" onclick="closeMessage()">&times;</span>
+        <div id="messageContent"></div>
+    </div>
+
+    <script>
+        // Global Variables
+        let isLoaded = false;
+        let currentTheme = 'royal';
+        
+        // Theme Configurations
+        const themes = {
+            royal: {
+                background: 'linear-gradient(135deg, #1a0f1a 0%, #2d1b32 25%, #4a154b 50%, #1e3a8a 75%, #2d1b32 100%)',
+                primary: '#d4af37',
+                secondary: '#e8b4cb'
+            },
+            sunset: {
+                background: 'linear-gradient(135deg, #ff6b6b 0%, #ffd700 25%, #ff8c42 50%, #ff6b6b 75%, #ffd700 100%)',
+                primary: '#ff8c42',
+                secondary: '#ff6b6b'
+            },
+            starlight: {
+                background: 'linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #1a1a2e 100%)',
+                primary: '#ffffff',
+                secondary: '#4ecdc4'
+            },
+            aurora: {
+                background: 'linear-gradient(135deg, #1a1a2e 0%, #4ecdc4 25%, #7b2cbf 50%, #ff6b6b 75%, #4ecdc4 100%)',
+                primary: '#4ecdc4',
+                secondary: '#7b2cbf'
+            }
+        };
+
+        // Story Data
+        const stories = {
+            courage: {
+                title: "The Crown of Courage",
+                subtitle: "A Tale of Unbreakable Spirit",
+                content: "In the magnificent halls of the Royal Palace, where tapestries tell tales of ancient valor, there stands a princess whose courage knows no bounds. Her heart beats with the rhythm of a thousand drums, each pulse a testament to her unwavering spirit. When darkness threatens to engulf the kingdom, she stands as a beacon of hope, her courage illuminating the path forward. Like the finest steel forged in royal fire, her bravery has been tempered by challenges that would break lesser souls. Yet she emerges stronger, more radiant, her crown not just of gold and jewels, but of the countless acts of courage that define her noble character. The court bards sing of her deeds, how she faced the dragons of doubt and emerged victorious, how she traversed the valleys of uncertainty with grace befitting true royalty."
+            },
+            wisdom: {
+                title: "The Scroll of Wisdom",
+                subtitle: "Knowledge Worthy of Queens",
+                content: "Within the grand library of her mind, wisdom flows like honey from golden combs. Each thought is carefully crafted, each decision weighed with the gravity of one who understands that true power comes not from the crown upon her head, but from the knowledge within her heart. She has learned that wisdom is not merely the accumulation of facts, but the divine art of understanding the hearts of her people. Her counsel is sought by nobles and commoners alike, for her words carry the weight of truth and the sweetness of compassion. Like the ancient oak trees that grace the royal gardens, her wisdom has deep roots in experience and branches that reach toward endless learning. The royal scribes record her insights, knowing that future generations will benefit from the profound understanding she shares with the world."
+            },
+            grace: {
+                title: "The Dance of Grace",
+                subtitle: "Elegance in Every Moment",
+                content: "Every movement is poetry in motion, every gesture a masterpiece of refined elegance. She moves through the palace halls like a gentle breeze through silk curtains, bringing beauty and serenity to all who behold her presence. Her grace is not merely in how she walks or speaks, but in how she treats every soul with dignity and respect. The palace flowers seem to bloom brighter in her presence, the crystal chandeliers sparkle with renewed vigor, and even the marble statues appear to smile. She has mastered the royal art of making others feel valued and cherished, understanding that true grace lies not in perfection, but in the genuine care she shows for everyone around her. Her laughter rings like silver bells through the corridors, and her smile has the power to turn the dreariest day into one filled with sunshine and hope."
+        };
+
+        // Happiness levels
+        const happinessLevels = {
+            1: "🌧️ A Bit Blue",
+            2: "😔 Feeling Down",
+            3: "😐 Neutral Grounds",
+            4: "🙂 Somewhat Happy",
+            5: "😊 Pleasantly Content",
+            6: "😄 Quite Cheerful",
+            7: "✨ Royally Delighted",
+            8: "🌟 Absolutely Radiant",
+            9: "👑 Regally Magnificent",
+            10: "💎 Divinely Ecstatic"
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeWebsite();
+        });
+
+        function initializeWebsite() {
+            // Hide loading spinner after 2 seconds
+            setTimeout(() => {
+                document.getElementById('loadingSpinner').classList.add('hidden');
+                isLoaded = true;
+                startFloatingElements();
+                initializeScrollAnimations();
+            }, 2000);
+
+            // Initialize all event listeners
+            initializeNavigation();
+            initializeStoryCards();
+            initializeMagicButtons();
+            initializeThemeCards();
+            initializeContactForm();
+            initializeHappinessSlider();
+            initializeScrollEffects();
+        }
+
+        // Initialize all event listeners
+        function initializeNavigation() {
+            const navbar = document.getElementById('navbar');
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            if (!navbar || !navToggle || !navMenu) return;
+
+            // Scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // Floating Elements
+        function startFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            if (!container) return;
+            
+            function createSparkle() {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + 'vw';
+                sparkle.style.animationDelay = Math.random() * 6 + 's';
+                container.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    if (sparkle && sparkle.parentNode) {
+                        sparkle.parentNode.removeChild(sparkle);
+                    }
+                }, 6000);
+            }
+
+            // Create sparkles periodically
+            setInterval(createSparkle, 3000);
+            
+            // Initial sparkles
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createSparkle, i * 1000);
+            }
+        }
+
+        // Story Cards
+        function initializeStoryCards() {
+            const storyCards = document.querySelectorAll('.story-card');
+            const modal = document.getElementById('storyModal');
+            const modalClose = document.getElementById('modalClose');
+
+            storyCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const storyType = card.getAttribute('data-story');
+                    openStoryModal(storyType);
+                });
+            });
+
+            modalClose.addEventListener('click', closeStoryModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeStoryModal();
+                }
+            });
+        }
+
+        function openStoryModal(storyType) {
+            const story = stories[storyType];
+            const modal = document.getElementById('storyModal');
+            
+            document.getElementById('modalTitle').textContent = story.title;
+            document.getElementById('modalSubtitle').textContent = story.subtitle;
+            document.getElementById('modalText').textContent = story.content;
+            
+            modal.style.display = 'flex';
+            createMagicalEffect('stardust');
+        }
+
+        function closeStoryModal() {
+            document.getElementById('storyModal').style.display = 'none';
+        }
+
+        // Magic Buttons
+        function initializeMagicButtons() {
+            const magicButtons = document.querySelectorAll('.magic-button');
+            
+            magicButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const effect = button.getAttribute('data-effect');
+                    createMagicalEffect(effect);
+                });
+            });
+        }
+
+        function createMagicalEffect(effectType) {
+            const container = document.getElementById('effectContainer');
+            
+            switch(effectType) {
+                case 'stardust':
+                    createStardustEffect(container);
+                    break;
+                case 'golden-rain':
+                    createGoldenRainEffect(container);
+                    break;
+                case 'royal-sparkles':
+                    createRoyalSparklesEffect(container);
+                    break;
+                case 'crown-blessing':
+                    createCrownBlessingEffect(container);
+                    break;
+            }
+        }
+
+        function createStardustEffect(container) {
+            if (!container) return;
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'magic-particle';
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.top = Math.random() * 100 + 'vh';
+                    particle.style.background = `hsl(${Math.random() * 60 + 30}, 80%, 70%)`;
+                    container.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        if (particle && particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 2000);
+                }, i * 50);
+            }
+        }
+
+        function createGoldenRainEffect(container) {
+            if (!container) return;
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const shimmer = document.createElement('div');
+                    shimmer.className = 'royal-shimmer';
+                    shimmer.style.left = Math.random() * 100 + 'vw';
+                    shimmer.style.top = '-50px';
+                    container.appendChild(shimmer);
+                    
+                    setTimeout(() => {
+                        if (shimmer && shimmer.parentNode) {
+                            shimmer.parentNode.removeChild(shimmer);
+                        }
+                    }, 3000);
+                }, i * 200);
+            }
+        }
+
+        function createRoyalSparklesEffect(container) {
+            if (!container) return;
+            
+            for (let i = 0; i < 12; i++) {
+                setTimeout(() => {
+                    const burst = document.createElement('div');
+                    burst.className = 'star-burst';
+                    burst.style.left = Math.random() * 100 + 'vw';
+                    burst.style.top = Math.random() * 100 + 'vh';
+                    container.appendChild(burst);
+                    
+                    setTimeout(() => {
+                        if (burst && burst.parentNode) {
+                            burst.parentNode.removeChild(burst);
+                        }
+                    }, 1500);
+                }, i * 100);
+            }
+        }
+
+        function createCrownBlessingEffect(container) {
+            if (!container) return;
+            
+            // Create a special crown effect at the center
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const angle = (i / 8) * Math.PI * 2;
+                    const radius = 100;
+                    const x = centerX + Math.cos(angle) * radius;
+                    const y = centerY + Math.sin(angle) * radius;
+                    
+                    const blessing = document.createElement('div');
+                    blessing.className = 'star-burst';
+                    blessing.style.left = x + 'px';
+                    blessing.style.top = y + 'px';
+                    blessing.style.background = 'radial-gradient(circle, #d4af37 0%, transparent 70%)';
+                    container.appendChild(blessing);
+                    
+                    setTimeout(() => {
+                        if (blessing && blessing.parentNode) {
+                            blessing.parentNode.removeChild(blessing);
+                        }
+                    }, 1500);
+                }, i * 150);
+            }
+            
+            // Show blessing message
+            showMessage("👑 You have received the Royal Crown Blessing! 👑");
+        }
+
+        // Theme Cards
+        function initializeThemeCards() {
+            const themeCards = document.querySelectorAll('.theme-card');
+            
+            themeCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const theme = card.getAttribute('data-theme');
+                    changeTheme(theme);
+                });
+            });
+        }
+
+        function changeTheme(themeName) {
+            const themeConfig = themes[themeName];
+            if (themeConfig) {
+                document.body.style.background = themeConfig.background;
+                currentTheme = themeName;
+                createMagicalEffect('royal-sparkles');
+                showMessage(`🎨 Theme changed to ${themeName.charAt(0).toUpperCase() + themeName.slice(1)}! 🎨`);
+            }
+        }
+
+        // Contact Form
+        function initializeContactForm() {
+            const form = document.getElementById('royalForm');
+            if (!form) return;
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                handleFormSubmission();
+            });
+        }
+
+        function handleFormSubmission() {
+            const subject = document.getElementById('subject');
+            const message = document.getElementById('message');
+            const happiness = document.getElementById('happiness');
+            
+            if (!subject || !message || !happiness) return;
+            
+            // Simulate form processing
+            showMessage(`📜 Your royal message "${subject.value}" has been sent! Thank you for sharing your ${happinessLevels[happiness.value].toLowerCase()} spirit with the court! 📜`);
+            
+            // Reset form
+            const form = document.getElementById('royalForm');
+            if (form) {
+                form.reset();
+                happiness.value = 7;
+                updateHappinessDisplay(7);
+            }
+            
+            // Create celebration effect
+            createMagicalEffect('crown-blessing');
+        }
+
+        // Happiness Slider
+        function initializeHappinessSlider() {
+            const slider = document.getElementById('happiness');
+            if (!slider) return;
+            
+            slider.addEventListener('input', (e) => {
+                updateHappinessDisplay(e.target.value);
+            });
+            
+            // Initialize display
+            updateHappinessDisplay(7);
+        }
+
+        function updateHappinessDisplay(value) {
+            const display = document.getElementById('happinessDisplay');
+            if (!display) return;
+            
+            display.textContent = happinessLevels[value] || happinessLevels[7];
+            
+            // Add some sparkle effect based on happiness level
+            if (value >= 8) {
+                display.classList.add('glowing-text');
+            } else {
+                display.classList.remove('glowing-text');
+            }
+        }
+
+        // Scroll Animations
+        function initializeScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        function initializeScrollEffects() {
+            // Add parallax effect to floating crown
+            const crown = document.querySelector('.floating-crown');
+            if (crown) {
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    crown.style.transform = `translateY(${scrolled * 0.1}px) rotate(${scrolled * 0.05}deg)`;
+                });
+            }
+        }
+
+        // Message Display
+        function showMessage(messageText) {
+            const messageDisplay = document.getElementById('messageDisplay');
+            const messageContent = document.getElementById('messageContent');
+            
+            if (!messageDisplay || !messageContent) return;
+            
+            messageContent.innerHTML = messageText;
+            messageDisplay.classList.add('show');
+            
+            // Auto hide after 4 seconds
+            setTimeout(() => {
+                closeMessage();
+            }, 4000);
+        }
+
+        function closeMessage() {
+            const messageDisplay = document.getElementById('messageDisplay');
+            if (messageDisplay) {
+                messageDisplay.classList.remove('show');
+            }
+        }
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Press 'M' for magic
+            if (e.key.toLowerCase() === 'm') {
+                createMagicalEffect('stardust');
+            }
+            
+            // Press 'Escape' to close modal
+            if (e.key === 'Escape') {
+                closeStoryModal();
+                closeMessage();
+            }
+        });
+
+        // Interactive Elements
+        document.addEventListener('click', (e) => {
+            // Add click sparkle effect
+            if (Math.random() < 0.3) {
+                const effectContainer = document.getElementById('effectContainer');
+                if (effectContainer) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'magic-particle';
+                    sparkle.style.left = e.clientX + 'px';
+                    sparkle.style.top = e.clientY + 'px';
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.pointerEvents = 'none';
+                    effectContainer.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        if (sparkle && sparkle.parentNode) {
+                            sparkle.parentNode.removeChild(sparkle);
+                        }
+                    }, 2000);
+                }
+            }
+        });
+
+        // Additional Royal Features
+        function createRandomSparkles() {
+            if (isLoaded && Math.random() < 0.1) {
+                createMagicalEffect('stardust');
+            }
+        }
+
+        // Periodic sparkles
+        setInterval(createRandomSparkles, 5000);
+
+        // Easter egg - Triple click crown for special effect
+        let crownClickCount = 0;
+        const floatingCrown = document.querySelector('.floating-crown');
+        if (floatingCrown) {
+            floatingCrown.addEventListener('click', () => {
+                crownClickCount++;
+                
+                if (crownClickCount === 3) {
+                    createMagicalEffect('crown-blessing');
+                    showMessage("👑✨ You discovered the Royal Easter Egg! ✨👑");
+                    crownClickCount = 0;
+                }
+                
+                setTimeout(() => {
+                    crownClickCount = 0;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
