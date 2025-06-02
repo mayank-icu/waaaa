@@ -47,89 +47,7 @@
             min-height: 100vh;
         }
         
-        /* Loading Animation */
-        .loading-spinner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--deep-purple) 0%, var(--magdalena-purple) 50%, var(--sunset-pink) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        
-        .loading-spinner.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .loading-message {
-            font-family: var(--font-romantic);
-            font-size: 1.8rem;
-            color: var(--tangled-gold);
-            margin-bottom: 30px;
-            text-align: center;
-            animation: heartbeat 2s ease-in-out infinite;
-        }
-        
-        .floating-lantern {
-            width: 60px;
-            height: 80px;
-            position: relative;
-            animation: lanternFloat 3s ease-in-out infinite;
-        }
-        
-        .lantern-body {
-            width: 100%;
-            height: 60px;
-            background: linear-gradient(45deg, var(--tangled-gold), var(--lantern-glow));
-            border-radius: 10px;
-            position: relative;
-            box-shadow: var(--magical-glow);
-        }
-        
-        .lantern-top {
-            width: 20px;
-            height: 10px;
-            background: var(--tower-stone);
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 5px;
-        }
-        
-        .lantern-light {
-            width: 30px;
-            height: 30px;
-            background: radial-gradient(circle, #FFE4B5 0%, var(--tangled-gold) 70%);
-            border-radius: 50%;
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: lanternGlow 2s ease-in-out infinite;
-        }
-        
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        @keyframes lanternFloat {
-            0%, 100% { transform: translateY(0px) rotate(-2deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
-        }
-        
-        @keyframes lanternGlow {
-            0%, 100% { box-shadow: 0 0 20px var(--tangled-gold); }
-            50% { box-shadow: 0 0 40px var(--tangled-gold), 0 0 60px var(--lantern-glow); }
-        }
+
         
         /* Navigation */
         .magical-nav {
@@ -1014,16 +932,6 @@
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-spinner" id="loadingSpinner">
-        <div class="loading-message">Loading your magic... 💜</div>
-        <div class="floating-lantern">
-            <div class="lantern-top"></div>
-            <div class="lantern-body">
-                <div class="lantern-light"></div>
-            </div>
-        </div>
-    </div>
 
     <!-- Navigation -->
     <nav class="magical-nav">
@@ -1220,33 +1128,25 @@
         });
 
         function initializeWebsite() {
-            // Initialize all components first
+            // Initialize all components immediately
             initializeNavigation();
             initializeStoryCards();
             initializeMagicButtons();
             initializeContactForm();
             initializeHappinessSlider();
             initializeMusic();
+            initializeScrollAnimations();
             
-            // Hide loading screen after 1.5 seconds
+            // Set loaded state
+            isLoaded = true;
+            
+            // Start background magic immediately
+            startBackgroundMagic();
+            
+            // Welcome message after short delay
             setTimeout(() => {
-                const spinner = document.getElementById('loadingSpinner');
-                if (spinner) {
-                    spinner.style.opacity = '0';
-                    spinner.style.visibility = 'hidden';
-                    setTimeout(() => {
-                        spinner.style.display = 'none';
-                    }, 500);
-                }
-                isLoaded = true;
-                startBackgroundMagic();
-                initializeScrollAnimations();
-                
-                // Welcome message
-                setTimeout(() => {
-                    showLoveMessage("💜 Welcome to your kingdom, Princess Magdalena! I hope this makes you smile! 💜");
-                }, 1000);
-            }, 1500);
+                showLoveMessage("💜 Welcome to your kingdom, Princess Magdalena! I hope this makes you smile! 💜");
+            }, 2000);
         }
 
         // Navigation
