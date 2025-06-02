@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Magdalena - My Princess 💜</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
         
         :root {
             --magdalena-purple: #8B4F9F;
@@ -20,10 +20,10 @@
             --cream: #FFF8DC;
             --magical-glow: 0 0 20px rgba(255, 215, 0, 0.6);
             --love-shadow: 0 10px 30px rgba(139, 79, 159, 0.4);
-            --font-romantic: 'Dancing Script', cursive;
+            --font-romantic: 'Playfair Display', serif;
             --font-story: 'Libre Baskerville', serif;
-            --font-cute: 'Pacifico', cursive;
-            --font-modern: 'Quicksand', sans-serif;
+            --font-cute: 'Cinzel', serif;
+            --font-modern: 'Cormorant Garamond', serif;
         }
         
         * {
@@ -70,7 +70,7 @@
         
         .loading-message {
             font-family: var(--font-romantic);
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--tangled-gold);
             margin-bottom: 30px;
             text-align: center;
@@ -1016,7 +1016,7 @@
 <body>
     <!-- Loading Screen -->
     <div class="loading-spinner" id="loadingSpinner">
-        <div class="loading-message">Creating something special for Magdalena... 💜</div>
+        <div class="loading-message">Loading your magic... 💜</div>
         <div class="floating-lantern">
             <div class="lantern-top"></div>
             <div class="lantern-body">
@@ -1220,20 +1220,33 @@
         });
 
         function initializeWebsite() {
-            // Show loading for 3 seconds
-            setTimeout(() => {
-                document.getElementById('loadingSpinner').classList.add('hidden');
-                isLoaded = true;
-                startBackgroundMagic();
-                initializeScrollAnimations();
-            }, 3000);
-
+            // Initialize all components first
             initializeNavigation();
             initializeStoryCards();
             initializeMagicButtons();
             initializeContactForm();
             initializeHappinessSlider();
             initializeMusic();
+            
+            // Hide loading screen after 1.5 seconds
+            setTimeout(() => {
+                const spinner = document.getElementById('loadingSpinner');
+                if (spinner) {
+                    spinner.style.opacity = '0';
+                    spinner.style.visibility = 'hidden';
+                    setTimeout(() => {
+                        spinner.style.display = 'none';
+                    }, 500);
+                }
+                isLoaded = true;
+                startBackgroundMagic();
+                initializeScrollAnimations();
+                
+                // Welcome message
+                setTimeout(() => {
+                    showLoveMessage("💜 Welcome to your kingdom, Princess Magdalena! I hope this makes you smile! 💜");
+                }, 1000);
+            }, 1500);
         }
 
         // Navigation
@@ -1459,7 +1472,10 @@
             showLoveMessage(`💌 Thank you for your message, Magdalena! "${subject.value}" - I love hearing from you when you're feeling ${happinessLevels[happiness.value].toLowerCase()}! 💌`);
             
             // Reset form
-            form.reset();
+            const form = document.getElementById('magdalenaForm');
+            if (form) {
+                form.reset();
+            }
             happiness.value = 8;
             updateHappinessDisplay(8);
             
@@ -1596,13 +1612,6 @@
                 }
             }
         });
-
-        // Welcome message
-        setTimeout(() => {
-            if (isLoaded) {
-                showLoveMessage("💜 Welcome to your kingdom, Princess Magdalena! I hope this makes you smile! 💜");
-            }
-        }, 4000);
     </script>
 </body>
 </html>
