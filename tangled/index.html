@@ -3,2248 +3,1419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Project for Magdalena 💜</title>
+    <title>Princess Magdalena's Royal Quest 👑</title>
     
-    <!-- External Scripts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     
     <style>
-        /* CSS Variables */
         :root {
-            --magdalena-purple: #9966CC;
-            --tangled-gold: #FFD700;
-            --rapunzel-blonde: #F5E6A3;
-            --tower-stone: #8B7355;
-            --lantern-glow: #FFA500;
-            --pascal-green: #90EE90;
-            --flynn-brown: #8B4513;
-            --sunset-pink: #FFB6C1;
-            --deep-purple: #4B0082;
-            --lavender: #E6E6FA;
-            --cream: #FFF8DC;
-            --dreamy-blue: #B19CD9;
-            --soft-pink: #F8BBD9;
-            --magical-glow: 0 0 20px rgba(255, 215, 0, 0.6);
-            --love-shadow: 0 10px 30px rgba(153, 102, 204, 0.4);
-            --dreamy-shadow: 0 15px 35px rgba(181, 156, 217, 0.3);
-            --font-romantic: 'Great Vibes', cursive;
-            --font-royal: 'Playfair Display', serif;
-            --font-story: 'Crimson Text', serif;
-            --font-elegant: 'Cormorant Garamond', serif;
-            --font-medieval: 'Cinzel', serif;
+            --royal-gold: #FFD700;
+            --deep-gold: #B8860B;
+            --rich-gold: #DAA520;
+            --pale-gold: #F5DEB3;
+            --dark-gold: #8B7500;
+            --midnight: #1A1A2E;
+            --royal-black: #0F0F1A;
+            --gold-glow: 0 0 20px rgba(255, 215, 0, 0.6);
         }
-        
-        /* Global Styles */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-        
+
         body {
-            font-family: var(--font-elegant);
-            background: linear-gradient(135deg, var(--deep-purple) 0%, var(--magdalena-purple) 25%, var(--dreamy-blue) 50%, var(--soft-pink) 75%, var(--sunset-pink) 100%);
+            font-family: 'Playfair Display', serif;
+            background: radial-gradient(circle at center, var(--midnight) 0%, var(--royal-black) 100%);
             background-attachment: fixed;
-            color: var(--cream);
             overflow-x: hidden;
-            line-height: 1.6;
-            position: relative;
+            color: var(--royal-gold);
             min-height: 100vh;
         }
-        
-        /* Dreamy Background Effects */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(181, 156, 217, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        /* Navigation */
-        .dreamy-nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 15px 0;
-            background: rgba(75, 0, 130, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 2px solid var(--tangled-gold);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            box-shadow: var(--dreamy-shadow);
-        }
-        
-        .dreamy-nav.scrolled {
-            padding: 10px 0;
-            background: rgba(75, 0, 130, 0.98);
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
-        
-        .love-logo {
-            font-family: var(--font-romantic);
-            font-size: 2.2rem;
-            font-weight: 400;
-            background: linear-gradient(45deg, var(--tangled-gold), var(--rapunzel-blonde));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        
-        .love-logo::before {
-            content: '';
-            position: absolute;
-            left: -40px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 30px;
-            height: 30px;
-            background: var(--tangled-gold);
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E") no-repeat center;
-            mask-size: contain;
-            animation: starTwinkle 3s ease-in-out infinite;
-        }
-        
-        @keyframes starTwinkle {
-            0%, 100% { opacity: 0.7; transform: translateY(-50%) scale(1); }
-            50% { opacity: 1; transform: translateY(-50%) scale(1.1); }
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-            align-items: center;
-        }
-        
-        .nav-menu li a {
-            color: var(--cream);
-            text-decoration: none;
-            font-family: var(--font-medieval);
-            font-weight: 500;
-            font-size: 1rem;
-            position: relative;
-            transition: all 0.3s ease;
-            text-transform: capitalize;
-            letter-spacing: 0.5px;
-        }
-        
-        .nav-menu li a:hover {
-            color: var(--tangled-gold);
-            transform: translateY(-2px);
-        }
-        
-        .nav-menu li a::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(45deg, var(--tangled-gold), var(--rapunzel-blonde));
-            transition: width 0.4s ease;
-            border-radius: 1px;
-        }
-        
-        .nav-menu li a:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-menu-toggle {
+
+        .page {
             display: none;
+            min-height: 100vh;
+            padding: 15px;
+            position: relative;
+            animation: pageSlideIn 0.6s ease-out;
+        }
+
+        .page.active {
+            display: flex;
             flex-direction: column;
-            cursor: pointer;
-            padding: 5px;
-            border: none;
-            background: none;
-            color: var(--tangled-gold);
-        }
-        
-        .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--tangled-gold);
-            margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
-        
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-        
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-        
-        /* Music Player - Beautiful & Minimizable */
-        .music-player {
-            position: fixed;
-            top: 90px;
-            right: 20px;
-            background: linear-gradient(135deg, rgba(75, 0, 130, 0.95), rgba(153, 102, 204, 0.95));
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 2px solid var(--tangled-gold);
-            z-index: 1001;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--dreamy-shadow);
-            overflow: hidden;
-        }
-        
-        .music-player.minimized {
-            width: 60px;
-            height: 60px;
-        }
-        
-        .music-player.expanded {
-            width: 320px;
-            min-height: 220px;
-        }
-        
-        .music-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: rgba(255, 215, 0, 0.1);
-            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
-        }
-        
-        .music-player.minimized .music-header {
-            padding: 18px;
-            border: none;
-            background: none;
             justify-content: center;
-        }
-        
-        .music-title {
-            color: var(--tangled-gold);
-            font-family: var(--font-royal);
-            font-size: 1.1rem;
-            font-weight: 600;
-            display: flex;
             align-items: center;
-            gap: 8px;
         }
-        
-        .music-player.minimized .music-title {
-            display: none;
+
+        @keyframes pageSlideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .minimize-btn {
-            background: none;
-            border: none;
-            color: var(--tangled-gold);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 5px;
-            border-radius: 50%;
-        }
-        
-        .minimize-btn:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: scale(1.1);
-        }
-        
-        .music-content {
-            padding: 20px;
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.3s ease;
-        }
-        
-        .music-player.minimized .music-content {
-            opacity: 0;
-            transform: translateY(-20px);
-            height: 0;
-            padding: 0;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .current-song {
+
+        .story-container, .game-container {
+            max-width: 90vw;
+            width: 100%;
+            max-width: 800px;
             text-align: center;
+            background: linear-gradient(145deg, rgba(218, 165, 32, 0.15), rgba(184, 134, 11, 0.1));
+            backdrop-filter: blur(15px);
+            border: 3px solid var(--royal-gold);
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: var(--gold-glow), inset 0 0 30px rgba(255, 215, 0, 0.1);
+            margin: 10px;
+        }
+
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            color: var(--royal-gold);
+            margin-bottom: 15px;
+            text-shadow: var(--gold-glow);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            color: var(--pale-gold);
             margin-bottom: 20px;
+            font-weight: 600;
         }
-        
-        .song-name {
-            color: var(--rapunzel-blonde);
-            font-family: var(--font-story);
-            font-size: 1rem;
-            font-style: italic;
-            margin-bottom: 5px;
+
+        .story-text {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: var(--pale-gold);
         }
-        
-        .song-artist {
-            color: var(--lavender);
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-        
-        .music-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .control-btn {
-            background: linear-gradient(45deg, var(--tangled-gold), var(--rapunzel-blonde));
-            color: var(--deep-purple);
-            border: none;
-            border-radius: 50%;
+
+        .btn, .retro-button {
+            background: linear-gradient(145deg, var(--royal-gold), var(--deep-gold));
+            color: var(--royal-black);
+            border: 2px solid var(--dark-gold);
+            padding: 12px 25px;
+            border-radius: 15px;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin: 8px;
+            box-shadow: var(--gold-glow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover, .retro-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            background: linear-gradient(145deg, #FFE55C, var(--royal-gold));
+        }
+
+        /* Memory Game - Fast & Elegant */
+        .memory-palace-container {
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.2), rgba(184, 134, 11, 0.15));
+            border: 3px solid var(--royal-gold);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px auto;
+            max-width: 450px;
+            box-shadow: var(--gold-glow);
+        }
+
+        .memory-palace-header {
+            background: linear-gradient(90deg, var(--deep-gold), var(--royal-gold));
+            color: var(--royal-black);
+            padding: 12px;
+            margin: -25px -25px 20px -25px;
+            border-radius: 12px 12px 0 0;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .pattern-stats-panel {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.8), rgba(15, 15, 26, 0.9));
+            border: 2px solid var(--dark-gold);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat-display {
+            background: var(--royal-black);
+            color: var(--royal-gold);
+            border: 2px solid var(--dark-gold);
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--royal-gold);
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--pale-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .pattern-challenge {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px auto;
+            max-width: 280px;
+            background: var(--royal-black);
+            padding: 20px;
+            border: 3px solid var(--dark-gold);
+            border-radius: 12px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .pattern-tile {
+            aspect-ratio: 1;
+            background: linear-gradient(145deg, var(--deep-gold), var(--royal-gold));
+            border: 2px solid var(--dark-gold);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            font-size: clamp(1.4rem, 5vw, 2rem);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--royal-black);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            user-select: none;
         }
-        
-        .control-btn.small {
+
+        .pattern-tile:hover {
+            background: linear-gradient(145deg, #FFE55C, #FFD700);
+            transform: translateY(-2px);
+            box-shadow: var(--gold-glow);
+        }
+
+        .pattern-tile.highlight {
+            background: linear-gradient(145deg, #FFFF99, #FFE55C);
+            animation: golden-glow 0.6s ease;
+            box-shadow: 0 0 25px var(--royal-gold);
+        }
+
+        .pattern-tile.correct {
+            background: linear-gradient(145deg, #98FB98, #32CD32);
+            animation: success-bounce 0.4s ease;
+        }
+
+        .pattern-tile.wrong {
+            background: linear-gradient(145deg, #FFB6C1, #DC143C);
+            animation: error-shake 0.4s ease;
+        }
+
+        @keyframes golden-glow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); box-shadow: 0 0 30px var(--royal-gold); }
+        }
+
+        @keyframes success-bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes error-shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .game-message {
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.2), rgba(218, 165, 32, 0.15));
+            border: 2px solid var(--royal-gold);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: var(--royal-gold);
+            text-align: center;
+            box-shadow: var(--gold-glow);
+        }
+
+        /* Enhanced Tower Game */
+        .tower-fortress {
+            position: relative;
+            width: min(350px, 90vw);
+            height: 450px;
+            margin: 20px auto;
+            background: linear-gradient(180deg, #8B7355 0%, #654321 50%, #2C1810 100%);
+            border-radius: 15px;
+            border: 4px solid var(--royal-gold);
+            overflow: hidden;
+            box-shadow: var(--gold-glow);
+        }
+
+        .tower-level {
+            position: absolute;
+            width: 100%;
+            height: 80px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .princess-warrior {
+            position: absolute;
+            bottom: 15px;
+            left: 20px;
+            font-size: 2.2rem;
+            transition: all 0.3s ease;
+            z-index: 5;
+            filter: drop-shadow(0 0 8px var(--royal-gold));
+            pointer-events: none;
+        }
+
+        .tower-enemy {
             width: 40px;
             height: 40px;
-            font-size: 1rem;
-        }
-        
-        .control-btn.large {
-            width: 50px;
-            height: 50px;
+            background: radial-gradient(circle, #DC143C, #8B0000);
+            border: 2px solid var(--royal-gold);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
             font-size: 1.2rem;
+            animation: enemy-threat 1.5s ease-in-out infinite;
+            z-index: 15;
+            position: relative;
         }
-        
-        .control-btn:hover {
+
+        @keyframes enemy-threat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); box-shadow: 0 0 10px #DC143C; }
+        }
+
+        .tower-enemy:hover {
+            background: var(--royal-gold);
+            color: var(--royal-black);
+            transform: scale(1.2);
+        }
+
+        .tower-enemy.defeated {
+            opacity: 0.2;
+            pointer-events: none;
+            background: #32CD32;
+            animation: none;
+        }
+
+        /* Enhanced Dragon Battle */
+        .dragon-battlefield {
+            position: relative;
+            width: min(100%, 700px);
+            height: 400px;
+            margin: 20px auto;
+            background: radial-gradient(circle at center, var(--midnight) 0%, var(--royal-black) 100%);
+            border-radius: 20px;
+            border: 4px solid var(--royal-gold);
+            overflow: hidden;
+            box-shadow: var(--gold-glow);
+        }
+
+        .dragon-boss {
+            position: absolute;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            z-index: 5;
+            filter: drop-shadow(0 0 10px #DC2626);
+            transition: all 0.3s ease;
+        }
+
+        .dragon-boss.damaged {
+            animation: dragon-hurt 0.4s ease;
+        }
+
+        @keyframes dragon-hurt {
+            0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 10px #DC2626); }
+            50% { transform: scale(1.1) rotate(-5deg); filter: drop-shadow(0 0 20px #FF0000); }
+        }
+
+        .dragon-boss.phase1 { animation: dragon-fly1 3s linear infinite; }
+        .dragon-boss.phase2 { animation: dragon-fly2 2.5s linear infinite; }
+        .dragon-boss.phase3 { animation: dragon-fly3 2s linear infinite; }
+
+        @keyframes dragon-fly1 {
+            0% { left: -100px; top: 20%; }
+            100% { left: 100%; top: 20%; }
+        }
+
+        @keyframes dragon-fly2 {
+            0% { left: 100%; top: 10%; }
+            50% { left: 50%; top: 40%; }
+            100% { left: -100px; top: 10%; }
+        }
+
+        @keyframes dragon-fly3 {
+            0% { left: -100px; top: 5%; }
+            25% { left: 30%; top: 50%; }
+            50% { left: 70%; top: 15%; }
+            75% { left: 40%; top: 5%; }
+            100% { left: 100%; top: 30%; }
+        }
+
+        .princess-archer {
+            position: absolute;
+            bottom: 20px;
+            left: 50px;
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 8px var(--royal-gold));
+        }
+
+        .princess-archer:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            filter: drop-shadow(0 0 15px var(--royal-gold));
         }
-        
-        .control-btn:active {
-            transform: scale(0.95);
+
+        .princess-archer.hit {
+            animation: princess-hit 0.5s ease;
         }
-        
-        .progress-container {
-            margin-bottom: 15px;
+
+        @keyframes princess-hit {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px var(--royal-gold)); }
+            50% { transform: scale(0.9); filter: drop-shadow(0 0 15px #DC2626); }
         }
-        
+
+        .magic-arrow {
+            position: absolute;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            color: var(--royal-gold);
+            z-index: 8;
+            filter: drop-shadow(0 0 5px var(--royal-gold));
+        }
+
+        .dragon-fire {
+            position: absolute;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            z-index: 6;
+            animation: fireball-attack 2s linear;
+        }
+
+        @keyframes fireball-attack {
+            0% { right: -50px; top: 20%; opacity: 1; transform: scale(1); }
+            100% { right: 90%; top: 60%; opacity: 0; transform: scale(1.5); }
+        }
+
+        .combat-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+            font-family: 'Cinzel', serif;
+        }
+
+        .stat-box {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.8), rgba(15, 15, 26, 0.9));
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid var(--royal-gold);
+            color: var(--royal-gold);
+        }
+
+        /* Dancing Scene */
+        .dance-container {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background: var(--royal-black);
+        }
+
+        #couple {
+            max-height: 100%;
+            width: 100%;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+        }
+
+        .celebration-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .victory-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            color: var(--royal-gold);
+            text-shadow: var(--gold-glow);
+            margin-bottom: 20px;
+            animation: title-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes title-glow {
+            0%, 100% { opacity: 0.9; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* UI Controls */
         .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            overflow: hidden;
-            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
         }
-        
+
         .progress-fill {
             height: 100%;
-            background: linear-gradient(45deg, var(--tangled-gold), var(--rapunzel-blonde));
-            width: 30%;
-            transition: width 0.3s ease;
-            border-radius: 3px;
+            background: linear-gradient(45deg, var(--royal-gold), var(--deep-gold));
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px var(--royal-gold);
         }
-        
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            color: var(--lavender);
-            margin-top: 5px;
-        }
-        
-        .volume-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .volume-icon {
-            color: var(--tangled-gold);
-            font-size: 1rem;
-        }
-        
-        .volume-slider {
-            flex: 1;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-            outline: none;
-            -webkit-appearance: none;
-            cursor: pointer;
-        }
-        
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
-            background: var(--tangled-gold);
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        }
-        
-        .volume-slider::-moz-range-thumb {
-            width: 16px;
-            height: 16px;
-            background: var(--tangled-gold);
-            border-radius: 50%;
-            cursor: pointer;
-            border: none;
-        }
-        
-        /* Hero Section */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            padding: 120px 20px 80px;
-            overflow: hidden;
-        }
-        
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            max-width: 900px;
-            z-index: 10;
-            position: relative;
-        }
-        
-        .hero-title {
-            font-family: var(--font-romantic);
-            font-size: clamp(3.5rem, 10vw, 6rem);
-            font-weight: 400;
-            background: linear-gradient(45deg, var(--tangled-gold), var(--rapunzel-blonde), var(--soft-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            animation: titleGlow 4s ease-in-out infinite;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-        }
-        
-        @keyframes titleGlow {
-            0%, 100% { 
-                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
-                transform: scale(1);
-            }
-            50% { 
-                filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
-                transform: scale(1.02);
-            }
-        }
-        
-        .hero-subtitle {
-            font-family: var(--font-royal);
-            font-size: clamp(1.3rem, 4vw, 2rem);
-            color: var(--rapunzel-blonde);
-            margin-bottom: 30px;
-            font-weight: 500;
-            opacity: 0.9;
-        }
-        
-        .personal-message {
-            font-family: var(--font-story);
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            color: var(--cream);
-            margin-bottom: 40px;
-            line-height: 1.8;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: var(--dreamy-shadow);
-        }
-        
-        .love-button {
-            display: inline-block;
-            padding: 18px 45px;
-            background: linear-gradient(45deg, var(--magdalena-purple), var(--tangled-gold));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-family: var(--font-medieval);
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
-            box-shadow: var(--love-shadow);
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .love-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(153, 102, 204, 0.6);
-        }
-        
-        .love-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.6s;
-        }
-        
-        .love-button:hover::before {
-            left: 100%;
-        }
-        
-        .love-button i {
-            margin-left: 10px;
-            font-size: 1rem;
-        }
-        
-        /* Story Section */
-        .story-section {
-            min-height: 100vh;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, 
-                rgba(75, 0, 130, 0.1) 0%, 
-                rgba(153, 102, 204, 0.1) 50%, 
-                rgba(181, 156, 217, 0.1) 100%
-            );
-            position: relative;
-        }
-        
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .section-title {
-            font-family: var(--font-royal);
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            color: var(--tangled-gold);
-            margin-bottom: 30px;
-            position: relative;
-            font-weight: 700;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -20px;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(45deg, var(--tangled-gold), var(--rapunzel-blonde));
-            border-radius: 2px;
-        }
-        
-        .section-description {
-            font-family: var(--font-story);
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            color: var(--cream);
-            margin-bottom: 80px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-            opacity: 0.9;
-        }
-        
-        .love-stories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-        
-        .story-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 40px 30px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .story-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--tangled-gold), var(--rapunzel-blonde));
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: -1;
-        }
-        
-        .story-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.3);
-            border-color: var(--tangled-gold);
-        }
-        
-        .story-card:hover::before {
-            opacity: 0.1;
-        }
-        
-        .card-icon {
-            font-size: 3.5rem;
-            margin-bottom: 25px;
-            display: block;
-            color: var(--tangled-gold);
-            animation: iconFloat 3s ease-in-out infinite;
-        }
-        
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .card-title {
-            font-family: var(--font-royal);
-            font-size: 1.8rem;
-            color: var(--tangled-gold);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        .card-description {
-            font-family: var(--font-elegant);
-            font-size: 1.1rem;
-            color: var(--cream);
-            line-height: 1.7;
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-        
-        .card-button {
-            background: linear-gradient(45deg, var(--sunset-pink), var(--magdalena-purple));
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-family: var(--font-medieval);
-            font-weight: 500;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: capitalize;
-        }
-        
-        .card-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4);
-        }
-        
-        .card-button i {
-            margin-left: 8px;
-        }
-        
-        /* Magic Section */
-        .magic-section {
-            min-height: 100vh;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, 
-                rgba(181, 156, 217, 0.1) 0%, 
-                rgba(248, 187, 217, 0.1) 50%, 
-                rgba(255, 182, 193, 0.1) 100%
-            );
-            position: relative;
-        }
-        
-        .magic-controls {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 80px 0;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .magic-button {
-            background: linear-gradient(45deg, var(--tangled-gold), var(--rapunzel-blonde));
-            color: var(--deep-purple);
-            border: none;
-            padding: 20px 30px;
-            border-radius: 20px;
-            font-family: var(--font-medieval);
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--magical-glow);
-            text-transform: capitalize;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .magic-button:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.5);
-        }
-        
-        .magic-button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transition: all 0.6s ease;
-            transform: translate(-50%, -50%);
-        }
-        
-        .magic-button:active::after {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .magic-button i {
-            font-size: 1.2rem;
-        }
-        
-        /* Love Letter Section */
-        .love-letter-section {
-            min-height: 100vh;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, 
-                rgba(75, 0, 130, 0.1) 0%, 
-                rgba(153, 102, 204, 0.1) 100%
-            );
-            position: relative;
-        }
-        
-        .love-form {
-            max-width: 700px;
-            margin: 80px auto 0;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            padding: 50px 40px;
-            border-radius: 30px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: var(--dreamy-shadow);
-        }
-        
-        .form-group {
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .form-label {
-            display: block;
-            font-family: var(--font-royal);
-            font-size: 1.2rem;
-            color: var(--tangled-gold);
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-        
-        .form-label i {
-            margin-right: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .form-input,
-        .form-textarea {
-            width: 100%;
-            padding: 18px 25px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 15px;
-            color: var(--cream);
-            font-family: var(--font-elegant);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        .form-input::placeholder,
-        .form-textarea::placeholder {
-            color: rgba(255, 248, 220, 0.6);
-            font-style: italic;
-        }
-        
-        .form-input:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--tangled-gold);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .form-textarea {
-            resize: vertical;
-            min-height: 140px;
-            font-family: var(--font-story);
-            line-height: 1.6;
-        }
-        
-        .happiness-meter {
-            margin: 40px 0;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-        
-        .happiness-label {
-            font-family: var(--font-royal);
-            font-size: 1.3rem;
-            color: var(--tangled-gold);
-            margin-bottom: 20px;
-            display: block;
-            font-weight: 500;
-        }
-        
-        .happiness-slider {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            outline: none;
-            -webkit-appearance: none;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-        
-        .happiness-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(45deg, var(--tangled-gold), var(--rapunzel-blonde));
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
-        
-        .happiness-slider::-moz-range-thumb {
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(45deg, var(--tangled-gold), var(--rapunzel-blonde));
-            border-radius: 50%;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .happiness-display {
-            font-family: var(--font-story);
-            font-size: 1.6rem;
-            color: var(--rapunzel-blonde);
-            margin-top: 15px;
-            font-weight: 600;
-        }
-        
-        .form-submit {
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(45deg, var(--magdalena-purple), var(--tangled-gold));
-            color: white;
-            border: none;
-            border-radius: 20px;
-            font-family: var(--font-medieval);
-            font-weight: 600;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: var(--love-shadow);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .form-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(153, 102, 204, 0.6);
-        }
-        
-        .form-submit i {
-            font-size: 1.1rem;
-        }
-        
-        /* Modal */
-        .story-modal {
-            display: none;
+
+        .music-controls {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .modal-content {
-            background: linear-gradient(135deg, var(--deep-purple), var(--magdalena-purple));
-            border-radius: 30px;
-            max-width: 750px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            border: 3px solid var(--tangled-gold);
-            box-shadow: var(--dreamy-shadow);
-            position: relative;
-            animation: modalSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8) translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-        
-        .modal-header {
-            padding: 40px 40px 25px;
-            text-align: center;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .modal-title {
-            font-family: var(--font-royal);
-            font-size: 2.2rem;
-            color: var(--tangled-gold);
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .modal-subtitle {
-            font-family: var(--font-story);
-            font-size: 1.2rem;
-            color: var(--rapunzel-blonde);
-            font-style: italic;
-            opacity: 0.9;
-        }
-        
-        .modal-body {
-            padding: 35px 40px 45px;
-        }
-        
-        .modal-text {
-            font-family: var(--font-elegant);
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: var(--cream);
-            margin-bottom: 30px;
-            text-align: justify;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--tangled-gold);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-        
-        .modal-close:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: rotate(90deg);
-        }
-        
-        /* Effect Container */
-        .effect-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            top: 15px;
+            right: 15px;
+            background: rgba(26, 26, 46, 0.9);
+            border-radius: 12px;
+            padding: 10px;
+            border: 2px solid var(--royal-gold);
             z-index: 1500;
+            backdrop-filter: blur(10px);
         }
-        
+
+        .music-btn {
+            background: var(--royal-gold);
+            color: var(--royal-black);
+            border: none;
+            border-radius: 8px;
+            width: 35px;
+            height: 35px;
+            margin: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px var(--royal-gold);
+        }
+
+        .game-timer {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: rgba(26, 26, 46, 0.9);
+            border-radius: 12px;
+            padding: 12px 18px;
+            border: 2px solid var(--royal-gold);
+            font-family: 'Cinzel', serif;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            color: var(--royal-gold);
+            font-weight: 600;
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--gold-glow);
+        }
+
+        .hearts-effect {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
         .floating-heart {
             position: absolute;
-            font-size: 2rem;
-            animation: floatUp 4s ease-out forwards;
-        }
-        
-        .magical-sparkle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            animation: sparkleUp 3s ease-out forwards;
-        }
-        
-        .lantern-effect {
-            position: absolute;
-            width: 30px;
-            height: 40px;
-            background: radial-gradient(circle, var(--tangled-gold) 0%, var(--lantern-glow) 70%);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            animation: lanternRise 6s ease-out forwards;
-            box-shadow: 0 0 20px var(--tangled-gold);
-        }
-        
-        .flower-petal {
-            position: absolute;
             font-size: 1.5rem;
-            animation: petalFall 5s ease-out forwards;
+            animation: heart-float 3s ease-out forwards;
+            color: var(--royal-gold);
         }
-        
-        @keyframes floatUp {
-            0% {
-                opacity: 1;
-                transform: translateY(0) scale(0.5) rotate(0deg);
-            }
-            50% {
-                opacity: 1;
-                transform: translateY(-50vh) scale(1) rotate(180deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-100vh) scale(1.5) rotate(360deg);
-            }
+
+        @keyframes heart-float {
+            0% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(-120px) scale(1.5) rotate(360deg); }
         }
-        
-        @keyframes sparkleUp {
-            0% {
-                opacity: 1;
-                transform: scale(0);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0) translateY(-100px);
-            }
-        }
-        
-        @keyframes lanternRise {
-            0% {
-                opacity: 1;
-                transform: translateY(100vh) scale(0.5);
-            }
-            20% {
-                opacity: 1;
-                transform: translateY(80vh) scale(1);
-            }
-            80% {
-                opacity: 1;
-                transform: translateY(20vh) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-20vh) scale(1.2);
-            }
-        }
-        
-        @keyframes petalFall {
-            0% {
-                opacity: 1;
-                transform: translateY(-10vh) rotate(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(100vh) rotate(360deg);
-            }
-        }
-        
-        /* Background floating elements */
-        .floating-lantern-bg {
-            position: absolute;
-            width: 20px;
-            height: 30px;
-            background: radial-gradient(circle, var(--tangled-gold) 0%, var(--lantern-glow) 70%);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            animation: backgroundLantern 25s linear infinite;
-            opacity: 0.6;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
-        
-        @keyframes backgroundLantern {
-            0% {
-                transform: translateY(100vh) translateX(0px);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-10vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-        
-        /* Love Message Display */
-        .love-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, var(--magdalena-purple), var(--tangled-gold));
-            color: white;
-            padding: 30px 40px;
-            border-radius: 25px;
-            border: 2px solid var(--tangled-gold);
-            box-shadow: var(--dreamy-shadow);
-            z-index: 3000;
-            text-align: center;
-            font-family: var(--font-royal);
-            font-size: 1.2rem;
-            max-width: 450px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-        }
-        
-        .love-message.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, -50%) scale(1);
-        }
-        
-        .close-message {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .close-message:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg);
-        }
-        
-        /* Scroll animations */
-        .fade-in {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .fade-in.animate-in {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .slide-in-left {
-            opacity: 1;
-            transform: translateX(0);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .slide-in-left.animate-in {
-            opacity: 0;
-            transform: translateX(-100px);
-        }
-        
-        .slide-in-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .slide-in-right {
-            opacity: 1;
-            transform: translateX(0);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .slide-in-right.animate-in {
-            opacity: 0;
-            transform: translateX(100px);
-        }
-        
-        .slide-in-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(75, 0, 130, 0.3);
-            border-radius: 6px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--tangled-gold), var(--magdalena-purple));
-            border-radius: 6px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, var(--rapunzel-blonde), var(--tangled-gold));
-        }
-        
-        /* Responsive Design */
+
+        /* SVG Styles */
+        .st0{fill:#F8E5C5;}
+        .st1{fill:#F0B38A;}
+        .st2{fill:#660000;}
+        .st3{fill:#161C1D;}
+        .st4{fill:#EB1D23;}
+
+        #girl-hair { fill: url(#hair-gradient); }
+        #girl-eye { fill: #10B981; }
+        #girl-earring { fill: #8d8d8d; }
+        #girl-skirt, #girl-shirt { fill: #791e43; }
+        #boy-pants { fill: #848487; }
+        #boy-sleeve { fill: #b8bcbb; }
+        #boy-shirt { fill: #256e89; }
+        #boy-hat-1 { fill: #2e6773; }
+        #boy-hat-2 { fill: #4f3723; }
+        #couple, #heart, #triangle-light { visibility: hidden; }
+        #triangle-light { fill: url(#light-gradient); fill-opacity: 0.3; }
+        #ground { fill: #5c5757; }
+
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(75, 0, 130, 0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 20px;
-                gap: 20px;
-                border-top: 2px solid var(--tangled-gold);
-                box-shadow: var(--dreamy-shadow);
-            }
-            
-            .nav-menu.active {
-                display: flex;
-            }
-            
-            .mobile-menu-toggle {
-                display: flex;
-            }
-            
-            .music-player {
-                position: relative;
-                top: auto;
-                right: auto;
-                margin: 20px auto;
-                max-width: 320px;
-            }
-            
-            .music-player.minimized {
-                width: 60px;
-                height: 60px;
-                margin: 10px auto;
-            }
-            
-            .hero-section {
-                padding: 100px 15px 60px;
-            }
-            
-            .section-container {
-                padding: 0 15px;
-            }
-            
-            .love-stories {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .magic-controls {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .love-form {
-                margin: 40px 15px 0;
-                padding: 30px 25px;
-            }
-            
-            .modal-content {
-                margin: 10px;
-                max-height: 95vh;
-            }
-            
-            .modal-header {
-                padding: 25px 25px 20px;
-            }
-            
-            .modal-body {
-                padding: 20px 25px 30px;
-            }
-            
-            .personal-message {
-                padding: 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .love-logo {
-                font-size: 1.8rem;
-            }
-            
-            .love-logo::before {
-                left: -30px;
-                width: 25px;
-                height: 25px;
-            }
-            
-            .nav-container {
-                padding: 0 15px;
-            }
-            
-            .hero-title {
-                margin-bottom: 15px;
-            }
-            
-            .hero-subtitle {
-                margin-bottom: 20px;
-            }
-            
-            .personal-message {
-                margin-bottom: 30px;
-                padding: 15px;
-            }
-            
-            .story-card,
-            .love-form {
-                padding: 25px 20px;
-            }
-            
-            .section-title {
-                margin-bottom: 20px;
-            }
-            
-            .section-description {
-                margin-bottom: 50px;
-            }
-        }
-        
-        /* Special dreamy effects */
-        .dreamy-glow {
-            text-shadow: 0 0 20px currentColor;
-        }
-        
-        .magical-hover:hover {
-            animation: magicalPulse 1s ease-in-out;
-        }
-        
-        @keyframes magicalPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        /* Floating hearts background */
-        .floating-heart-bg {
-            position: absolute;
-            font-size: 1.2rem;
-            color: rgba(255, 182, 193, 0.3);
-            animation: heartFloat 15s linear infinite;
-            pointer-events: none;
-        }
-        
-        @keyframes heartFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-10vh) rotate(360deg);
-                opacity: 0;
-            }
+            .page { padding: 10px; }
+            .story-container, .game-container { padding: 20px 15px; }
+            .pattern-challenge { max-width: 260px; }
+            .tower-fortress { width: 95vw; height: 400px; }
+            .dragon-battlefield { height: 320px; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="dreamy-nav" id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="love-logo" onclick="createMagicalEffect('hearts')">Hey Magdalena!</a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#stories"><i class="fas fa-heart"></i> Our Stories</a></li>
-                <li><a href="#magic"><i class="fas fa-magic"></i> Magic</a></li>
-                <li><a href="#message"><i class="fas fa-envelope"></i> Message</a></li>
-            </ul>
-            <button class="mobile-menu-toggle" id="mobileToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+    <!-- Music Controls -->
+    <div class="music-controls">
+        <button class="music-btn" onclick="toggleMusic()" id="musicBtn">▶</button>
+        <button class="music-btn" onclick="nextSong()">⏭</button>
+    </div>
 
-    <!-- Music Player - Beautiful & Minimizable -->
-    <div class="music-player expanded" id="musicPlayer">
-        <div class="music-header">
-            <div class="music-title">
-                <i class="fas fa-music"></i>
-                Music Player
+    <!-- Game Timer -->
+    <div class="game-timer">
+        ⏱ <span id="timer">00:00</span>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Page 1: Epic Introduction -->
+    <div class="page active" id="page1">
+        <div class="story-container">
+            <h1 class="title">Princess Magdalena's Royal Quest</h1>
+            <p class="subtitle">An Epic Tale of Courage, Magic & Heroism ⚔️</p>
+            <div class="story-text">
+                In the mystical Kingdom of Eldoria, Princess Magdalena was renowned for her courage and magical prowess. 
+                When the evil sorceress Ravenna captures Prince Flynn and imprisons him in the dreaded Tower of Shadows, 
+                the brave princess refuses to wait for rescue!
+                <br><br>
+                Armed with her ancestral magic and indomitable spirit, she embarks on a perilous quest. 
+                Three legendary challenges await - each testing her mind, courage, and skill.
+                <br><br>
+                <strong>"By the crown of my ancestors, I shall rescue him myself!"</strong>
             </div>
-            <button class="minimize-btn" id="minimizeBtn">
-                <i class="fas fa-minus"></i>
+            <button class="btn" onclick="nextPage()">
+                ⚔️ BEGIN THE QUEST
             </button>
-        </div>
-        <div class="music-content">
-            <div class="current-song">
-                <div class="song-name" id="songName">A Dream is a Wish Your Heart Makes</div>
-                <div class="song-artist">Disney & Tangled Songs</div>
-            </div>
-            <div class="music-controls">
-                <button class="control-btn small" onclick="playMusic('prev')">
-                    <i class="fas fa-step-backward"></i>
-                </button>
-                <button class="control-btn large" id="playPauseBtn" onclick="togglePlayPause()">
-                    <i class="fas fa-play"></i>
-                </button>
-                <button class="control-btn small" onclick="playMusic('next')">
-                    <i class="fas fa-step-forward"></i>
-                </button>
-            </div>
-            <div class="progress-container">
-                <div class="progress-bar" onclick="seekMusic(event)">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-                <div class="time-display">
-                    <span id="currentTime">0:00</span>
-                    <span id="totalTime">3:42</span>
-                </div>
-            </div>
-            <div class="volume-container">
-                <i class="fas fa-volume-up volume-icon"></i>
-                <input type="range" class="volume-slider" min="0" max="100" value="70" id="volumeSlider">
-            </div>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero-section" id="home">
-        <div class="floating-elements" id="floatingElements"></div>
-        <div class="hero-content fade-in">
-            <h1 class="hero-title dreamy-glow">Magdalena</h1>
-            <p class="hero-subtitle">Hey there, Magdalena! <i class="fas fa-star"></i></p>
-            <div class="personal-message">
-                <i class="fas fa-heart" style="color: var(--sunset-pink); margin-right: 10px;"></i>
-                Hey Magdalena! I thought it would be fun to create something special for you. You seem like such an amazing person, and I wanted to make you smile today. I was inspired by Tangled because you remind me of a princess - kind, smart, and beautiful. Hope you enjoy exploring this little magical world I made!
-                <i class="fas fa-heart" style="color: var(--sunset-pink); margin-left: 10px;"></i>
+    <!-- Page 2: Memory Palace Challenge -->
+    <div class="page" id="page2">
+        <div class="game-container">
+            <h2 class="title">The Memory Palace of Ancients</h2>
+            <p class="subtitle">Master the Sacred Royal Patterns 🔮</p>
+            <div class="story-text">
+                The ancient Memory Palace guards the castle gates with mystical patterns. Princess Magdalena 
+                must memorize the glowing sequence of royal symbols to unlock the way forward!
+                <br><br>
+                <strong>Watch the golden glow, then click the symbols in the same order!</strong>
             </div>
-            <a href="#stories" class="love-button magical-hover">
-                Explore This Place <i class="fas fa-castle"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- Stories Section -->
-    <section class="story-section" id="stories">
-        <div class="section-container">
-            <h2 class="section-title fade-in">Why You're Awesome</h2>
-            <p class="section-description fade-in">I've noticed some really cool things about you, Magdalena. Here's what makes you special, just like a Disney princess...</p>
             
-            <div class="love-stories">
-                <div class="story-card fade-in magical-hover" data-story="beauty">
-                    <i class="fas fa-sparkles card-icon"></i>
-                    <h3 class="card-title">Your Amazing Smile</h3>
-                    <p class="card-description">Magdalena, you have such a bright and genuine smile! Just like Rapunzel's positive energy, you seem to bring good vibes wherever you go.</p>
-                    <button class="card-button">Read More <i class="fas fa-arrow-right"></i></button>
+            <div class="memory-palace-container">
+                <div class="memory-palace-header">
+                    ✨ ROYAL MEMORY PALACE ✨
                 </div>
                 
-                <div class="story-card fade-in magical-hover" data-story="kindness">
-                    <i class="fas fa-heart card-icon"></i>
-                    <h3 class="card-title">Your Kind Nature</h3>
-                    <p class="card-description">From what I can tell, you're genuinely kind to people around you. That's something really special and not everyone has that quality.</p>
-                    <button class="card-button">Discover More <i class="fas fa-arrow-right"></i></button>
-                </div>
-                
-                <div class="story-card fade-in magical-hover" data-story="dream">
-                    <i class="fas fa-star card-icon"></i>
-                    <h3 class="card-title">You're Inspiring</h3>
-                    <p class="card-description">Just like the floating lanterns represent dreams, you seem like someone who follows her dreams and inspires others to do the same, Magdalena.</p>
-                    <button class="card-button">See Why <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Magic Section -->
-    <section class="magic-section" id="magic">
-        <div class="section-container">
-            <h2 class="section-title fade-in">Fun Magic Effects</h2>
-            <p class="section-description fade-in">Click these buttons to create some cool effects, just like the lanterns in Tangled! I thought you'd enjoy the magic...</p>
-            
-            <div class="magic-controls fade-in">
-                <button class="magic-button magical-hover" data-effect="hearts">
-                    <i class="fas fa-heart"></i> Send You Hearts
-                </button>
-                <button class="magic-button magical-hover" data-effect="lanterns">
-                    <i class="fas fa-lightbulb"></i> Release Lanterns
-                </button>
-                <button class="magic-button magical-hover" data-effect="sparkles">
-                    <i class="fas fa-sparkles"></i> Magical Sparkles
-                </button>
-                <button class="magic-button magical-hover" data-effect="flowers">
-                    <i class="fas fa-seedling"></i> Flower Petals
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Love Letter Section -->
-    <section class="love-letter-section" id="message">
-        <div class="section-container">
-            <h2 class="section-title fade-in">Let's Chat!</h2>
-            <p class="section-description fade-in">I'd love to hear what you think, Magdalena! Let me know your thoughts about this little project...</p>
-            
-            <form class="love-form fade-in" id="magdalenaForm">
-                <div class="form-group">
-                    <label class="form-label" for="subject">
-                        <i class="fas fa-lightbulb"></i> What's on your mind?
-                    </label>
-                    <input type="text" class="form-input" id="subject" name="subject" placeholder="Tell me what you're thinking..." required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="message">
-                        <i class="fas fa-pen-fancy"></i> Your Beautiful Message
-                    </label>
-                    <textarea class="form-textarea" id="message" name="message" placeholder="I can't wait to read what you have to say..." required></textarea>
-                </div>
-                
-                <div class="happiness-meter">
-                    <label class="happiness-label" for="happiness">
-                        <i class="fas fa-smile"></i> How are you feeling today?
-                    </label>
-                    <input type="range" class="happiness-slider" id="happiness" name="happiness" min="1" max="10" value="8">
-                    <div class="happiness-display" id="happinessDisplay">
-                        <i class="fas fa-star"></i> Amazing <i class="fas fa-star"></i>
+                <div class="pattern-stats-panel">
+                    <div class="stat-display">
+                        <span class="stat-label">LEVEL</span>
+                        <span id="patternLevel">1</span>/3
+                    </div>
+                    <div class="stat-display">
+                        <span class="stat-label">LIVES</span>
+                        <span id="patternLives">5</span> ❤️
+                    </div>
+                    <div class="stat-display">
+                        <span class="stat-label">SEQUENCE</span>
+                        <span id="sequenceLength">3</span>
                     </div>
                 </div>
                 
-                <button type="submit" class="form-submit magical-hover">
-                    <i class="fas fa-paper-plane"></i> Send Message
+                <div class="pattern-challenge" id="patternGrid">
+                    <!-- Symbols will be generated dynamically -->
+                </div>
+                
+                <div id="patternResult"></div>
+                
+                <button class="retro-button" onclick="startPatternGame()" id="patternStartBtn">
+                    🧠 ACTIVATE MEMORY PALACE
                 </button>
-            </form>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Story Modal -->
-    <div class="story-modal" id="storyModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">
-                <i class="fas fa-times"></i>
+    <!-- Page 3: Tower Siege -->
+    <div class="page" id="page3">
+        <div class="game-container">
+            <h2 class="title">The Siege of Shadow Tower</h2>
+            <p class="subtitle">Conquer Three Floors of Enemies 🏰</p>
+            <div class="story-text">
+                The Tower of Shadows has three heavily guarded levels. Princess Magdalena must clear each floor 
+                of enemies before advancing. Click quickly - enemies will multiply if left alone!
+                <br><br>
+                <strong>Click all enemies on each floor to advance!</strong>
+            </div>
+            
+            <div class="tower-fortress" id="towerFortress">
+                <div class="princess-warrior" id="princessWarrior">👸⚔️</div>
+                <!-- Levels and enemies will be generated dynamically -->
+            </div>
+            
+            <div class="pattern-stats-panel">
+                <div class="stat-display">
+                    <span class="stat-label">FLOOR</span>
+                    <span id="currentFloor">1</span>/3
+                </div>
+                <div class="stat-display">
+                    <span class="stat-label">ENEMIES</span>
+                    <span id="enemiesLeft">0</span>
+                </div>
+                <div class="stat-display">
+                    <span class="stat-label">TIME</span>
+                    <span id="floorTimer">30</span>s
+                </div>
+            </div>
+            
+            <div id="towerResult"></div>
+        </div>
+    </div>
+
+    <!-- Page 4: Dragon Boss Battle -->
+    <div class="page" id="page4">
+        <div class="game-container">
+            <h2 class="title">The Ancient Dragon Sovereign</h2>
+            <p class="subtitle">Epic Boss Battle - Avoid the Fire! 🐉</p>
+            <div class="story-text">
+                Draconus the Ancient guards Prince Flynn's prison. This legendary dragon breathes fire and 
+                attacks relentlessly. Princess Magdalena must defeat it while dodging fireballs!
+                <br><br>
+                <strong>Click the princess to shoot arrows. Avoid the dragon's fire attacks!</strong>
+            </div>
+            
+            <div class="dragon-battlefield" id="dragonBattlefield">
+                <div class="dragon-boss phase1" id="dragonBoss">🐉</div>
+                <div class="princess-archer" onclick="shootMagicArrow()">🏹👸</div>
+            </div>
+            
+            <div class="combat-stats">
+                <div class="stat-box">
+                    <div>Dragon Health: <span id="dragonHealth">5</span>/5 ❤️</div>
+                    <div>Phase: <span id="dragonPhase">1</span>/3</div>
+                </div>
+                <div class="stat-box">
+                    <div>Princess Health: <span id="princessHealth">5</span>/5 💖</div>
+                    <div>Hits: <span id="arrowHits">0</span> 🎯</div>
+                </div>
+            </div>
+            
+            <div id="dragonResult"></div>
+        </div>
+    </div>
+
+    <!-- Page 5: Heroic Rescue -->
+    <div class="page" id="page5">
+        <div class="story-container">
+            <h1 class="title">The Heroic Rescue!</h1>
+            <p class="subtitle">Princess Magdalena Triumphs! 👑</p>
+            <div class="story-text">
+                Through skill, courage, and magical prowess, Princess Magdalena has conquered every challenge! 
+                She bursts through the tower's door to find Prince Flynn.
+                <br><br>
+                <strong>"My hero!"</strong> gasps the prince in wonder.
+                <br><br>
+                <strong>"A true princess saves herself... and those she loves!"</strong> 
+                declares Magdalena with a smile.
+                <br><br>
+                Together they escape, and the kingdom celebrates their legendary princess!
+            </div>
+            <button class="btn" onclick="nextPage()">
+                💃 ROYAL CELEBRATION!
             </button>
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle"></h2>
-                <p class="modal-subtitle" id="modalSubtitle"></p>
-            </div>
-            <div class="modal-body">
-                <p class="modal-text" id="modalText"></p>
-                <button class="love-button magical-hover" onclick="closeStoryModal()">
-                    That's Sweet <i class="fas fa-smile"></i>
-                </button>
-            </div>
         </div>
     </div>
 
-    <!-- Effect Container -->
-    <div class="effect-container" id="effectContainer"></div>
-
-    <!-- Love Message Display -->
-    <div class="love-message" id="loveMessage">
-        <button class="close-message" onclick="closeLoveMessage()">
-            <i class="fas fa-times"></i>
-        </button>
-        <div id="messageContent"></div>
+    <!-- Page 6: Dancing Scene -->
+    <div class="page" id="page6">
+        <div class="dance-container">
+            <div class="celebration-overlay" id="celebrationText">
+                <div class="victory-title">Legendary Victory!</div>
+                <div class="subtitle">The Kingdom Celebrates Princess Magdalena!</div>
+                <div style="margin-top: 20px; font-family: 'Cinzel', serif; color: var(--royal-gold);">
+                    Quest Completed in: <span id="finalTime" style="color: var(--royal-gold);">00:00</span>
+                </div>
+            </div>
+            
+            <svg id="couple" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="150 100 900 900">
+                <defs>
+                    <linearGradient id="hair-gradient">
+                        <stop offset="0%" stop-color="#5e3634" />
+                        <stop offset="50%" stop-color="#dfc57b" />
+                    </linearGradient>
+                    <linearGradient id="light-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="10%" stop-color="rgb(120,175,120)" />
+                        <stop offset="60%" stop-color="#1a2124" />
+                    </linearGradient>
+                </defs>
+                <g>
+                    <path id="heart" class="st0" d="M626.6,310.7c-20.1-35-58.8-12.9-70.8,4.6c-11.7-17.5-50.7-39.6-70.8-4.6
+                        c-26.2,45.9,36.6,83.2,70.2,102c0.2,0,1,0.2,1.2,0C590.1,393.8,653,356.6,626.6,310.7L626.6,310.7z"/>
+                    <path id="ground" class="st0" d="M604,886.9c-234.9,0-425,17-425,38.3c0,21.1,190.3,38.1,425,38.1c235,0,425.4-17,425.4-38.1
+                        C1029.4,903.9,839.2,886.9,604,886.9L604,886.9z"/>
+                    <g id="girl">
+                        <g id="girl-leg-1">
+                            <polygon class="st1" points="698.6,810.7 817.1,839.3 820,833 705.1,788.9"/>
+                            <polygon class="st2" points="819.3,876.7 808.5,841.1 812.5,827 832.3,833"/>
+                        </g>
+                        <g id="girl-leg-2">
+                            <polygon class="st1" points="690.8,801.3 713.6,921.1 720.5,921.1 713.2,798.3"/>
+                            <polygon class="st2" points="679.9,931.5 711,910.9 725.5,910.9 725.5,931.5"/>
+                        </g>
+                        <g id="girl-body">
+                            <path id="girl-shirt" class="st0" d="M638,572.4c0,0-47.6,31.5,24,117.4l41-12.3L667.3,588l-9.7-21.6L638,572.4z"/>
+                            <path id="girl-skirt" class="st0" d="M667.3,666.5c-70.9,27.4-52.2,153.8-52.2,153.8s71.9,19.6,188.3-57
+                                C803.4,763.2,748.3,635.2,667.3,666.5L667.3,666.5z"/>
+                            <path id="girl-arm" class="st1" d="M609.1,652.2c0,0,42.7-48.8,49.7-42.7c7.3,6.5-38.6,52-38.6,52h-76.5L609.1,652.2z"/>
+                            <g id="girl-head">
+                                <path id="girl-face" class="st1" d="M695.4,509.5c-2-27.6-35.9-47.4-75.5-44.6c-39.6,3.1-70.1,27.7-68,55.1c2,27.6,35.7,47.5,75.3,44.6
+                                    C667,561.7,697.4,537,695.4,509.5L695.4,509.5z"/>
+                                <path id="girl-eye" class="st3" d="M579.7,507.6c-4.6,0.3-8,4.4-7.7,9c0.3,4.6,4.2,8.2,8.8,7.8c4.8-0.3,8.2-4.4,7.8-9
+                                    C588.4,510.8,584.3,507.3,579.7,507.6L579.7,507.6z"/>
+                                <path id="girl-hair" class="st3" d="M561.8,491.5c0,0,25.8,24.7,76.2,33.5c18.5,32.6,57.5,136.6,57.5,136.6
+                                    s41.2,39.8,78.4-1.9c-11.2-4.4-47.4-6.3-61.4-44.4c-13.9-38.3,6.6-90-13.3-125.5c-11.6-20.9-35.4-44.2-75.7-39.4
+                                    C591.8,453.9,576.1,468.7,561.8,491.5L561.8,491.5z"/>
+                                <path id="girl-earring" class="st4" d="M646.9,525c0,4.8-3.9,8.7-8.8,8.7c-4.8,0-8.7-3.9-8.7-8.7s3.9-8.7,8.7-8.7C643,516.3,646.9,520.2,646.9,525
+                                    L646.9,525z"/>
+                            </g>
+                            <polygon class="st1" points="635.2,561.5 642.6,577.5 659.8,569.5 651.1,550.6"/>
+                        </g>
+                    </g>
+                    <g id="boy">
+                        <polygon class="st2" points="481.6,901.5 498.9,901.5 500.8,901.5 500.6,903.2 532.6,925.5 480.4,925.5 480.4,901.5"/>
+                        <rect x="474.8" y="565.8" class="st1" width="16.8" height="13.3"/>
+                        <polygon class="st1" points="504.4,587.7 484.6,582.8 433.4,643.9 484.6,691.6 453.3,642.2"/>
+                        <path class="st1" d="M478.7,461.9c-41.3,0-75,24-75,53.6c0,29.6,33.7,53.6,75,53.6c41.5,0,75.2-24,75.2-53.6
+                            C553.9,485.8,520.2,461.9,478.7,461.9L478.7,461.9z"/>
+                        <path id="boy-eye" class="st3" d="M534.1,503.4c-4.1,0-7.3,3.4-7.3,7.3c0,3.9,3.2,7.1,7.3,7.1c3.9,0,7.1-3.2,7.1-7.1
+                            C541.3,506.8,538,503.4,534.1,503.4L534.1,503.4z"/>
+                        <path class="st3" d="M526.8,473.1c0,0-3.2,30.4-57.8,46.6c0,10.5-0.8,48.1-0.8,48.1h-64.5c0,0-26.2-76,41.3-101.4
+                            C463.4,461.9,489.6,454.9,526.8,473.1L526.8,473.1z"/>
+                        <path id="boy-hat-2" class="st2" d="M379.9,516.6c7.1,12.6,44.9,4.9,81.8-16.3c34.2-20.4,52.7-45.9,43.7-58
+                            c-8.7-11.9-40-6.5-72.5,13.4C397.9,476.3,373.1,504,379.9,516.6L379.9,516.6z"/>
+                        <path id="boy-hat-1" class="st0" d="M471.2,443.3c-5.1-4.6-13.6-12.2-20.1-11.6c-11.7,1.4-28.2,10-28.2,10s-17.9,9.4-24.1,17.5
+                            c-4.3,5.1-2.9,16.2-2.2,23c0.8,7,4.2,16.8,4.2,16.8c64.5-4.6,81.8-42.7,81.8-42.7S476.5,447.9,471.2,443.3L471.2,443.3z"/>
+                        <polygon id="boy-pants" class="st0" points="461.5,704.9 481.6,901.5 498.9,901.5 523.2,704.9"/>
+                        <polygon id="boy-shirt" class="st2" points="492.8,576 477.1,576 469.2,576 469.2,579 469.2,605.1 461.5,706.1 523.8,706.1 509.8,576 508.3,576"/>
+                        <g id="boy-arm">
+                            <polygon class="st1" points="474.6,598.3 514.7,662.4 602.3,667.3 519.8,645.9 490.1,581.6"/>
+                            <polygon id="boy-sleeve" class="st0" points="469.2,594.9 489.7,626.2 513.9,610.3 493.3,579"/>
+                        </g>
+                        <path class="st1" d="M480.4,491.6c-6.3,0-11.6,9.7-11.6,21.4c0,11.9,5.3,21.6,11.6,21.6c6.5,0,11.6-9.7,11.6-21.6
+                            C491.9,501.3,486.8,491.6,480.4,491.6L480.4,491.6z"/>
+                    </g>
+                </g>
+                <polygon id="triangle-light" class="st5" points="1265.8,1383.2 542.5,0 0,1383.2"/>
+            </svg>
+            
+            <button class="btn" onclick="restartGame()" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 200; pointer-events: all;">
+                🔄 PLAY AGAIN
+            </button>
+        </div>
     </div>
+
+    <!-- Hearts Effect Container -->
+    <div class="hearts-effect" id="heartsContainer"></div>
+
+    <!-- Audio Elements -->
+    <audio id="backgroundMusic" loop>
+        <source src="./assets/audios/song1.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        // Global Variables
-        let isLoaded = false;
+        // Game Variables
+        let currentPage = 1;
+        const totalPages = 6;
+        let gameStartTime = Date.now();
         let musicPlaying = false;
-        let currentSongIndex = 0;
-        let currentTime = 0;
-        let totalTime = 222; // 3:42 in seconds
-        let volume = 70;
-        let isMinimized = false;
-        
-        // Songs for Magdalena
-        const songs = [
-            { name: "A Dream is a Wish Your Heart Makes", artist: "Disney Collection", duration: "3:42" },
-            { name: "When Will My Life Begin", artist: "Tangled Soundtrack", duration: "2:45" },
-            { name: "I See the Light", artist: "Tangled Soundtrack", duration: "3:58" },
-            { name: "Something That I Want", artist: "Grace Potter", duration: "3:15" },
-            { name: "At Last I See the Light", artist: "Disney Collection", duration: "4:12" },
-            { name: "Best Day Ever", artist: "Rapunzel's Story", duration: "3:33" }
-        ];
-        
-        // Love stories for Magdalena
-        const loveStories = {
-            beauty: {
-                title: "Your Beautiful Soul",
-                subtitle: "Like Rapunzel's Golden Hair",
-                content: "Magdalena, every time I look at you, I see something magical. Your beauty isn't just on the outside - though you're absolutely stunning - it comes from your incredible soul. Just like Rapunzel's hair had healing powers, your smile has the power to heal any bad day I'm having. Your eyes sparkle like the lanterns in the night sky, and your laugh is more beautiful than any song. You don't need magic hair to be magical, because everything about you already is. You light up every room you enter, and you've definitely lit up my heart. The way you care for others, the way you make everyone feel special - that's real magic, Magdalena. 💜"
-            },
-            kindness: {
-                title: "Your Kind Heart",
-                subtitle: "The Magic That Heals Everything",
-                content: "What I love most about you, Magdalena, is your incredible kindness. Just like how Rapunzel healed Flynn with her magic, you heal everyone around you with your compassion. You always know the right thing to say to make someone feel better. You care about others in such a genuine way, and that's rare and beautiful. Your heart is so pure and loving, just like a Disney princess. I've watched you be kind to everyone you meet, and it makes me fall for you even more. You have this amazing ability to make people feel valued and loved, and I hope you know how valued and loved you are by me. Your kindness is like a warm light that makes everything better. 💝"
-            },
-            dream: {
-                title: "You're My Dream Come True",
-                subtitle: "My Floating Lantern",
-                content: "Magdalena, do you remember the scene in Tangled where Rapunzel finally sees the floating lanterns? That's exactly how I feel about you - you're my dream finally coming true. I never believed in fairy tales until I met you. You're everything I've ever hoped for in a person - beautiful, kind, funny, smart, and so much more. Just like how Rapunzel waited her whole life to see those lanterns, I feel like I was waiting my whole life to meet you. You make me believe in magic, in love, in happy endings. You're not just a crush to me - you're my wish upon a star that actually came true. And I hope that maybe, just maybe, I can be part of your fairy tale too. 🎆✨"
-        };
-        
-        // Happiness levels for Magdalena
-        const happinessLevels = {
-            1: "😢 Sad Princess",
-            2: "😔 A Bit Down", 
-            3: "😐 Okay",
-            4: "🙂 Getting Better",
-            5: "😊 Happy",
-            6: "😄 Very Happy",
-            7: "✨ Glowing",
-            8: "🌟 Amazing",
-            9: "👑 Radiant Princess", 
-            10: "💖 Over the Moon"
-        };
+        let currentSong = 0;
+        const songs = ['./assets/audios/song1.mp3', './assets/audios/song2.mp3', './assets/audios/song3.mp3'];
 
-        // Initialize everything
+        // Game 1: Memory Game Variables (Fast & Manageable)
+        let currentLevel = 1;
+        let patternLives = 5;
+        let patternSequence = [];
+        let playerSequence = [];
+        let showingPattern = false;
+        const maxLevel = 3;
+        const symbols = ['👑', '⭐', '🔮', '💎', '🗝️', '⚔️', '🏰', '🌟', '✨'];
+
+        // Game 2: Tower Variables (Fast)
+        let currentFloor = 1;
+        let enemiesRemaining = 0;
+        let floorTimeLeft = 30;
+        let floorTimer;
+        const maxFloors = 3;
+
+        // Game 3: Dragon Variables (Much Easier)
+        let dragonHealth = 5;
+        let dragonPhase = 1;
+        let princessHealth = 5;
+        let arrowHits = 0;
+        let dragonAttackTimer;
+
+        // Initialize Game
         document.addEventListener('DOMContentLoaded', function() {
-            initializeWebsite();
+            startTimer();
+            updateProgress();
+            createHeartEffect();
+            initializePatternGrid();
         });
 
-        function initializeWebsite() {
-            // Initialize all components immediately
-            initializeNavigation();
-            initializeStoryCards();
-            initializeMagicButtons();
-            initializeContactForm();
-            initializeHappinessSlider();
-            initializeMusicPlayer();
-            initializeScrollAnimations();
-            
-            // Set loaded state
-            isLoaded = true;
-            
-            // Start background magic immediately
-            startBackgroundMagic();
-            
-            // Welcome message after short delay
-            setTimeout(() => {
-                showLoveMessage("💜 Hey Magdalena! Welcome to this little project I made for you! Hope you like it! 💜");
-            }, 2000);
+        function startTimer() {
+            setInterval(() => {
+                const elapsed = Date.now() - gameStartTime;
+                const minutes = Math.floor(elapsed / 60000);
+                const seconds = Math.floor((elapsed % 60000) / 1000);
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
         }
 
-        // Navigation
-        function initializeNavigation() {
-            const navbar = document.getElementById('navbar');
-            const mobileToggle = document.getElementById('mobileToggle');
-            const navMenu = document.getElementById('navMenu');
-
-            // Scroll effect
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-
-            // Mobile menu toggle
-            if (mobileToggle && navMenu) {
-                mobileToggle.addEventListener('click', () => {
-                    mobileToggle.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-            }
-
-            // Smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                    // Close mobile menu if open
-                    if (navMenu && navMenu.classList.contains('active')) {
-                        navMenu.classList.remove('active');
-                        mobileToggle.classList.remove('active');
-                    }
-                });
-            });
-        }
-
-        // Background magic
-        function startBackgroundMagic() {
-            const container = document.getElementById('floatingElements');
-            if (!container) return;
-            
-            function createLantern() {
-                const lantern = document.createElement('div');
-                lantern.className = 'floating-lantern-bg';
-                lantern.style.left = Math.random() * 100 + 'vw';
-                lantern.style.animationDelay = Math.random() * 25 + 's';
-                container.appendChild(lantern);
-                
-                setTimeout(() => {
-                    if (lantern && lantern.parentNode) {
-                        lantern.parentNode.removeChild(lantern);
-                    }
-                }, 25000);
-            }
-
-            function createFloatingHeart() {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart-bg';
-                heart.textContent = ['💜', '💕', '💖'][Math.floor(Math.random() * 3)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDelay = Math.random() * 15 + 's';
-                container.appendChild(heart);
-                
-                setTimeout(() => {
-                    if (heart && heart.parentNode) {
-                        heart.parentNode.removeChild(heart);
-                    }
-                }, 15000);
-            }
-
-            // Create elements periodically
-            setInterval(createLantern, 5000);
-            setInterval(createFloatingHeart, 7000);
-            
-            // Initial elements
-            for (let i = 0; i < 3; i++) {
-                setTimeout(createLantern, i * 2000);
-                setTimeout(createFloatingHeart, i * 3000);
-            }
-        }
-
-        // Music Player
-        function initializeMusicPlayer() {
-            const minimizeBtn = document.getElementById('minimizeBtn');
-            const musicPlayer = document.getElementById('musicPlayer');
-            const volumeSlider = document.getElementById('volumeSlider');
-            
-            if (minimizeBtn && musicPlayer) {
-                minimizeBtn.addEventListener('click', toggleMusicPlayer);
-            }
-            
-            if (volumeSlider) {
-                volumeSlider.addEventListener('input', (e) => {
-                    volume = e.target.value;
-                    updateVolumeIcon();
-                });
-            }
-            
-            // Update progress bar animation
-            if (musicPlaying) {
-                setInterval(updateProgress, 1000);
-            }
-            
-            updateVolumeIcon();
-        }
-
-        function toggleMusicPlayer() {
-            const musicPlayer = document.getElementById('musicPlayer');
-            const minimizeBtn = document.getElementById('minimizeBtn');
-            
-            if (!musicPlayer || !minimizeBtn) return;
-            
-            isMinimized = !isMinimized;
-            
-            if (isMinimized) {
-                musicPlayer.classList.remove('expanded');
-                musicPlayer.classList.add('minimized');
-                minimizeBtn.innerHTML = '<i class="fas fa-expand-alt"></i>';
-                minimizeBtn.title = 'Expand Player';
-            } else {
-                musicPlayer.classList.remove('minimized');
-                musicPlayer.classList.add('expanded');
-                minimizeBtn.innerHTML = '<i class="fas fa-minus"></i>';
-                minimizeBtn.title = 'Minimize Player';
-            }
-        }
-
-        function togglePlayPause() {
-            const btn = document.getElementById('playPauseBtn');
-            if (!btn) return;
-            
-            musicPlaying = !musicPlaying;
+        function toggleMusic() {
+            const audio = document.getElementById('backgroundMusic');
+            const btn = document.getElementById('musicBtn');
             
             if (musicPlaying) {
-                btn.innerHTML = '<i class="fas fa-pause"></i>';
-                showLoveMessage(`🎵 Now playing: "${songs[currentSongIndex].name}" - Hope you enjoy! 🎵`);
+                audio.pause();
+                btn.textContent = '▶';
+                musicPlaying = false;
             } else {
-                btn.innerHTML = '<i class="fas fa-play"></i>';
-                showLoveMessage("🎵 Music paused - press play when you want to hear more! 🎵");
+                audio.play();
+                btn.textContent = '⏸';
+                musicPlaying = true;
             }
         }
 
-        function playMusic(direction) {
-            if (direction === 'next') {
-                currentSongIndex = (currentSongIndex + 1) % songs.length;
-            } else {
-                currentSongIndex = currentSongIndex > 0 ? currentSongIndex - 1 : songs.length - 1;
-            }
-            
-            updateCurrentSong();
-            showLoveMessage(`🎵 Now playing: "${songs[currentSongIndex].name}" 🎵`);
+        function nextSong() {
+            const audio = document.getElementById('backgroundMusic');
+            currentSong = (currentSong + 1) % songs.length;
+            audio.src = songs[currentSong];
+            if (musicPlaying) audio.play();
         }
 
-        function updateCurrentSong() {
-            const songName = document.getElementById('songName');
-            const totalTimeEl = document.getElementById('totalTime');
-            
-            if (songName) {
-                songName.textContent = songs[currentSongIndex].name;
+        function nextPage() {
+            if (currentPage < totalPages) {
+                document.getElementById(`page${currentPage}`).classList.remove('active');
+                currentPage++;
+                document.getElementById(`page${currentPage}`).classList.add('active');
+                updateProgress();
+                
+                if (currentPage === 3) setupTowerGame();
+                if (currentPage === 4) setupDragonGame();
+                if (currentPage === 6) startCelebrationAnimation();
+                
+                createHeartEffect();
             }
-            
-            if (totalTimeEl) {
-                totalTimeEl.textContent = songs[currentSongIndex].duration;
-            }
-            
-            // Reset progress
-            currentTime = 0;
-            updateProgress();
         }
 
         function updateProgress() {
-            if (!musicPlaying) return;
-            
-            const progressFill = document.getElementById('progressFill');
-            const currentTimeEl = document.getElementById('currentTime');
-            
-            if (progressFill) {
-                const percentage = (currentTime / totalTime) * 100;
-                progressFill.style.width = percentage + '%';
-            }
-            
-            if (currentTimeEl) {
-                const minutes = Math.floor(currentTime / 60);
-                const seconds = currentTime % 60;
-                currentTimeEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-            }
-            
-            currentTime = (currentTime + 1) % totalTime;
+            const progress = (currentPage / totalPages) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
         }
 
-        function seekMusic(event) {
-            const progressBar = event.currentTarget;
-            const rect = progressBar.getBoundingClientRect();
-            const percentage = (event.clientX - rect.left) / rect.width;
-            currentTime = Math.floor(percentage * totalTime);
-            updateProgress();
-        }
-
-        function updateVolumeIcon() {
-            const volumeIcon = document.querySelector('.volume-icon');
-            if (!volumeIcon) return;
-            
-            if (volume == 0) {
-                volumeIcon.className = 'fas fa-volume-mute volume-icon';
-            } else if (volume < 50) {
-                volumeIcon.className = 'fas fa-volume-down volume-icon';
-            } else {
-                volumeIcon.className = 'fas fa-volume-up volume-icon';
+        // Game 1: Fast Memory Game
+        function initializePatternGrid() {
+            const grid = document.getElementById('patternGrid');
+            grid.innerHTML = '';
+            for (let i = 0; i < 9; i++) {
+                const tile = document.createElement('div');
+                tile.className = 'pattern-tile';
+                tile.dataset.index = i;
+                tile.textContent = symbols[i];
+                tile.addEventListener('click', () => handlePatternClick(i));
+                grid.appendChild(tile);
             }
         }
 
-        // Story Cards
-        function initializeStoryCards() {
-            const storyCards = document.querySelectorAll('.story-card');
-            const modal = document.getElementById('storyModal');
-            const modalClose = document.getElementById('modalClose');
+        function startPatternGame() {
+            if (showingPattern) return;
+            document.getElementById('patternStartBtn').style.display = 'none';
+            generatePattern();
+            showPattern();
+        }
 
-            storyCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const storyType = card.getAttribute('data-story');
-                    openStoryModal(storyType);
-                });
-            });
-
-            if (modalClose) {
-                modalClose.addEventListener('click', closeStoryModal);
+        function generatePattern() {
+            patternSequence = [];
+            const length = 2 + currentLevel; // Level 1: 3, Level 2: 4, Level 3: 5
+            for (let i = 0; i < length; i++) {
+                patternSequence.push(Math.floor(Math.random() * 9));
             }
+            playerSequence = [];
+            document.getElementById('sequenceLength').textContent = length;
+        }
+
+        function showPattern() {
+            showingPattern = true;
+            let index = 0;
             
-            if (modal) {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        closeStoryModal();
+            const showNext = () => {
+                if (index < patternSequence.length) {
+                    const tile = document.querySelector(`[data-index="${patternSequence[index]}"]`);
+                    tile.classList.add('highlight');
+                    
+                    setTimeout(() => {
+                        tile.classList.remove('highlight');
+                        index++;
+                        setTimeout(showNext, 400); // Fast pace
+                    }, 600);
+                } else {
+                    showingPattern = false;
+                    document.getElementById('patternResult').innerHTML = 
+                        '<div class="game-message">✨ Now repeat the magical pattern! ✨</div>';
+                }
+            };
+            
+            setTimeout(showNext, 500);
+        }
+
+        function handlePatternClick(index) {
+            if (showingPattern) return;
+            
+            playerSequence.push(index);
+            const tile = document.querySelector(`[data-index="${index}"]`);
+            
+            if (index === patternSequence[playerSequence.length - 1]) {
+                tile.classList.add('correct');
+                setTimeout(() => tile.classList.remove('correct'), 300);
+                
+                if (playerSequence.length === patternSequence.length) {
+                    currentLevel++;
+                    if (currentLevel > maxLevel) {
+                        document.getElementById('patternResult').innerHTML = `
+                            <div class="game-message">
+                                🎊 MEMORY PALACE MASTERED! 🎊
+                                <br><button class="retro-button" onclick="nextPage()" style="margin-top: 15px;">
+                                    ⚔️ STORM THE TOWER
+                                </button>
+                            </div>
+                        `;
+                    } else {
+                        document.getElementById('patternLevel').textContent = currentLevel;
+                        setTimeout(() => {
+                            generatePattern();
+                            showPattern();
+                        }, 1500);
                     }
-                });
-            }
-        }
-
-        function openStoryModal(storyType) {
-            const story = loveStories[storyType];
-            const modal = document.getElementById('storyModal');
-            
-            if (!story || !modal) return;
-            
-            document.getElementById('modalTitle').textContent = story.title;
-            document.getElementById('modalSubtitle').textContent = story.subtitle;
-            document.getElementById('modalText').textContent = story.content;
-            
-            modal.style.display = 'flex';
-            createMagicalEffect('sparkles');
-        }
-
-        function closeStoryModal() {
-            const modal = document.getElementById('storyModal');
-            if (modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // Magic Buttons
-        function initializeMagicButtons() {
-            const magicButtons = document.querySelectorAll('.magic-button');
-            
-            magicButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const effect = button.getAttribute('data-effect');
-                    createMagicalEffect(effect);
-                });
-            });
-        }
-
-        function createMagicalEffect(effectType) {
-            const container = document.getElementById('effectContainer');
-            if (!container) return;
-            
-            switch(effectType) {
-                case 'hearts':
-                    createHeartsEffect(container);
-                    showLoveMessage("💕 Hope these hearts make you smile, Magdalena! 💕");
-                    break;
-                case 'lanterns':
-                    createLanternsEffect(container);
-                    showLoveMessage("🏮 Like the lanterns in Tangled - pretty cool, right? 🏮");
-                    break;
-                case 'sparkles':
-                    createSparklesEffect(container);
-                    showLoveMessage("✨ Some magic sparkles just for you! ✨");
-                    break;
-                case 'flowers':
-                    createFlowersEffect(container);
-                    showLoveMessage("🌺 Virtual flowers because you seem awesome! 🌺");
-                    break;
-            }
-        }
-
-        function createHeartsEffect(container) {
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.className = 'floating-heart';
-                    heart.textContent = ['💜', '💕', '💖', '💝', '💗'][Math.floor(Math.random() * 5)];
-                    heart.style.left = Math.random() * 100 + 'vw';
-                    heart.style.bottom = '0px';
-                    heart.style.color = ['#FFB6C1', '#FF69B4', '#9966CC', '#DDA0DD'][Math.floor(Math.random() * 4)];
-                    container.appendChild(heart);
-                    
-                    setTimeout(() => {
-                        if (heart && heart.parentNode) {
-                            heart.parentNode.removeChild(heart);
-                        }
-                    }, 4000);
-                }, i * 200);
-            }
-        }
-
-        function createLanternsEffect(container) {
-            for (let i = 0; i < 12; i++) {
-                setTimeout(() => {
-                    const lantern = document.createElement('div');
-                    lantern.className = 'lantern-effect';
-                    lantern.style.left = Math.random() * 100 + 'vw';
-                    lantern.style.bottom = '0px';
-                    container.appendChild(lantern);
-                    
-                    setTimeout(() => {
-                        if (lantern && lantern.parentNode) {
-                            lantern.parentNode.removeChild(lantern);
-                        }
-                    }, 6000);
-                }, i * 300);
-            }
-        }
-
-        function createSparklesEffect(container) {
-            for (let i = 0; i < 25; i++) {
-                setTimeout(() => {
-                    const sparkle = document.createElement('div');
-                    sparkle.className = 'magical-sparkle';
-                    sparkle.style.left = Math.random() * 100 + 'vw';
-                    sparkle.style.top = Math.random() * 100 + 'vh';
-                    sparkle.style.background = ['#FFD700', '#FF69B4', '#9966CC', '#FFA500', '#DDA0DD'][Math.floor(Math.random() * 5)];
-                    container.appendChild(sparkle);
-                    
-                    setTimeout(() => {
-                        if (sparkle && sparkle.parentNode) {
-                            sparkle.parentNode.removeChild(sparkle);
-                        }
-                    }, 3000);
-                }, i * 100);
-            }
-        }
-
-        function createFlowersEffect(container) {
-            for (let i = 0; i < 18; i++) {
-                setTimeout(() => {
-                    const flower = document.createElement('div');
-                    flower.className = 'flower-petal';
-                    flower.textContent = ['🌸', '🌺', '🌼', '🌻', '🌷', '🌹', '💐'][Math.floor(Math.random() * 7)];
-                    flower.style.left = Math.random() * 100 + 'vw';
-                    flower.style.top = '-10vh';
-                    container.appendChild(flower);
-                    
-                    setTimeout(() => {
-                        if (flower && flower.parentNode) {
-                            flower.parentNode.removeChild(flower);
-                        }
-                    }, 5000);
-                }, i * 200);
-            }
-        }
-
-        // Contact Form
-        function initializeContactForm() {
-            const form = document.getElementById('magdalenaForm');
-            if (!form) return;
-            
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                handleFormSubmission();
-            });
-        }
-
-        function handleFormSubmission() {
-            const subject = document.getElementById('subject');
-            const message = document.getElementById('message');
-            const happiness = document.getElementById('happiness');
-            
-            if (!subject || !message || !happiness) return;
-            
-            showLoveMessage(`💌 Thanks for the message, Magdalena! "${subject.value}" - Hope you're feeling ${happinessLevels[happiness.value].toLowerCase()}! 💌`);
-            
-            // Reset form
-            const form = document.getElementById('magdalenaForm');
-            if (form) {
-                form.reset();
-                happiness.value = 8;
-                updateHappinessDisplay(8);
-            }
-            
-            createMagicalEffect('hearts');
-        }
-
-        // Happiness Slider
-        function initializeHappinessSlider() {
-            const slider = document.getElementById('happiness');
-            if (!slider) return;
-            
-            slider.addEventListener('input', (e) => {
-                updateHappinessDisplay(e.target.value);
-            });
-            
-            updateHappinessDisplay(8);
-        }
-
-        function updateHappinessDisplay(value) {
-            const display = document.getElementById('happinessDisplay');
-            if (!display) return;
-            
-            const level = happinessLevels[value] || happinessLevels[8];
-            display.innerHTML = `<i class="fas fa-star"></i> ${level} <i class="fas fa-star"></i>`;
-            
-            if (value >= 8) {
-                display.classList.add('dreamy-glow');
+                }
             } else {
-                display.classList.remove('dreamy-glow');
-            }
-        }
-
-        // Scroll Animations - Made content visible by default
-        function initializeScrollAnimations() {
-            // First make all elements visible
-            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
-                el.classList.add('visible');
-            });
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        // Love Message Display
-        function showLoveMessage(messageText) {
-            const messageDisplay = document.getElementById('loveMessage');
-            const messageContent = document.getElementById('messageContent');
-            
-            if (!messageDisplay || !messageContent) return;
-            
-            messageContent.innerHTML = messageText;
-            messageDisplay.classList.add('show');
-            
-            setTimeout(() => {
-                closeLoveMessage();
-            }, 5000);
-        }
-
-        function closeLoveMessage() {
-            const messageDisplay = document.getElementById('loveMessage');
-            if (messageDisplay) {
-                messageDisplay.classList.remove('show');
-            }
-        }
-
-        // Special effects and interactions
-        setInterval(() => {
-            if (isLoaded && Math.random() < 0.12) {
-                createMagicalEffect('sparkles');
-            }
-        }, 10000);
-
-        // Click effects
-        document.addEventListener('click', (e) => {
-            if (Math.random() < 0.3) {
-                const container = document.getElementById('effectContainer');
-                if (container) {
-                    const heart = document.createElement('div');
-                    heart.className = 'floating-heart';
-                    heart.textContent = '💜';
-                    heart.style.left = e.clientX + 'px';
-                    heart.style.top = e.clientY + 'px';
-                    heart.style.position = 'fixed';
-                    heart.style.pointerEvents = 'none';
-                    heart.style.fontSize = '1.2rem';
-                    heart.style.zIndex = '1600';
-                    container.appendChild(heart);
-                    
-                    setTimeout(() => {
-                        if (heart && heart.parentNode) {
-                            heart.parentNode.removeChild(heart);
-                        }
-                    }, 2000);
+                tile.classList.add('wrong');
+                setTimeout(() => tile.classList.remove('wrong'), 400);
+                
+                patternLives--;
+                document.getElementById('patternLives').textContent = patternLives;
+                
+                if (patternLives <= 0) {
+                    document.getElementById('patternResult').innerHTML = `
+                        <div class="game-message">
+                            Magic needs recharging! Try again, brave princess!
+                            <br><button class="retro-button" onclick="resetPatternGame()" style="margin-top: 10px;">
+                                🔄 TRY AGAIN
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    playerSequence = [];
+                    setTimeout(() => showPattern(), 1000);
                 }
             }
-        });
+        }
 
-        // Keyboard shortcuts for magic
-        document.addEventListener('keydown', (e) => {
-            if (e.key.toLowerCase() === 'h') {
-                createMagicalEffect('hearts');
-            } else if (e.key.toLowerCase() === 'l') {
-                createMagicalEffect('lanterns');
-            } else if (e.key.toLowerCase() === 's') {
-                createMagicalEffect('sparkles');
-            } else if (e.key.toLowerCase() === 'f') {
-                createMagicalEffect('flowers');
-            } else if (e.key === 'Escape') {
-                closeStoryModal();
-                closeLoveMessage();
-            } else if (e.key === ' ') {
-                e.preventDefault();
-                togglePlayPause();
-            }
-        });
+        function resetPatternGame() {
+            currentLevel = 1;
+            patternLives = 5;
+            document.getElementById('patternLevel').textContent = currentLevel;
+            document.getElementById('patternLives').textContent = patternLives;
+            document.getElementById('sequenceLength').textContent = '3';
+            document.getElementById('patternResult').innerHTML = '';
+            document.getElementById('patternStartBtn').style.display = 'inline-block';
+        }
 
-        // Auto-start music progress animation
-        setInterval(() => {
-            if (musicPlaying) {
-                updateProgress();
+        // Game 2: Fast Tower Game
+        function setupTowerGame() {
+            currentFloor = 1;
+            floorTimeLeft = 30;
+            setupFloor();
+            startFloorTimer();
+        }
+
+        function setupFloor() {
+            const tower = document.getElementById('towerFortress');
+            tower.querySelectorAll('.tower-enemy, .tower-level').forEach(el => {
+                if (!el.classList.contains('princess-warrior')) el.remove();
+            });
+            
+            // Create current floor
+            const level = document.createElement('div');
+            level.className = 'tower-level';
+            level.style.bottom = ((currentFloor - 1) * 120) + 'px';
+            tower.appendChild(level);
+            
+            // Add enemies (2-4 per floor)
+            const enemyCount = 2 + currentFloor;
+            enemiesRemaining = enemyCount;
+            
+            for (let j = 0; j < enemyCount; j++) {
+                const enemy = document.createElement('div');
+                enemy.className = 'tower-enemy';
+                enemy.textContent = ['👹', '💀', '👻', '🕷️', '🐍'][Math.floor(Math.random() * 5)];
+                enemy.style.left = (20 + j * 80) + 'px';
+                enemy.style.position = 'absolute';
+                enemy.addEventListener('click', () => defeatEnemy(enemy));
+                level.appendChild(enemy);
             }
-        }, 1000);
+            
+            document.getElementById('currentFloor').textContent = currentFloor;
+            document.getElementById('enemiesLeft').textContent = enemiesRemaining;
+            
+            // Move princess
+            const princess = document.getElementById('princessWarrior');
+            princess.style.bottom = ((currentFloor - 1) * 120 + 15) + 'px';
+        }
+
+        function startFloorTimer() {
+            document.getElementById('floorTimer').textContent = floorTimeLeft;
+            floorTimer = setInterval(() => {
+                floorTimeLeft--;
+                document.getElementById('floorTimer').textContent = floorTimeLeft;
+                
+                if (floorTimeLeft <= 0) {
+                    // Add more enemies if time runs out
+                    addMoreEnemies();
+                    floorTimeLeft = 30;
+                }
+            }, 1000);
+        }
+
+        function addMoreEnemies() {
+            const level = document.querySelector('.tower-level:last-child');
+            if (level && enemiesRemaining > 0) {
+                const enemy = document.createElement('div');
+                enemy.className = 'tower-enemy';
+                enemy.textContent = '👹';
+                enemy.style.left = (Math.random() * 250) + 'px';
+                enemy.style.position = 'absolute';
+                enemy.addEventListener('click', () => defeatEnemy(enemy));
+                level.appendChild(enemy);
+                enemiesRemaining++;
+                document.getElementById('enemiesLeft').textContent = enemiesRemaining;
+            }
+        }
+
+        function defeatEnemy(enemy) {
+            enemy.classList.add('defeated');
+            enemiesRemaining--;
+            document.getElementById('enemiesLeft').textContent = enemiesRemaining;
+            
+            if (enemiesRemaining <= 0) {
+                clearInterval(floorTimer);
+                currentFloor++;
+                if (currentFloor > maxFloors) {
+                    document.getElementById('towerResult').innerHTML = `
+                        <div class="game-message">
+                            🏰 TOWER CONQUERED! 🏰
+                            <br><button class="btn" onclick="nextPage()">
+                                🐉 FACE THE DRAGON
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    floorTimeLeft = 30;
+                    setTimeout(() => setupFloor(), 1000);
+                    setTimeout(() => startFloorTimer(), 1000);
+                }
+            }
+        }
+
+        // Game 3: Enhanced Dragon Battle (Much Easier!)
+        function setupDragonGame() {
+            dragonHealth = 5;
+            dragonPhase = 1;
+            princessHealth = 5;
+            arrowHits = 0;
+            
+            const dragon = document.getElementById('dragonBoss');
+            dragon.className = 'dragon-boss phase1';
+            
+            updateDragonStats();
+            startDragonAttacks();
+        }
+
+        function shootMagicArrow() {
+            const battlefield = document.getElementById('dragonBattlefield');
+            const dragon = document.getElementById('dragonBoss');
+            
+            const arrow = document.createElement('div');
+            arrow.className = 'magic-arrow';
+            arrow.textContent = '⭐';
+            arrow.style.left = '50px';
+            arrow.style.bottom = '50px';
+            battlefield.appendChild(arrow);
+            
+            // Much easier hit detection - 90% hit chance!
+            setTimeout(() => {
+                const dragonRect = dragon.getBoundingClientRect();
+                const battlefieldRect = battlefield.getBoundingClientRect();
+                const dragonVisible = dragonRect.left < battlefieldRect.right && dragonRect.right > battlefieldRect.left;
+                
+                if (dragonVisible && Math.random() < 0.9) { // 90% hit chance!
+                    // Hit!
+                    dragonHealth--;
+                    arrowHits++;
+                    dragon.classList.add('damaged');
+                    setTimeout(() => dragon.classList.remove('damaged'), 400);
+                    
+                    // Phase transitions
+                    if (dragonHealth <= 3 && dragonPhase === 1) {
+                        dragonPhase = 2;
+                        dragon.className = 'dragon-boss phase2';
+                    } else if (dragonHealth <= 1 && dragonPhase === 2) {
+                        dragonPhase = 3;
+                        dragon.className = 'dragon-boss phase3';
+                    }
+                    
+                    updateDragonStats();
+                    
+                    if (dragonHealth <= 0) {
+                        dragonVictory();
+                    }
+                }
+                
+                if (battlefield.contains(arrow)) {
+                    battlefield.removeChild(arrow);
+                }
+            }, 600);
+        }
+
+        function startDragonAttacks() {
+            dragonAttackTimer = setInterval(() => {
+                createDragonFire();
+            }, 4000 - (dragonPhase * 500)); // Much slower attacks
+        }
+
+        function createDragonFire() {
+            const battlefield = document.getElementById('dragonBattlefield');
+            const fire = document.createElement('div');
+            fire.className = 'dragon-fire';
+            fire.textContent = '🔥';
+            fire.style.right = '-50px';
+            fire.style.top = (Math.random() * 150 + 150) + 'px'; // Fire at bottom area only
+            battlefield.appendChild(fire);
+            
+            // Much more forgiving fire hit detection
+            setTimeout(() => {
+                const fireRect = fire.getBoundingClientRect();
+                const princessRect = document.querySelector('.princess-archer').getBoundingClientRect();
+                
+                // Much smaller hit area - only direct hits count
+                if (Math.random() < 0.3 && // Only 30% chance of hit even if overlapping
+                    fireRect.left <= princessRect.right - 20 && fireRect.right >= princessRect.left + 20 &&
+                    fireRect.top <= princessRect.bottom - 20 && fireRect.bottom >= princessRect.top + 20) {
+                    // Princess hit!
+                    princessHealth--;
+                    document.querySelector('.princess-archer').classList.add('hit');
+                    setTimeout(() => document.querySelector('.princess-archer').classList.remove('hit'), 500);
+                    updateDragonStats();
+                    
+                    if (princessHealth <= 0) {
+                        gameOver();
+                    }
+                }
+                
+                if (battlefield.contains(fire)) {
+                    battlefield.removeChild(fire);
+                }
+            }, 2200); // Longer time before hit detection
+        }
+
+        function updateDragonStats() {
+            document.getElementById('dragonHealth').textContent = dragonHealth;
+            document.getElementById('dragonPhase').textContent = dragonPhase;
+            document.getElementById('princessHealth').textContent = princessHealth;
+            document.getElementById('arrowHits').textContent = arrowHits;
+        }
+
+        function dragonVictory() {
+            clearInterval(dragonAttackTimer);
+            document.getElementById('dragonResult').innerHTML = `
+                <div class="game-message">
+                    🎆 LEGENDARY VICTORY! 🎆
+                    <br>Dragon defeated with ${arrowHits} hits!
+                    <br><button class="btn" onclick="nextPage()" style="margin-top: 15px;">
+                        👑 RESCUE THE PRINCE
+                    </button>
+                </div>
+            `;
+        }
+
+        function gameOver() {
+            clearInterval(dragonAttackTimer);
+            document.getElementById('dragonResult').innerHTML = `
+                <div class="game-message">
+                    The dragon was fierce, but princesses never give up!
+                    <br><button class="btn" onclick="setupDragonGame()" style="margin-top: 10px;">
+                        🔄 TRY AGAIN
+                    </button>
+                </div>
+            `;
+        }
+
+        // Dancing Animation with GSAP
+        function startCelebrationAnimation() {
+            showFinalTime();
+            
+            setTimeout(() => {
+                document.getElementById('celebrationText').style.opacity = '0.3';
+            }, 3000);
+            
+            // GSAP Animation
+            if (typeof gsap !== 'undefined') {
+                var master = gsap.timeline({repeat: -1}); 
+                var couple = document.querySelector('#couple');
+                var girl = document.querySelector('#girl');
+                var boy = document.querySelector('#boy');
+                var heart = document.querySelector('#heart');
+                var ground = document.querySelector('#ground');
+                var background = document.body;
+                var light = document.querySelector('#triangle-light');
+
+                master
+                    .add(setup())
+                    .add(darkness(), 'lightsOff+=1')
+                    .add(girlKiss(), 'girlStuff+=0.2')
+                    .add(boyStuff(), 'girlStuff+=2')
+                    .add(heartStuff(), 'heartStuff-=1')
+                    .add(lightsOn(), 'heartStuff+=1')
+                    .add(backToStart(),'lightsOn+=1');
+
+                function setup() {
+                    var tl = gsap.timeline()
+                        .set(couple, { autoAlpha: 1 })
+                        .set(boy.querySelector('#boy-arm'), {  transformOrigin: '0% 10%', rotation: "+=40" })
+                        .set(girl.querySelector('#girl-earring'), { scaleY: '0.7' })
+                        .set(girl.querySelector('#girl-leg-1'), { rotation: '+=75' })
+                        .set(girl.querySelector('#girl-arm'), { transformOrigin: '100% 0%', rotation: '-=60' })
+                        .set(girl.querySelector('#girl-body'), { transformOrigin: '0% 75%', rotation: '+=20' })
+                        .set(heart, { transformOrigin: '50% 50%', y: '+=100', scale: 0.5 });
+                    return tl;
+                }
+
+                function darkness() {
+                    var tl = gsap.timeline()
+                        .to(background, { duration: 1, backgroundColor: '#241a22' })
+                        .to(boy.querySelector('#boy-arm'), { duration: 0.5, rotation: 0 }, 1);
+                    return tl;
+                }
+
+                function girlKiss() {
+                    var tl = gsap.timeline()
+                        .to(girl.querySelector('#girl-arm'), { duration: 1, rotation: 0 })
+                        .to(girl.querySelector('#girl-body'), { duration: 0.5, transformOrigin: '0% 75%', rotation: 0 })
+                        .to(girl.querySelector('#girl-eye'), { duration: 0.5, transformOrigin: '0% 50%', scaleY: 0.1 }, 1.25)
+                        .to(girl.querySelector('#girl-leg-1'), { duration: 1.5, rotation: 0, ease: "back.out(3)" }, 1.25);
+                    return tl;
+                }
+
+                function boyStuff() {
+                    var tl = gsap.timeline()
+                        .to(boy.querySelector('#boy-eye'), { duration: 0.5, transformOrigin: '0% 50%', scaleY: 0.1 });
+                    return tl;
+                }
+
+                function heartStuff() {
+                    var tl = gsap.timeline()
+                        .to('#heart', { duration: 3, autoAlpha: 1, y: 0, scale: 1, ease: "elastic.out(1,0.3)" });
+                    return tl;
+                }
+
+                function lightsOn() {
+                    var tl = gsap.timeline()
+                        .to(light, { duration: 0.25, autoAlpha: 1 }, 0)
+                        .to(ground, { duration: 0.25, fill: '#F8E5C5' }, 0)  
+                        .to(girl.querySelector('#girl-eye'), { duration: 0.5, scaleY: 1 }, 0.5)
+                        .to(boy.querySelector('#boy-eye'), { duration: 0.5, scaleY: 1 }, 1)
+                        .to(girl.querySelector('#girl-body'), { duration: 0.5, rotation: '+=20' })
+                        .to(girl.querySelector('#girl-leg-1'), { duration: 1, rotation: '+=75' }, "-=0.75")
+                        .to(girl.querySelector('#girl-arm'), { duration: 1, rotation: '-=60' }, "-=1.25")
+                        .to('#heart', { duration: 1.5, autoAlpha: 0, scale: 0.5, y: -100, ease: "elastic.in(1,0.7)" }, "-=2")
+                        .to(girl.querySelector('#girl-head'), { duration: 1, transformOrigin: "40% 50%", rotation: '-=30' }, "-=0.25")
+                        .to(boy.querySelector('#boy-arm'), { duration: 1,  rotation: "+=40" });
+                    return tl;
+                }
+
+                function backToStart() {
+                    var tl = gsap.timeline()
+                        .to(background, { duration: 1, backgroundColor: 'radial-gradient(circle at center, #1A1A2E 0%, #0F0F1A 100%)' })
+                        .to(light, { duration: 0.5, autoAlpha: 0 }, '-=1')
+                        .to(ground, { duration: 0.25, fill: '#5c5757' }, 0) 
+                        .to(girl.querySelector('#girl-head'), { duration: 1, rotation: 0 }, "-=0.5");
+                    return tl;
+                }
+            }
+        }
+
+        function showFinalTime() {
+            const elapsed = Date.now() - gameStartTime;
+            const minutes = Math.floor(elapsed / 60000);
+            const seconds = Math.floor((elapsed % 60000) / 1000);
+            document.getElementById('finalTime').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function createHeartEffect() {
+            const container = document.getElementById('heartsContainer');
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = ['💜', '💖', '❤️', '💕'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            container.appendChild(heart);
+            
+            setTimeout(() => {
+                if (heart.parentNode) heart.parentNode.removeChild(heart);
+            }, 3000);
+        }
+
+        setInterval(createHeartEffect, 2000);
+
+        function restartGame() {
+            location.reload();
+        }
     </script>
 </body>
 </html>
