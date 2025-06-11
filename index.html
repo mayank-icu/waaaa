@@ -13,26 +13,19 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(255, 149, 179, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 40% 60%, rgba(240, 147, 251, 0.3) 0%, transparent 50%),
-                linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #ff6b9d 75%, #667eea 100%);
-            background-size: 400% 400%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #ff6b9d 75%, #667eea 100%);
+            background-size: 300% 300%;
             animation: gradientShift 20s ease infinite;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-        }
-
-        .screen-shake {
-            animation: screenShake 0.5s ease-in-out;
-        }
-
-        .glitch-effect {
-            animation: glitch 0.3s ease-in-out;
+            -webkit-overflow-scrolling: touch;
         }
 
         .vanished-page {
@@ -43,20 +36,6 @@
             text-align: center;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             position: relative;
-            overflow: hidden;
-        }
-
-        .vanished-page::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 70%, rgba(255, 0, 100, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 30%, rgba(0, 100, 255, 0.1) 0%, transparent 50%);
-            animation: vanishedGlow 4s ease-in-out infinite;
         }
 
         .vanished-content {
@@ -70,42 +49,15 @@
             font-size: 3.5rem;
             margin-bottom: 25px;
             opacity: 0;
-            animation: vanishedTitleAppear 2s ease-out 1s forwards;
+            animation: fadeInUp 2s ease-out 0.5s forwards;
             text-shadow: 0 0 30px rgba(255,255,255,0.5);
         }
 
         .vanished-message {
             font-size: 1.3rem;
             opacity: 0;
-            animation: vanishedMessageAppear 2s ease-out 2s forwards;
+            animation: fadeInUp 2s ease-out 1s forwards;
             color: rgba(255,255,255,0.8);
-        }
-
-        .destruction-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 9999;
-            background: transparent;
-        }
-
-        .fragment {
-            position: absolute;
-            pointer-events: none;
-            z-index: 10000;
-        }
-
-        .explosion {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #fff 0%, #ff6b9d 30%, #f093fb 60%, transparent 100%);
-            animation: explode 1s ease-out forwards;
-            pointer-events: none;
         }
 
         .stars {
@@ -120,18 +72,10 @@
             position: absolute;
             background: white;
             border-radius: 50%;
-            animation: realisticTwinkle 4s ease-in-out infinite;
-            box-shadow: 0 0 6px rgba(255,255,255,0.8);
-        }
-
-        .shooting-star {
-            position: absolute;
             width: 2px;
             height: 2px;
-            background: linear-gradient(45deg, #fff, #f093fb);
-            border-radius: 50%;
-            animation: shootingStar 3s linear infinite;
-            box-shadow: 0 0 10px #fff, 0 0 20px #f093fb, 0 0 30px #f093fb;
+            animation: twinkle 3s ease-in-out infinite;
+            will-change: opacity, transform;
         }
 
         .particles {
@@ -144,29 +88,20 @@
 
         .particle {
             position: absolute;
-            font-size: 12px;
+            font-size: 14px;
             color: rgba(255,255,255,0.3);
-            animation: realisticFloat 12s linear infinite;
+            animation: floatUp 8s linear infinite;
             pointer-events: none;
-            text-shadow: 0 0 8px currentColor;
+            will-change: transform, opacity;
         }
 
         .magic-burst {
             position: fixed;
             pointer-events: none;
             z-index: 50;
-            font-size: 25px;
-            animation: realisticMagicBurst 2s ease-out forwards;
-            text-shadow: 0 0 15px currentColor;
-        }
-
-        .ripple {
-            position: fixed;
-            border: 2px solid rgba(255,255,255,0.6);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 40;
-            animation: rippleEffect 1s ease-out forwards;
+            font-size: 20px;
+            animation: magicBurst 1.5s ease-out forwards;
+            will-change: transform, opacity;
         }
 
         .container {
@@ -184,80 +119,50 @@
         .header {
             text-align: center;
             margin-bottom: 40px;
-            animation: elegantFadeInDown 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInDown 1.2s ease-out;
         }
 
         .title {
             font-family: 'Playfair Display', serif;
             color: white;
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             margin-bottom: 15px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
             font-weight: 700;
             letter-spacing: 1px;
-            background: linear-gradient(45deg, #fff, #f8f9ff, #fff, #f093fb, #fff);
+            background: linear-gradient(45deg, #fff, #f093fb, #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            background-size: 300% 300%;
-            animation: realisticShimmer 4s ease-in-out infinite;
-            position: relative;
-        }
-
-        .title::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transform: translateX(-100%);
-            animation: titleSweep 3s ease-in-out infinite;
+            background-size: 200% 200%;
+            animation: shimmer 4s ease-in-out infinite;
         }
 
         .subtitle {
             color: rgba(255,255,255,0.95);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 300;
-            margin-bottom: 35px;
-            letter-spacing: 0.8px;
-            animation: subtitleFloat 6s ease-in-out infinite;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+            animation: subtleFloat 6s ease-in-out infinite;
         }
 
         .interaction-hint {
-            background: rgba(255,255,255,0.25);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.4);
-            border-radius: 35px;
-            padding: 18px 35px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 30px;
+            padding: 15px 30px;
             color: white;
-            font-size: 1.1rem;
-            animation: pulseGlow 4s ease-in-out infinite;
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .interaction-hint::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: hintSweep 3s linear infinite;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .interaction-hint:hover {
-            background: rgba(255,255,255,0.35);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
         }
 
         .pdf-container {
@@ -266,38 +171,21 @@
             height: 75vh;
             min-height: 600px;
             background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(30px);
-            border-radius: 30px;
-            box-shadow: 
-                0 35px 70px rgba(0,0,0,0.4), 
-                0 0 0 1px rgba(255,255,255,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.4);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
             overflow: hidden;
-            animation: containerFloat 8s ease-in-out infinite;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
             position: relative;
-            margin-bottom: 50px;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .pdf-container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #ff6b9d, #667eea);
-            border-radius: 32px;
-            z-index: -1;
-            background-size: 400% 400%;
-            animation: borderGlow 6s ease infinite;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .pdf-viewer {
             width: 100%;
             height: 100%;
             border: none;
-            border-radius: 30px;
+            border-radius: 25px;
         }
 
         .controls-section {
@@ -305,54 +193,29 @@
             max-width: 850px;
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 25px;
-            animation: controlsRise 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.8s both;
+            gap: 25px;
+            margin-top: 20px;
+            animation: fadeInUp 1.2s ease-out 0.6s both;
         }
 
         .control-button {
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255,255,255,0.5);
-            border-radius: 70px;
-            padding: 25px 40px;
-            box-shadow: 
-                0 25px 50px rgba(0,0,0,0.25),
-                inset 0 1px 0 rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 60px;
+            padding: 20px 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
-            gap: 18px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 15px;
+            transition: all 0.3s ease;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .control-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-            transition: left 0.8s ease;
-        }
-
-        .control-button:hover::before {
-            left: 100%;
+            will-change: transform;
         }
 
         .control-button:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 
-                0 40px 80px rgba(0,0,0,0.35),
-                inset 0 1px 0 rgba(255,255,255,0.6);
-            background: rgba(255,255,255,1);
-        }
-
-        .control-button:active {
-            transform: translateY(-4px) scale(1.02);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
         }
 
         .control-icon {
@@ -360,45 +223,25 @@
             border: none;
             color: white;
             border-radius: 50%;
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.4s ease;
-            font-size: 20px;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
-            position: relative;
-        }
-
-        .control-icon::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
             transition: all 0.3s ease;
-        }
-
-        .control-icon:hover::after {
-            width: 100%;
-            height: 100%;
+            font-size: 18px;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
         .control-icon:hover {
-            transform: scale(1.15) rotate(10deg);
+            transform: scale(1.1);
             background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
-            box-shadow: 0 15px 35px rgba(240, 147, 251, 0.6);
         }
 
         .control-text {
             color: #333;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             white-space: nowrap;
         }
@@ -407,47 +250,22 @@
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
             border: none;
-            border-radius: 70px;
-            padding: 25px 40px;
-            font-size: 1.1rem;
+            border-radius: 60px;
+            padding: 20px 35px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 
-                0 25px 50px rgba(245, 87, 108, 0.5),
-                inset 0 1px 0 rgba(255,255,255,0.4);
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(245, 87, 108, 0.4);
             display: flex;
             align-items: center;
-            gap: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .reply-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.8s ease;
-        }
-
-        .reply-button:hover::before {
-            left: 100%;
+            gap: 12px;
+            will-change: transform;
         }
 
         .reply-button:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 
-                0 40px 80px rgba(245, 87, 108, 0.6),
-                inset 0 1px 0 rgba(255,255,255,0.5);
-            background: linear-gradient(135deg, #f5576c 0%, #ff6b9d 100%);
-        }
-
-        .reply-button:active {
-            transform: translateY(-4px) scale(1.02);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(245, 87, 108, 0.5);
         }
 
         .modal-overlay {
@@ -456,14 +274,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(20px);
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 1000;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.3s ease;
         }
 
         .modal-overlay.active {
@@ -473,143 +291,116 @@
 
         .modal-content {
             background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
-            border-radius: 35px;
-            padding: 55px;
-            max-width: 520px;
+            border-radius: 25px;
+            padding: 45px;
+            max-width: 500px;
             width: 90%;
-            max-height: 85vh;
+            max-height: 80vh;
             overflow-y: auto;
-            box-shadow: 
-                0 50px 100px rgba(0,0,0,0.5),
-                0 0 0 1px rgba(255,255,255,0.3);
-            transform: scale(0.7) translateY(50px) rotateX(15deg);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255,255,255,0.4);
-            animation: modalFloat 6s ease-in-out infinite;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .modal-overlay.active .modal-content {
-            transform: scale(1) translateY(0) rotateX(0deg);
+            transform: scale(1) translateY(0);
         }
 
         .modal-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .modal-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             color: #333;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: modalTitlePulse 3s ease-in-out infinite;
         }
 
         .modal-subtitle {
             color: #666;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 300;
         }
 
         .form-group {
-            margin-bottom: 35px;
+            margin-bottom: 25px;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             color: #555;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .form-input, .form-textarea {
             width: 100%;
-            padding: 20px 28px;
+            padding: 15px 20px;
             border: 2px solid #e1e5e9;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.9);
         }
 
         .form-input:focus, .form-textarea:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.15);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
             background: rgba(255,255,255,1);
-            transform: translateY(-3px) scale(1.01);
         }
 
         .form-textarea {
-            min-height: 150px;
+            min-height: 120px;
             resize: vertical;
         }
 
         .form-buttons {
             display: flex;
-            gap: 25px;
+            gap: 15px;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
         .btn {
-            padding: 18px 40px;
+            padding: 12px 30px;
             border: none;
-            border-radius: 35px;
-            font-size: 1.1rem;
+            border-radius: 25px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            min-width: 140px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.4s ease;
-        }
-
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
+            transition: all 0.3s ease;
+            min-width: 120px;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
         }
 
         .btn-secondary {
-            background: rgba(255,255,255,0.95);
+            background: rgba(255,255,255,0.8);
             color: #666;
             border: 2px solid #e1e5e9;
         }
 
         .btn-secondary:hover {
-            background: rgba(255,255,255,1);
+            background: rgba(255,255,255,0.95);
             border-color: #ccc;
-            transform: translateY(-3px) scale(1.02);
         }
 
         .loading-overlay {
@@ -625,43 +416,42 @@
             flex-direction: column;
             color: white;
             z-index: 10;
-            transition: opacity 0.6s ease;
-            border-radius: 30px;
+            transition: opacity 0.5s ease;
+            border-radius: 25px;
         }
 
         .loading-text {
-            font-size: 1.4rem;
-            margin-top: 35px;
-            animation: loadingPulse 3s ease-in-out infinite;
+            font-size: 1.2rem;
+            margin-top: 25px;
+            animation: pulse 2s ease-in-out infinite;
             font-weight: 300;
         }
 
         .spinner {
-            width: 80px;
-            height: 80px;
-            border: 5px solid rgba(255,255,255,0.3);
-            border-top: 5px solid white;
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid white;
             border-radius: 50%;
-            animation: realisticSpin 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-            box-shadow: 0 0 30px rgba(255,255,255,0.5);
+            animation: spin 1s linear infinite;
         }
 
         .success-message {
             background: linear-gradient(135deg, #00c851 0%, #00a83f 100%);
             color: white;
-            padding: 22px 35px;
-            border-radius: 25px;
+            padding: 18px 25px;
+            border-radius: 15px;
             text-align: center;
-            margin-top: 30px;
+            margin-top: 20px;
             opacity: 0;
-            transform: translateY(20px) scale(0.9);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 15px 35px rgba(0, 200, 81, 0.4);
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 200, 81, 0.3);
         }
 
         .success-message.show {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
 
         .floating-elements {
@@ -674,359 +464,124 @@
 
         .floating-element {
             position: absolute;
-            opacity: 0.2;
-            animation: realisticFloatAround 15s ease-in-out infinite;
-            font-size: 28px;
-            text-shadow: 0 0 10px currentColor;
+            opacity: 0.15;
+            animation: floatAround 12s ease-in-out infinite;
+            font-size: 24px;
+            will-change: transform;
         }
 
-        /* Realistic Animation Keyframes */
+        /* Optimized Animations */
         @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            25% { background-position: 100% 50%; }
-            50% { background-position: 50% 100%; }
-            75% { background-position: 0% 0%; }
-        }
-
-        @keyframes screenShake {
-            0%, 100% { transform: translateX(0); }
-            10% { transform: translateX(-10px) rotate(-1deg); }
-            20% { transform: translateX(10px) rotate(1deg); }
-            30% { transform: translateX(-8px) rotate(-0.5deg); }
-            40% { transform: translateX(8px) rotate(0.5deg); }
-            50% { transform: translateX(-6px); }
-            60% { transform: translateX(6px); }
-            70% { transform: translateX(-4px); }
-            80% { transform: translateX(4px); }
-            90% { transform: translateX(-2px); }
-        }
-
-        @keyframes glitch {
-            0%, 100% { transform: translateX(0); }
-            20% { transform: translateX(-2px) scaleX(0.98); }
-            40% { transform: translateX(2px) scaleX(1.02); }
-            60% { transform: translateX(-1px) scaleY(0.99); }
-            80% { transform: translateX(1px) scaleY(1.01); }
-        }
-
-        @keyframes vanishedGlow {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-
-        @keyframes vanishedTitleAppear {
-            0% { 
-                opacity: 0; 
-                transform: translateY(50px) scale(0.8); 
-                filter: blur(10px);
-            }
-            100% { 
-                opacity: 0.9; 
-                transform: translateY(0) scale(1); 
-                filter: blur(0px);
-            }
-        }
-
-        @keyframes vanishedMessageAppear {
-            0% { 
-                opacity: 0; 
-                transform: translateY(30px); 
-                filter: blur(5px);
-            }
-            100% { 
-                opacity: 0.8; 
-                transform: translateY(0); 
-                filter: blur(0px);
-            }
-        }
-
-        @keyframes explode {
-            0% { 
-                transform: scale(0) rotate(0deg); 
-                opacity: 1; 
-            }
-            50% { 
-                transform: scale(2) rotate(180deg); 
-                opacity: 0.8; 
-            }
-            100% { 
-                transform: scale(4) rotate(360deg); 
-                opacity: 0; 
-            }
-        }
-
-        @keyframes realisticTwinkle {
-            0%, 100% { 
-                opacity: 0.4; 
-                transform: scale(1) rotate(0deg); 
-                filter: brightness(1);
-            }
-            25% { 
-                opacity: 0.8; 
-                transform: scale(1.3) rotate(90deg); 
-                filter: brightness(1.5);
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.5) rotate(180deg); 
-                filter: brightness(2);
-            }
-            75% { 
-                opacity: 0.7; 
-                transform: scale(1.2) rotate(270deg); 
-                filter: brightness(1.3);
-            }
-        }
-
-        @keyframes shootingStar {
-            0% { 
-                transform: translateX(-100vw) translateY(100vh) rotate(45deg) scale(0); 
-                opacity: 0; 
-            }
-            10% { 
-                opacity: 1; 
-                transform: translateX(-80vw) translateY(80vh) rotate(45deg) scale(1); 
-            }
-            90% { 
-                opacity: 1; 
-                transform: translateX(80vw) translateY(-80vh) rotate(45deg) scale(1); 
-            }
-            100% { 
-                transform: translateX(100vw) translateY(-100vh) rotate(45deg) scale(0); 
-                opacity: 0; 
-            }
-        }
-
-        @keyframes realisticFloat {
-            0% {
-                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-                transform: translateY(90vh) translateX(10px) rotate(45deg) scale(0.8);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translateY(50vh) translateX(-20px) rotate(180deg) scale(1.2);
-            }
-            90% {
-                opacity: 0.4;
-                transform: translateY(10vh) translateX(30px) rotate(315deg) scale(0.9);
-            }
-            100% {
-                transform: translateY(-20vh) translateX(50px) rotate(360deg) scale(0.3);
-                opacity: 0;
-            }
-        }
-
-        @keyframes realisticMagicBurst {
-            0% {
-                transform: scale(0) rotate(0deg);
-                opacity: 1;
-                filter: brightness(2) saturate(1.5);
-            }
-            25% {
-                transform: scale(1.5) rotate(90deg);
-                opacity: 0.9;
-                filter: brightness(1.8) saturate(2);
-            }
-            50% {
-                transform: scale(2.5) rotate(180deg);
-                opacity: 0.7;
-                filter: brightness(1.5) saturate(1.8);
-            }
-            75% {
-                transform: scale(3.5) rotate(270deg);
-                opacity: 0.4;
-                filter: brightness(1.2) saturate(1.3);
-            }
-            100% {
-                transform: scale(5) rotate(360deg);
-                opacity: 0;
-                filter: brightness(1) saturate(1);
-            }
-        }
-
-        @keyframes rippleEffect {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 1;
-            }
-            100% {
-                width: 300px;
-                height: 300px;
-                opacity: 0;
-            }
-        }
-
-        @keyframes elegantFadeInDown {
-            0% {
-                opacity: 0;
-                transform: translateY(-80px) scale(0.9);
-                filter: blur(5px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0px);
-            }
-        }
-
-        @keyframes realisticShimmer {
-            0%, 100% { 
-                background-position: 0% 50%; 
-                filter: brightness(1);
-            }
-            50% { 
-                background-position: 100% 50%; 
-                filter: brightness(1.3);
-            }
-        }
-
-        @keyframes titleSweep {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        @keyframes subtitleFloat {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-                opacity: 0.95; 
-            }
-            50% { 
-                transform: translateY(-8px) rotate(0.5deg); 
-                opacity: 1; 
-            }
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(255,255,255,0.4);
-                transform: scale(1);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(255,255,255,0.8);
-                transform: scale(1.02);
-            }
-        }
-
-        @keyframes hintSweep {
-            0% { transform: translateX(-200%) rotate(45deg); }
-            100% { transform: translateX(200%) rotate(45deg); }
-        }
-
-        @keyframes containerFloat {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg) scale(1); 
-                box-shadow: 0 35px 70px rgba(0,0,0,0.4);
-            }
-            50% { 
-                transform: translateY(-10px) rotate(0.2deg) scale(1.005); 
-                box-shadow: 0 45px 90px rgba(0,0,0,0.5);
-            }
-        }
-
-        @keyframes borderGlow {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
 
-        @keyframes controlsRise {
-            0% {
+        @keyframes fadeInDown {
+            from {
                 opacity: 0;
-                transform: translateY(60px) scale(0.8);
-                filter: blur(3px);
+                transform: translate3d(0, -30px, 0);
             }
-            100% {
+            to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0px);
+                transform: translate3d(0, 0, 0);
             }
         }
 
-        @keyframes modalFloat {
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 30px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes subtleFloat {
             0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
+                transform: translate3d(0, 0, 0); 
             }
             50% { 
-                transform: translateY(-5px) rotate(0.1deg); 
+                transform: translate3d(0, -5px, 0); 
             }
         }
 
-        @keyframes modalTitlePulse {
+        @keyframes twinkle {
             0%, 100% { 
+                opacity: 0.3; 
                 transform: scale(1); 
-                filter: brightness(1);
             }
             50% { 
-                transform: scale(1.02); 
-                filter: brightness(1.1);
+                opacity: 1; 
+                transform: scale(1.2); 
             }
         }
 
-        @keyframes loadingPulse {
-            0%, 100% {
-                opacity: 0.8;
-                transform: scale(1);
+        @keyframes floatUp {
+            0% {
+                transform: translate3d(0, 100vh, 0) rotate(0deg);
+                opacity: 0;
             }
-            50% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes realisticSpin {
-            0% { 
-                transform: rotate(0deg) scale(1); 
-            }
-            50% { 
-                transform: rotate(180deg) scale(1.1); 
-            }
-            100% { 
-                transform: rotate(360deg) scale(1); 
-            }
-        }
-
-        @keyframes realisticFloatAround {
-            0%, 100% {
-                transform: translate(0, 0) rotate(0deg) scale(1);
-                opacity: 0.2;
-            }
-            25% {
-                transform: translate(50px, -50px) rotate(90deg) scale(1.2);
-                opacity: 0.4;
-            }
-            50% {
-                transform: translate(-30px, -100px) rotate(180deg) scale(0.8);
+            10% {
                 opacity: 0.3;
             }
-            75% {
-                transform: translate(-60px, -50px) rotate(270deg) scale(1.1);
-                opacity: 0.35;
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translate3d(20px, -100px, 0) rotate(360deg);
+                opacity: 0;
             }
         }
 
-        /* Fragment destruction animations */
-        @keyframes fragmentFly1 {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate(-300px, -400px) rotate(-180deg); opacity: 0; }
+        @keyframes magicBurst {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(3) rotate(360deg);
+                opacity: 0;
+            }
         }
 
-        @keyframes fragmentFly2 {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate(400px, -350px) rotate(200deg); opacity: 0; }
+        @keyframes floatAround {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate3d(30px, -30px, 0) rotate(90deg);
+            }
+            50% {
+                transform: translate3d(-20px, -60px, 0) rotate(180deg);
+            }
+            75% {
+                transform: translate3d(-40px, -30px, 0) rotate(270deg);
+            }
         }
 
-        @keyframes fragmentFly3 {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate(-250px, 300px) rotate(-150deg); opacity: 0; }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 1;
+            }
         }
 
-        @keyframes fragmentFly4 {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate(350px, 280px) rotate(170deg); opacity: 0; }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Mobile Responsive */
@@ -1036,62 +591,72 @@
             }
 
             .title {
-                font-size: 3rem;
+                font-size: 2.8rem;
             }
 
             .pdf-container {
                 height: 70vh;
                 min-height: 500px;
-                margin-bottom: 40px;
+                margin-bottom: 30px;
             }
 
             .controls-section {
                 flex-direction: column;
                 align-items: center;
-                gap: 25px;
+                gap: 20px;
             }
 
             .control-button, .reply-button {
-                padding: 20px 30px;
+                padding: 18px 30px;
             }
 
             .modal-content {
-                padding: 40px 30px;
+                padding: 35px 25px;
             }
 
             .modal-title {
-                font-size: 2rem;
+                font-size: 1.9rem;
             }
         }
 
         @media (max-width: 480px) {
             .title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
                 letter-spacing: 0.5px;
             }
 
             .subtitle {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .pdf-container {
                 height: 65vh;
                 min-height: 450px;
-                border-radius: 25px;
+                border-radius: 20px;
             }
 
             .controls-section {
-                gap: 20px;
+                gap: 15px;
             }
 
             .control-button, .reply-button {
-                padding: 18px 25px;
-                font-size: 1rem;
+                padding: 15px 25px;
+                font-size: 0.9rem;
             }
 
             .control-text {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
+        }
+
+        /* Performance optimizations */
+        .container * {
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        .pdf-container, .control-button, .reply-button {
+            transform: translate3d(0, 0, 0);
         }
     </style>
 </head>
@@ -1104,7 +669,6 @@
     </div>
 
     <div id="mainContent">
-        <div class="destruction-overlay" id="destructionOverlay"></div>
         <div class="stars" id="stars"></div>
         <div class="particles" id="particles"></div>
         
@@ -1114,10 +678,7 @@
             <div class="floating-element" style="left: 15%; top: 80%; animation-delay: 4s;">💫</div>
             <div class="floating-element" style="left: 75%; top: 70%; animation-delay: 6s;">⭐</div>
             <div class="floating-element" style="left: 45%; top: 5%; animation-delay: 1s;">🌟</div>
-            <div class="floating-element" style="left: 25%; top: 60%; animation-delay: 3s;">✨</div>
-            <div class="floating-element" style="left: 90%; top: 45%; animation-delay: 5s;">💖</div>
-            <div class="floating-element" style="left: 10%; top: 35%; animation-delay: 7s;">🦋</div>
-            <div class="floating-element" style="left: 60%; top: 25%; animation-delay: 9s;">🌸</div>
+            <div class="floating-element" style="left: 25%; top: 60%; animation-delay: 3s;">💖</div>
         </div>
 
         <div class="container">
@@ -1195,6 +756,11 @@
     </audio>
 
     <script>
+        // Performance optimization variables
+        let animationCount = 0;
+        const maxAnimations = 20;
+        let isScrolling = false;
+
         // Check if page should be vanished
         function checkVanished() {
             const vanished = getCookie('pageVanished');
@@ -1240,184 +806,92 @@
             const replyForm = document.getElementById('replyForm');
             const successMessage = document.getElementById('successMessage');
 
-            // Create realistic twinkling stars
+            // Optimized star creation
             function createStars() {
                 const stars = document.getElementById('stars');
-                for (let i = 0; i < 150; i++) {
+                for (let i = 0; i < 50; i++) { // Reduced from 150
                     const star = document.createElement('div');
                     star.className = 'star';
                     star.style.left = Math.random() * 100 + '%';
                     star.style.top = Math.random() * 100 + '%';
-                    star.style.animationDelay = Math.random() * 4 + 's';
-                    star.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                    star.style.width = (Math.random() * 3 + 1) + 'px';
-                    star.style.height = star.style.width;
+                    star.style.animationDelay = Math.random() * 3 + 's';
+                    star.style.animationDuration = (Math.random() * 2 + 2) + 's';
                     stars.appendChild(star);
                 }
-
-                // Add shooting stars
-                setInterval(() => {
-                    if (Math.random() > 0.95) {
-                        const shootingStar = document.createElement('div');
-                        shootingStar.className = 'shooting-star';
-                        shootingStar.style.left = '0%';
-                        shootingStar.style.top = Math.random() * 50 + '%';
-                        stars.appendChild(shootingStar);
-                        
-                        setTimeout(() => {
-                            if (shootingStar.parentNode) {
-                                shootingStar.remove();
-                            }
-                        }, 3000);
-                    }
-                }, 2000);
             }
 
-            // Create realistic floating particles
+            // Optimized particle creation
             function createParticles() {
                 const particles = document.getElementById('particles');
-                const particleSymbols = ['✨', '💫', '⭐', '🌟', '💖', '💕', '🦋', '🌙', '🌸', '🎵', '🌺', '💎'];
+                const particleSymbols = ['✨', '💫', '⭐', '🌟', '💖', '🦋'];
                 
                 setInterval(() => {
-                    if (Math.random() > 0.7) {
+                    if (animationCount < maxAnimations && Math.random() > 0.8) {
                         const particle = document.createElement('div');
                         particle.className = 'particle';
                         particle.innerHTML = particleSymbols[Math.floor(Math.random() * particleSymbols.length)];
                         particle.style.left = Math.random() * 100 + '%';
-                        particle.style.animationDuration = (Math.random() * 6 + 10) + 's';
-                        particle.style.animationDelay = Math.random() * 4 + 's';
-                        particle.style.fontSize = (Math.random() * 8 + 12) + 'px';
+                        particle.style.animationDuration = (Math.random() * 3 + 6) + 's';
                         particles.appendChild(particle);
+                        animationCount++;
                         
                         setTimeout(() => {
                             if (particle.parentNode) {
                                 particle.remove();
+                                animationCount--;
                             }
-                        }, 15000);
+                        }, 9000);
                     }
-                }, 600);
+                }, 2000); // Increased interval
             }
 
-            // Enhanced magic click effect with realistic physics
+            // Optimized magic burst effect
             function createMagicBurst(x, y) {
-                const burstSymbols = ['✨', '💫', '⭐', '🌟', '💖', '💎', '🌸'];
-                const numBursts = Math.floor(Math.random() * 3) + 2;
+                if (animationCount >= maxAnimations) return;
                 
-                for (let i = 0; i < numBursts; i++) {
-                    setTimeout(() => {
-                        const burst = document.createElement('div');
-                        burst.className = 'magic-burst';
-                        burst.innerHTML = burstSymbols[Math.floor(Math.random() * burstSymbols.length)];
-                        burst.style.left = (x + (Math.random() - 0.5) * 50) + 'px';
-                        burst.style.top = (y + (Math.random() - 0.5) * 50) + 'px';
-                        burst.style.color = `hsl(${Math.random() * 360}, 80%, 70%)`;
-                        document.body.appendChild(burst);
-                        
-                        setTimeout(() => {
-                            if (burst.parentNode) {
-                                burst.remove();
-                            }
-                        }, 2000);
-                    }, i * 100);
-                }
-
-                // Create ripple effect
-                const ripple = document.createElement('div');
-                ripple.className = 'ripple';
-                ripple.style.left = (x - 150) + 'px';
-                ripple.style.top = (y - 150) + 'px';
-                document.body.appendChild(ripple);
+                const burst = document.createElement('div');
+                burst.className = 'magic-burst';
+                burst.innerHTML = ['✨', '💫', '⭐', '🌟', '💖'][Math.floor(Math.random() * 5)];
+                burst.style.left = x + 'px';
+                burst.style.top = y + 'px';
+                burst.style.color = `hsl(${Math.random() * 360}, 70%, 70%)`;
+                document.body.appendChild(burst);
+                animationCount++;
                 
                 setTimeout(() => {
-                    if (ripple.parentNode) {
-                        ripple.remove();
+                    if (burst.parentNode) {
+                        burst.remove();
+                        animationCount--;
                     }
-                }, 1000);
+                }, 1500);
             }
 
-            // Self-destruct animation sequence
+            // Optimized destruction sequence
             function initiateDestruction() {
-                const destructionOverlay = document.getElementById('destructionOverlay');
                 const mainContent = document.getElementById('mainContent');
                 
-                // Screen shake effect
-                document.body.classList.add('screen-shake');
-                setTimeout(() => document.body.classList.remove('screen-shake'), 500);
+                // Simple fade out instead of complex animations
+                mainContent.style.transition = 'all 2s ease-out';
+                mainContent.style.transform = 'scale(0.95)';
+                mainContent.style.opacity = '0';
+                mainContent.style.filter = 'blur(5px)';
                 
-                // Create multiple explosions
-                const explosionPoints = [
-                    { x: window.innerWidth * 0.2, y: window.innerHeight * 0.3 },
-                    { x: window.innerWidth * 0.8, y: window.innerHeight * 0.4 },
-                    { x: window.innerWidth * 0.5, y: window.innerHeight * 0.6 },
-                    { x: window.innerWidth * 0.3, y: window.innerHeight * 0.8 },
-                    { x: window.innerWidth * 0.7, y: window.innerHeight * 0.2 }
-                ];
-                
-                explosionPoints.forEach((point, index) => {
-                    setTimeout(() => {
-                        // Create explosion
-                        const explosion = document.createElement('div');
-                        explosion.className = 'explosion';
-                        explosion.style.left = (point.x - 50) + 'px';
-                        explosion.style.top = (point.y - 50) + 'px';
-                        destructionOverlay.appendChild(explosion);
-                        
-                        // Screen shake for each explosion
-                        document.body.classList.add('screen-shake');
-                        setTimeout(() => document.body.classList.remove('screen-shake'), 300);
-                        
-                        // Create fragments
-                        for (let i = 0; i < 15; i++) {
-                            setTimeout(() => {
-                                const fragment = document.createElement('div');
-                                fragment.className = 'fragment';
-                                fragment.innerHTML = ['💥', '⚡', '💫', '✨', '🔥'][Math.floor(Math.random() * 5)];
-                                fragment.style.left = point.x + 'px';
-                                fragment.style.top = point.y + 'px';
-                                fragment.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                                fragment.style.color = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`;
-                                fragment.style.animation = `fragmentFly${(i % 4) + 1} ${Math.random() * 2 + 1}s ease-out forwards`;
-                                destructionOverlay.appendChild(fragment);
-                                
-                                setTimeout(() => {
-                                    if (fragment.parentNode) {
-                                        fragment.remove();
-                                    }
-                                }, 3000);
-                            }, i * 50);
-                        }
-                        
-                        setTimeout(() => {
-                            if (explosion.parentNode) {
-                                explosion.remove();
-                            }
-                        }, 1000);
-                    }, index * 400);
-                });
-                
-                // Final destruction sequence
                 setTimeout(() => {
-                    // Glitch effect
-                    mainContent.classList.add('glitch-effect');
-                    
-                    setTimeout(() => {
-                        // Fade out with realistic physics
-                        mainContent.style.transition = 'all 3s cubic-bezier(0.4, 0, 0.2, 1)';
-                        mainContent.style.transform = 'scale(0.8) rotate(2deg)';
-                        mainContent.style.opacity = '0';
-                        mainContent.style.filter = 'blur(10px)';
-                        
-                        setTimeout(() => {
-                            mainContent.style.display = 'none';
-                            document.getElementById('vanishedPage').style.display = 'flex';
-                        }, 3000);
-                    }, 500);
-                }, 2500);
+                    mainContent.style.display = 'none';
+                    document.getElementById('vanishedPage').style.display = 'flex';
+                }, 2000);
             }
 
-            // Click anywhere magic effect with enhanced realism
+            // Throttled click handler
+            let clickTimeout;
             document.addEventListener('click', function(e) {
+                if (clickTimeout) return;
+                
                 createMagicBurst(e.clientX, e.clientY);
+                
+                clickTimeout = setTimeout(() => {
+                    clickTimeout = null;
+                }, 200);
                 
                 // Auto-play audio on first click if not already playing
                 if (!isPlaying && audio.paused) {
@@ -1430,7 +904,7 @@
                 }
             });
 
-            // Handle PDF loading with enhanced error handling
+            // Handle PDF loading
             let loadingTimeout;
             
             pdfViewer.onload = function() {
@@ -1439,7 +913,7 @@
                     loadingOverlay.style.opacity = '0';
                     setTimeout(() => {
                         loadingOverlay.style.display = 'none';
-                    }, 600);
+                    }, 500);
                 }, 1000);
             };
 
@@ -1455,13 +929,13 @@
 
             function showFallbackOptions() {
                 loadingOverlay.innerHTML = `
-                    <div style="text-align: center; max-width: 450px;">
-                        <h3 style="margin-bottom: 30px; font-family: 'Playfair Display', serif; font-size: 1.8rem;">Choose Your Viewing Experience</h3>
-                        <div style="display: flex; flex-direction: column; gap: 20px;">
-                            <button onclick="tryAlternativeViewer()" style="padding: 22px 35px; background: rgba(255,255,255,0.98); color: #764ba2; border: none; border-radius: 30px; cursor: pointer; font-size: 1.1rem; font-weight: 600; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 25px rgba(0,0,0,0.15);" onmouseover="this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.25)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.15)'">
+                    <div style="text-align: center; max-width: 400px;">
+                        <h3 style="margin-bottom: 25px; font-family: 'Playfair Display', serif;">Choose Your Viewing Experience</h3>
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <button onclick="tryAlternativeViewer()" style="padding: 18px 30px; background: rgba(255,255,255,0.95); color: #764ba2; border: none; border-radius: 25px; cursor: pointer; font-size: 1rem; font-weight: 500; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
                                 📖 Alternative Viewer
                             </button>
-                            <button onclick="openInNewTab()" style="padding: 22px 35px; background: rgba(255,255,255,0.90); color: #764ba2; border: none; border-radius: 30px; cursor: pointer; font-size: 1.1rem; font-weight: 600; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 25px rgba(0,0,0,0.15);" onmouseover="this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.25)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.15)'">
+                            <button onclick="openInNewTab()" style="padding: 18px 30px; background: rgba(255,255,255,0.85); color: #764ba2; border: none; border-radius: 25px; cursor: pointer; font-size: 1rem; font-weight: 500; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
                                 🔗 Open in Google Drive
                             </button>
                         </div>
@@ -1479,7 +953,7 @@
                 loadingOverlay.style.display = 'none';
             }
 
-            // Enhanced audio controls with realistic feedback
+            // Audio controls
             window.toggleAudio = function() {
                 if (isPlaying) {
                     audio.pause();
@@ -1499,16 +973,14 @@
                     audioIcon.textContent = '⏸';
                     audioText.textContent = 'Pause Music';
                     audioButton.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
-                    audioButton.style.animation = 'realisticSpin 3s ease-in-out infinite';
                 } else {
                     audioIcon.textContent = '▶';
                     audioText.textContent = 'Play Music';
                     audioButton.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                    audioButton.style.animation = 'none';
                 }
             }
 
-            // Modal functions with enhanced animations
+            // Modal functions
             window.openReplyModal = function() {
                 replyModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -1521,7 +993,7 @@
                 replyForm.reset();
             }
 
-            // Form submission with dramatic destruction sequence
+            // Form submission
             replyForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -1543,9 +1015,9 @@
                             
                             setTimeout(() => {
                                 // Set cookie to remember page was vanished
-                                setCookie('pageVanished', 'true', 365); // Expires in 1 year
+                                setCookie('pageVanished', 'true', 365);
                                 
-                                // Initiate dramatic destruction sequence
+                                // Initiate destruction sequence
                                 initiateDestruction();
                             }, 1000);
                         }, 2000);
@@ -1575,7 +1047,7 @@
                 }
             });
 
-            // Auto-attempt to play audio with better UX
+            // Auto-attempt to play audio
             document.addEventListener('DOMContentLoaded', function() {
                 createStars();
                 createParticles();
@@ -1590,11 +1062,17 @@
                 }, 2000);
             });
 
-            // Enhanced mobile touch optimization with realistic feedback
+            // Optimized touch handling
+            let touchTimeout;
             document.addEventListener('touchstart', function(e) {
-                e.preventDefault();
+                if (touchTimeout) return;
+                
                 const touch = e.touches[0];
                 createMagicBurst(touch.clientX, touch.clientY);
+                
+                touchTimeout = setTimeout(() => {
+                    touchTimeout = null;
+                }, 300);
                 
                 if (!isPlaying && audio.paused) {
                     audio.play().then(() => {
@@ -1604,19 +1082,17 @@
                         // Silently handle if still can't play
                     });
                 }
-            }, { passive: false });
+            }, { passive: true });
 
-            // Keyboard shortcuts with enhanced feedback
+            // Keyboard shortcuts
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     closeReplyModal();
                 } else if (e.key === ' ' && !replyModal.classList.contains('active')) {
                     e.preventDefault();
                     toggleAudio();
-                    createMagicBurst(window.innerWidth / 2, window.innerHeight / 2);
                 } else if (e.key === 'r' && !replyModal.classList.contains('active')) {
                     openReplyModal();
-                    createMagicBurst(window.innerWidth / 2, window.innerHeight / 2);
                 }
             });
 
