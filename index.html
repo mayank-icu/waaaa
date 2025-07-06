@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations Magdalena!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .gate-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .gate-form h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gate-form p {
+            color: #666;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 150px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .char-counter {
+            text-align: right;
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .char-counter.complete {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .submit-btn.enabled {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .submit-btn.enabled:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .congrats-content {
+            display: none;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .congrats-content h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 3rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .congrats-content .message {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            color: white;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+        }
+
+        .celebration-emojis {
+            font-size: 3rem;
+            margin: 20px 0;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .cake-animation {
+            font-size: 4rem;
+            margin: 20px 0;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .gate-form, .congrats-content {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .congrats-content h1 {
+                font-size: 2rem;
+            }
+            
+            .gate-form h2 {
+                font-size: 1.5rem;
+            }
+            
+            .form-group textarea {
+                min-height: 120px;
+            }
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="floating-particles"></div>
+        
+        <div class="gate-form" id="gateForm">
+            <h2>🎓 Special Message Awaits</h2>
+            <p>Hello! There's a special congratulations message waiting for you. To unlock it, please share why you'd like to view this message (minimum 1000 characters).</p>
+            
+            <form id="unlockForm" action="https://formspree.io/f/mjvqobge" method="POST">
+                <div class="form-group">
+                    <label for="reason">Why do you want to view this message?</label>
+                    <textarea 
+                        id="reason" 
+                        name="reason" 
+                        placeholder="Share your thoughts, feelings, or curiosity about this special message..."
+                        required></textarea>
+                    <div class="char-counter" id="charCounter">0 / 1000 characters</div>
+                </div>
+                
+                <input type="hidden" name="timestamp" id="timestamp">
+                <input type="hidden" name="page_title" value="Magdalena Congratulations Page">
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Unlock Message 🔓
+                </button>
+            </form>
+            
+            <div class="loading-spinner" id="loadingSpinner"></div>
+        </div>
+        
+        <div class="congrats-content" id="congratsContent">
+            <h1>🎉 Congratulations Magdalena! 🎉</h1>
+            
+            <div class="celebration-emojis">🎓✨🌟💫🎊</div>
+            
+            <div class="message">
+                <p><strong>Hey Magdalena!</strong></p>
+                <br>
+                <p>🎉 <strong>CONGRATULATIONS on defending your thesis!</strong> 🎉</p>
+                <br>
+                <p>I'm so incredibly happy to hear that you've successfully completed this major milestone! Getting a 5 is absolutely fantastic - you should be so proud of yourself for all the hard work and dedication that led to this moment.</p>
+                <br>
+                <p>It sounds like you handled those three challenging questions brilliantly - from discussing disabled people and their problems, to explaining your research course, and addressing questions about authority. Your preparation and knowledge clearly paid off!</p>
+                <br>
+                <p>🍰 I love that you celebrated with your family and enjoyed that delicious meringue cake - you absolutely deserved every bite of that celebration!</p>
+                <br>
+                <p>This is such a huge achievement, and I couldn't be happier for you. You've worked so hard for this moment, and now you can truly celebrate knowing that all your efforts have culminated in this success.</p>
+                <br>
+                <p>As for me, I've been keeping busy with various projects, but hearing your wonderful news has definitely been the highlight! Thank you for sharing this joy with me.</p>
+                <br>
+                <p><strong>Once again, HUGE congratulations Dr. Magdalena! 🎓✨</strong></p>
+                <br>
+                <p>Best wishes and lots of love,<br>
+                <strong>Your proud friend</strong></p>
+            </div>
+            
+            <div class="cake-animation">🍰</div>
+            
+            <div class="celebration-emojis">🎈🎊🥳🎉🌟</div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particleContainer = document.querySelector('.floating-particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // Auto-save functionality
+        function autoSave() {
+            const textarea = document.getElementById('reason');
+            const savedText = localStorage.getItem('magdalena_message_reason');
+            if (savedText) {
+                textarea.value = savedText;
+                updateCharCounter();
+            }
+            
+            textarea.addEventListener('input', function() {
+                localStorage.setItem('magdalena_message_reason', this.value);
+                updateCharCounter();
+            });
+        }
+
+        // Character counter and button state
+        function updateCharCounter() {
+            const textarea = document.getElementById('reason');
+            const counter = document.getElementById('charCounter');
+            const submitBtn = document.getElementById('submitBtn');
+            const charCount = textarea.value.length;
+            
+            counter.textContent = `${charCount} / 1000 characters`;
+            
+            if (charCount >= 1000) {
+                counter.classList.add('complete');
+                submitBtn.classList.add('enabled');
+                submitBtn.textContent = 'Unlock Message 🔓';
+            } else {
+                counter.classList.remove('complete');
+                submitBtn.classList.remove('enabled');
+                submitBtn.textContent = `Need ${1000 - charCount} more characters`;
+            }
+        }
+
+        // Form submission
+        document.getElementById('unlockForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const textarea = document.getElementById('reason');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (textarea.value.length < 1000) {
+                alert('Please write at least 1000 characters to unlock the message.');
+                return;
+            }
+            
+            // Set timestamp
+            document.getElementById('timestamp').value = new Date().toISOString();
+            
+            // Show loading
+            loadingSpinner.style.display = 'block';
+            submitBtn.style.display = 'none';
+            
+            // Create form data
+            const formData = new FormData(this);
+            
+            // Submit to Formspree
+            fetch('https://formspree.io/f/mjvqobge', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Clear saved data
+                    localStorage.removeItem('magdalena_message_reason');
+                    
+                    // Show success and transition to congratulations
+                    setTimeout(() => {
+                        document.getElementById('gateForm').style.display = 'none';
+                        document.getElementById('congratsContent').style.display = 'block';
+                        
+                        // Trigger celebration animations
+                        setTimeout(() => {
+                            document.querySelector('.congrats-content h1').style.animation = 'pulse 2s ease-in-out infinite';
+                        }, 500);
+                    }, 1000);
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting the form. Please try again.');
+                loadingSpinner.style.display = 'none';
+                submitBtn.style.display = 'block';
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            autoSave();
+            updateCharCounter();
+            
+            // Add input event listener
+            document.getElementById('reason').addEventListener('input', updateCharCounter);
+        });
+    </script>
+</body>
+</html>
