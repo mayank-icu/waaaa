@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Congratulations Magdalena!</title>
+    <title>Congratulations Magdalena! 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,10 +13,95 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fecfef 75%, #a8e6cf 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Skeleton Preloader */
+        .skeleton-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fecfef 75%, #a8e6cf 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 1s ease-in-out 3s forwards;
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        .skeleton-hearts {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .skeleton-heart {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #ff6b9d, #ffeaa7);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .skeleton-heart:nth-child(2) { animation-delay: 0.3s; }
+        .skeleton-heart:nth-child(3) { animation-delay: 0.6s; }
+        .skeleton-heart:nth-child(4) { animation-delay: 0.9s; }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .skeleton-text {
+            width: 300px;
+            height: 20px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.3) 100%);
+            border-radius: 10px;
+            margin: 10px 0;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        .skeleton-text.short { width: 200px; }
+        .skeleton-text.long { width: 400px; }
+
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: calc(200px + 100%) 0; }
+        }
+
+        .loading-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            text-align: center;
+            margin-top: 30px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+            to { text-shadow: 0 0 30px rgba(255,255,255,0.8); }
+        }
+
+        /* Main Content */
+        .main-content {
+            opacity: 0;
+            animation: fadeInMain 1s ease-in-out 3.5s forwards;
+        }
+
+        @keyframes fadeInMain {
+            to { opacity: 1; }
         }
 
         .container {
@@ -27,7 +113,7 @@
             position: relative;
         }
 
-        .floating-particles {
+        .floating-elements {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -35,224 +121,326 @@
             pointer-events: none;
         }
 
-        .particle {
+        .floating-heart {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            font-size: 24px;
+            color: rgba(255, 182, 193, 0.7);
+            animation: floatUp 8s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+        .floating-star {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 215, 0, 0.8);
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .floating-flower {
+            position: absolute;
+            font-size: 28px;
+            color: rgba(255, 182, 193, 0.6);
+            animation: sway 6s ease-in-out infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
         }
 
         .gate-form {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 600px;
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 650px;
             width: 100%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 30px 60px rgba(255, 182, 193, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             transform: translateY(0);
-            animation: slideIn 0.8s ease-out;
+            animation: slideInGate 1s ease-out;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes slideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .gate-form::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 182, 193, 0.1), transparent);
+            animation: shimmerGate 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmerGate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes slideInGate {
+            from { transform: translateY(50px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
 
         .gate-form h2 {
+            font-family: 'Playfair Display', serif;
             color: #333;
-            margin-bottom: 20px;
-            font-size: 2rem;
+            margin-bottom: 25px;
+            font-size: 2.5rem;
             text-align: center;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #ff6b9d, #a8e6cf, #ffd93d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            position: relative;
+            z-index: 1;
         }
 
-        .gate-form p {
+        .gate-form .subtitle {
+            font-family: 'Playfair Display', serif;
             color: #666;
             margin-bottom: 30px;
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.6;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .unlock-card {
+            background: linear-gradient(135deg, #fff5f5, #f0f8ff);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px 0;
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: #333;
             font-weight: 600;
+            font-size: 1.1rem;
         }
 
         .form-group textarea {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            padding: 20px;
+            border: 3px solid #fecfef;
+            border-radius: 15px;
             font-size: 1rem;
             resize: vertical;
-            min-height: 150px;
+            min-height: 180px;
             transition: all 0.3s ease;
             font-family: inherit;
+            background: linear-gradient(135deg, #fff, #fafafa);
+            box-shadow: inset 0 2px 10px rgba(255, 182, 193, 0.1);
         }
 
         .form-group textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #ff6b9d;
+            box-shadow: 0 0 0 5px rgba(255, 107, 157, 0.2);
+            transform: translateY(-2px);
         }
 
         .char-counter {
             text-align: right;
-            margin-top: 5px;
-            font-size: 0.9rem;
+            margin-top: 10px;
+            font-size: 1rem;
             color: #666;
+            font-weight: 500;
         }
 
         .char-counter.complete {
-            color: #4CAF50;
+            color: #ff6b9d;
             font-weight: 600;
+            animation: bounce 0.5s ease-in-out;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #fecfef;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b9d, #a8e6cf);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            padding: 20px;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #a8e6cf);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
+            border-radius: 15px;
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             opacity: 0.5;
             pointer-events: none;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(255, 154, 158, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
         }
 
         .submit-btn.enabled {
             opacity: 1;
             pointer-events: auto;
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .submit-btn.enabled:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 154, 158, 0.5);
+        }
+
+        .submit-btn.enabled:hover::before {
+            left: 100%;
         }
 
         .congrats-content {
             display: none;
             text-align: center;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 800px;
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 900px;
             width: 100%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            animation: slideIn 0.8s ease-out;
+            box-shadow: 0 30px 60px rgba(255, 182, 193, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: slideInCongrats 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .congrats-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 182, 193, 0.1), transparent);
+            animation: shimmerGate 4s ease-in-out infinite;
+        }
+
+        @keyframes slideInCongrats {
+            from { transform: translateY(50px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
 
         .congrats-content h1 {
+            font-family: 'Playfair Display', serif;
             color: #333;
             margin-bottom: 30px;
-            font-size: 3rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #ff6b9d, #a8e6cf, #ffd93d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: pulse 2s ease-in-out infinite;
+            animation: bounceIn 1s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .congrats-content .message {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            padding: 30px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a8e6cf 100%);
+            padding: 40px;
+            border-radius: 20px;
             margin: 30px 0;
             color: white;
             font-size: 1.2rem;
             line-height: 1.8;
-            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+            box-shadow: 0 15px 40px rgba(255, 154, 158, 0.4);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
         }
 
         .celebration-emojis {
             font-size: 3rem;
             margin: 20px 0;
-            animation: bounce 1s ease-in-out infinite;
+            animation: bounceEmojis 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
         }
 
-        @keyframes bounce {
+        @keyframes bounceEmojis {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
         }
 
         .cake-animation {
-            font-size: 4rem;
+            font-size: 5rem;
             margin: 20px 0;
-            animation: rotate 3s linear infinite;
+            animation: cakeRotate 4s linear infinite;
+            position: relative;
+            z-index: 1;
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .success-message {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            font-size: 1.1rem;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            .gate-form, .congrats-content {
-                padding: 20px;
-                margin: 10px;
-            }
-            
-            .congrats-content h1 {
-                font-size: 2rem;
-            }
-            
-            .gate-form h2 {
-                font-size: 1.5rem;
-            }
-            
-            .form-group textarea {
-                min-height: 120px;
-            }
+        @keyframes cakeRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.1); }
+            50% { transform: rotate(180deg) scale(1); }
+            75% { transform: rotate(270deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
         }
 
         .loading-spinner {
             display: none;
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #fecfef;
+            border-top: 5px solid #ff6b9d;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 20px auto;
@@ -262,81 +450,180 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .success-message {
+            background: linear-gradient(45deg, #a8e6cf, #4ecdc4);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            animation: successSlide 0.5s ease-out;
+            box-shadow: 0 10px 30px rgba(168, 230, 207, 0.3);
+        }
+
+        @keyframes successSlide {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (max-width: 768px) {
+            .gate-form, .congrats-content {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .congrats-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gate-form h2 {
+                font-size: 2rem;
+            }
+            
+            .form-group textarea {
+                min-height: 140px;
+                padding: 15px;
+            }
+            
+            .cake-animation {
+                font-size: 4rem;
+            }
+            
+            .skeleton-text.long {
+                width: 280px;
+            }
+        }
+
+        /* Unlock animation */
+        .unlock-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8rem;
+            z-index: 10000;
+            animation: unlockPop 2s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes unlockPop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="floating-particles"></div>
-        
-        <div class="gate-form" id="gateForm">
-            <h2>🎓 Special Message Awaits</h2>
-            <p>Hello! There's a special congratulations message waiting for you. To unlock it, please share why you'd like to view this message (minimum 1000 characters).</p>
+    <!-- Skeleton Preloader -->
+    <div class="skeleton-loader">
+        <div class="skeleton-hearts">
+            <div class="skeleton-heart"></div>
+            <div class="skeleton-heart"></div>
+            <div class="skeleton-heart"></div>
+            <div class="skeleton-heart"></div>
+        </div>
+        <div class="skeleton-text short"></div>
+        <div class="skeleton-text long"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-text short"></div>
+        <div class="loading-text">✨ Preparing something special... ✨</div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="floating-elements"></div>
             
-            <form id="unlockForm" action="https://formspree.io/f/mjvqobge" method="POST">
-                <div class="form-group">
-                    <label for="reason">Why do you want to view this message?</label>
-                    <textarea 
-                        id="reason" 
-                        name="reason" 
-                        placeholder="Share your thoughts, feelings, or curiosity about this special message..."
-                        required></textarea>
-                    <div class="char-counter" id="charCounter">0 / 1000 characters</div>
+            <div class="gate-form" id="gateForm">
+                <h2>💕 A Special Message Awaits 💕</h2>
+                <p class="subtitle">Darling, there's a beautiful congratulations message waiting just for you. Share your heart and unlock the surprise! ✨</p>
+                
+                <div class="unlock-card">
+                    <form id="unlockForm" action="https://formspree.io/f/mjvqobge" method="POST">
+                        <div class="form-group">
+                            <label for="reason">💭 Why do you want to view this special message?</label>
+                            <textarea 
+                                id="reason" 
+                                name="reason" 
+                                placeholder="Share your thoughts, feelings, curiosity, or what this moment means to you... Let your heart speak! 💕"
+                                required></textarea>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="char-counter" id="charCounter">0 / 1000 characters</div>
+                        </div>
+                        
+                        <input type="hidden" name="timestamp" id="timestamp">
+                        <input type="hidden" name="page_title" value="Magdalena Congratulations Page">
+                        
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            🔮 Unlock the Magic 🔮
+                        </button>
+                    </form>
                 </div>
                 
-                <input type="hidden" name="timestamp" id="timestamp">
-                <input type="hidden" name="page_title" value="Magdalena Congratulations Page">
-                
-                <button type="submit" class="submit-btn" id="submitBtn">
-                    Unlock Message 🔓
-                </button>
-            </form>
-            
-            <div class="loading-spinner" id="loadingSpinner"></div>
-        </div>
-        
-        <div class="congrats-content" id="congratsContent">
-            <h1>🎉 Congratulations Magdalena! 🎉</h1>
-            
-            <div class="celebration-emojis">🎓✨🌟💫🎊</div>
-            
-            <div class="message">
-                <p><strong>Hey Magdalena!</strong></p>
-                <br>
-                <p>🎉 <strong>CONGRATULATIONS on defending your thesis!</strong> 🎉</p>
-                <br>
-                <p>I'm so incredibly happy to hear that you've successfully completed this major milestone! Getting a 5 is absolutely fantastic - you should be so proud of yourself for all the hard work and dedication that led to this moment.</p>
-                <br>
-                <p>It sounds like you handled those three challenging questions brilliantly - from discussing disabled people and their problems, to explaining your research course, and addressing questions about authority. Your preparation and knowledge clearly paid off!</p>
-                <br>
-                <p>🍰 I love that you celebrated with your family and enjoyed that delicious meringue cake - you absolutely deserved every bite of that celebration!</p>
-                <br>
-                <p>This is such a huge achievement, and I couldn't be happier for you. You've worked so hard for this moment, and now you can truly celebrate knowing that all your efforts have culminated in this success.</p>
-                <br>
-                <p>As for me, I've been keeping busy with various projects, but hearing your wonderful news has definitely been the highlight! Thank you for sharing this joy with me.</p>
-                <br>
-                <p><strong>Once again, HUGE congratulations Dr. Magdalena! 🎓✨</strong></p>
-                <br>
-                <p>Best wishes and lots of love,<br>
-                <strong>Your proud friend</strong></p>
+                <div class="loading-spinner" id="loadingSpinner"></div>
             </div>
             
-            <div class="cake-animation">🍰</div>
-            
-            <div class="celebration-emojis">🎈🎊🥳🎉🌟</div>
+            <div class="congrats-content" id="congratsContent">
+                <h1>🎉 Congratulations Beautiful Magdalena! 🎉</h1>
+                
+                <div class="celebration-emojis">🎓✨🌸💕🎊🦋</div>
+                
+                <div class="message">
+                    <p><strong>Hey gorgeous Magdalena!</strong> 💕</p>
+                    <br>
+                    <p>🎉 <strong>CONGRATULATIONS on defending your thesis, you absolute star!</strong> 🎉</p>
+                    <br>
+                    <p>I am SO incredibly proud and happy for you! Getting a 5 is absolutely amazing - you should be glowing with pride right now because you've achieved something truly wonderful! ✨</p>
+                    <br>
+                    <p>You handled those three challenging questions like the brilliant woman you are - discussing disabled people and their problems, explaining your research journey, and addressing questions about authority. Your intelligence and preparation clearly shone through! 🌟</p>
+                    <br>
+                    <p>🍰 And that delicious meringue cake celebration with your family sounds absolutely perfect! You deserved every sweet, fluffy bite of that celebration - what a beautiful way to mark this incredible achievement! 🎂</p>
+                    <br>
+                    <p>This is such a monumental accomplishment, darling! All those late nights, all that research, all that dedication - it has all led to this perfect moment. You should feel so proud of yourself! 💫</p>
+                    <br>
+                    <p>As for me, I've been keeping busy with various projects, but nothing has made me happier than hearing about your success! Your joy is absolutely contagious! 🌈</p>
+                    <br>
+                    <p><strong>Once again, HUGE congratulations Dr. Magdalena! You're incredible! 🎓💕✨</strong></p>
+                    <br>
+                    <p>All my love and warmest wishes,<br>
+                    <strong>Your very proud friend 💕</strong></p>
+                </div>
+                
+                <div class="cake-animation">🍰</div>
+                
+                <div class="celebration-emojis">🎈🎊🥳🎉🌟💕🦋🌸</div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Create floating particles
-        function createParticles() {
-            const particleContainer = document.querySelector('.floating-particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particleContainer.appendChild(particle);
+        // Create floating elements
+        function createFloatingElements() {
+            const container = document.querySelector('.floating-elements');
+            const elements = ['💕', '🌸', '✨', '🦋', '💫', '🌟', '🎀', '🌺'];
+            
+            for (let i = 0; i < 30; i++) {
+                const element = document.createElement('div');
+                const isHeart = Math.random() < 0.4;
+                const isStar = Math.random() < 0.3;
+                
+                if (isHeart) {
+                    element.className = 'floating-heart';
+                    element.textContent = elements[Math.floor(Math.random() * 2)];
+                } else if (isStar) {
+                    element.className = 'floating-star';
+                    element.textContent = elements[2 + Math.floor(Math.random() * 2)];
+                } else {
+                    element.className = 'floating-flower';
+                    element.textContent = elements[4 + Math.floor(Math.random() * 4)];
+                }
+                
+                element.style.left = Math.random() * 100 + '%';
+                element.style.animationDelay = Math.random() * 8 + 's';
+                element.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                container.appendChild(element);
             }
         }
 
@@ -360,22 +647,25 @@
             const textarea = document.getElementById('reason');
             const counter = document.getElementById('charCounter');
             const submitBtn = document.getElementById('submitBtn');
+            const progressFill = document.getElementById('progressFill');
             const charCount = textarea.value.length;
+            const progress = Math.min((charCount / 1000) * 100, 100);
             
             counter.textContent = `${charCount} / 1000 characters`;
+            progressFill.style.width = progress + '%';
             
             if (charCount >= 1000) {
                 counter.classList.add('complete');
                 submitBtn.classList.add('enabled');
-                submitBtn.textContent = 'Unlock Message 🔓';
+                submitBtn.innerHTML = '✨ Unlock the Magic ✨';
             } else {
                 counter.classList.remove('complete');
                 submitBtn.classList.remove('enabled');
-                submitBtn.textContent = `Need ${1000 - charCount} more characters`;
+                submitBtn.innerHTML = `💕 Need ${1000 - charCount} more characters 💕`;
             }
         }
 
-        // Form submission
+        // Form submission with unlock animation
         document.getElementById('unlockForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -384,7 +674,12 @@
             const submitBtn = document.getElementById('submitBtn');
             
             if (textarea.value.length < 1000) {
-                alert('Please write at least 1000 characters to unlock the message.');
+                // Create a cute alert
+                const alertDiv = document.createElement('div');
+                alertDiv.innerHTML = '💕 Please write at least 1000 characters to unlock the magic! 💕';
+                alertDiv.style.cssText = 'position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: linear-gradient(45deg, #ff6b9d, #fecfef); color: white; padding: 15px 30px; border-radius: 25px; font-weight: 600; z-index: 10000; animation: slideDown 0.5s ease-out';
+                document.body.appendChild(alertDiv);
+                setTimeout(() => alertDiv.remove(), 3000);
                 return;
             }
             
@@ -394,6 +689,12 @@
             // Show loading
             loadingSpinner.style.display = 'block';
             submitBtn.style.display = 'none';
+            
+            // Create unlock animation
+            const unlockDiv = document.createElement('div');
+            unlockDiv.className = 'unlock-animation';
+            unlockDiv.innerHTML = '🔓✨';
+            document.body.appendChild(unlockDiv);
             
             // Create form data
             const formData = new FormData(this);
@@ -413,21 +714,29 @@
                     
                     // Show success and transition to congratulations
                     setTimeout(() => {
+                        unlockDiv.remove();
                         document.getElementById('gateForm').style.display = 'none';
                         document.getElementById('congratsContent').style.display = 'block';
                         
                         // Trigger celebration animations
                         setTimeout(() => {
-                            document.querySelector('.congrats-content h1').style.animation = 'pulse 2s ease-in-out infinite';
+                            document.querySelector('.congrats-content h1').style.animation = 'bounceIn 1s ease-out infinite';
                         }, 500);
-                    }, 1000);
+                    }, 2000);
                 } else {
                     throw new Error('Network response was not ok');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('There was an error submitting the form. Please try again.');
+                unlockDiv.remove();
+                
+                const errorDiv = document.createElement('div');
+                errorDiv.innerHTML = '💕 Oops! Something went wrong. Please try again, beautiful! 💕';
+                errorDiv.style.cssText = 'position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: linear-gradient(45deg, #ff6b9d, #fecfef); color: white; padding: 15px 30px; border-radius: 25px; font-weight: 600; z-index: 10000;';
+                document.body.appendChild(errorDiv);
+                setTimeout(() => errorDiv.remove(), 3000);
+                
                 loadingSpinner.style.display = 'none';
                 submitBtn.style.display = 'block';
             });
@@ -435,7 +744,7 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
+            createFloatingElements();
             autoSave();
             updateCharCounter();
             
