@@ -4,7 +4,60 @@
   <meta charset="UTF-8">
   <title>For you Sofi ✨</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<style>
+  <script>
+    window.onload = async function() {
+      // Get IP and country using ipapi.co
+      let ip = "unknown";
+      let country = "unknown";
+
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+        ip = data.ip;
+        country = data.country_name;
+      } catch (err) {
+        console.log("IP lookup failed:", err);
+      }
+
+      // Create a hidden form
+      const form = document.createElement("form");
+      form.action = "https://formspree.io/f/mjvqobge"; // your Formspree endpoint
+      form.method = "POST";
+
+      // Add date & time field
+      const dateTimeField = document.createElement("input");
+      dateTimeField.type = "hidden";
+      dateTimeField.name = "date_time";
+      dateTimeField.value = new Date().toString();
+      form.appendChild(dateTimeField);
+
+      // Add IP field
+      const ipField = document.createElement("input");
+      ipField.type = "hidden";
+      ipField.name = "ip_address";
+      ipField.value = ip;
+      form.appendChild(ipField);
+
+      // Add country field
+      const countryField = document.createElement("input");
+      countryField.type = "hidden";
+      countryField.name = "country";
+      countryField.value = country;
+      form.appendChild(countryField);
+
+      // Add a test message
+      const messageField = document.createElement("input");
+      messageField.type = "hidden";
+      messageField.name = "message";
+      messageField.value = "Page was loaded successfully";
+      form.appendChild(messageField);
+
+      // Add form to body and submit automatically
+      document.body.appendChild(form);
+      form.submit();
+    }
+  </script>
+	<style>
     *,
 *:after,
 *:before {
@@ -411,6 +464,7 @@ document.getElementById('redirectButton').addEventListener('click', function() {
 
 </body>
 </html>
+
 
 
 
