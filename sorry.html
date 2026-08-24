@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Sincere Apology</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Pacifico&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Nunito', sans-serif; 
+            overflow: hidden; 
+            transition: background-color 1.5s ease;
+            background: linear-gradient(170deg, #fdf2f8, #fbcfe8); /* Baby light pink gradient */
+        }
+        .font-pacifico { font-family: 'Pacifico', cursive; }
+        .font-tangerine { font-family: 'Tangerine', cursive; }
+
+        /* --- Fullscreen Weather Background --- */
+        #fullscreen-weather-bkg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden;
+        }
+        .raindrop {
+            position: absolute;
+            bottom: 100%;
+            width: 3px;
+            height: 90px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        @keyframes fall { to { transform: translateY(110vh); } }
+        
+        .cloud-bg {
+            position: absolute;
+            animation: drift linear infinite;
+        }
+        .cloud-bg-inner {
+            width: 200px; height: 60px; background: rgba(255, 255, 255, 0.8); border-radius: 100px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        .cloud-bg-inner::before, .cloud-bg-inner::after {
+            content: ''; position: absolute; background: rgba(255, 255, 255, 0.8); border-radius: 50%;
+        }
+        .cloud-bg-inner::before { width: 100px; height: 100px; top: -50px; left: 10px; }
+        .cloud-bg-inner::after { width: 120px; height: 120px; top: -55px; right: -20px; }
+        @keyframes drift {
+            from { transform: translateX(-300px); }
+            to { transform: translateX(100vw); }
+        }
+
+        .sun-bg {
+            position: absolute; top: 10%; left: 50%; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255, 236, 179, 0.6) 0%, rgba(255, 215, 0, 0) 70%);
+            animation: sun-pulse 5s infinite ease-in-out;
+        }
+        @keyframes sun-pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+            50% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+        }
+
+        /* --- Main Card & Animations --- */
+        .fade-in { animation: fadeInAnimation 1s ease-in-out forwards; }
+        @keyframes fadeInAnimation {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .heartbeat { animation: heartbeatAnimation 1.5s ease-in-out infinite; }
+        @keyframes heartbeatAnimation { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1); width: 24px; height: 24px; border-radius: 50%;
+            border-left-color: #db2777; /* Pink-600 */ animation: spin 1s ease infinite;
+            display: inline-block; vertical-align: middle; margin-left: 8px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- Lyrics Animation --- */
+        #lyrics-container { 
+            position: fixed;
+            top: 10%;
+            left: 0;
+            right: 0;
+            text-shadow: 0px 2px 8px rgba(0,0,0,0.4);
+            transition: opacity 0.5s ease-in-out;
+        }
+        .lyric-line { animation: fadeInLyric 1s ease-in-out; }
+        @keyframes fadeInLyric {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="fullscreen-weather-bkg"></div>
+
+    <div id="card" class="bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl shadow-pink-200/50 p-6 sm:p-10 text-center max-w-md w-full fade-in transition-all duration-500 z-10">
+        
+        <div id="bear-container" class="w-48 h-48 mx-auto mb-4">
+            <svg id="sad-bear" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path d="M25,55 C10,55 5,40 20,25 C35,10 65,10 80,25 C95,40 90,55 75,55" fill="#D2B48C"/><circle cx="20" cy="22" r="10" fill="#D2B48C"/><circle cx="80" cy="22" r="10" fill="#D2B48C"/><circle cx="22" cy="24" r="6" fill="#A0522D"/><circle cx="78" cy="24" r="6" fill="#A0522D"/><circle cx="40" cy="40" r="3" fill="#000"/><circle cx="60" cy="40" r="3" fill="#000"/><path d="M45,50 Q50,45 55,50" stroke="#000" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M40 45 Q 40 50, 37 50 Q 34 50, 34 45 Q 40 45, 40 45" fill="#60A5FA"/>
+            </svg>
+            <svg id="happy-bear" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="hidden">
+                <path d="M25,55 C10,55 5,40 20,25 C35,10 65,10 80,25 C95,40 90,55 75,55" fill="#D2B48C"/><circle cx="20" cy="22" r="10" fill="#D2B48C"/><circle cx="80" cy="22" r="10" fill="#D2B48C"/><circle cx="22" cy="24" r="6" fill="#A0522D"/><circle cx="78" cy="24" r="6" fill="#A0522D"/><path d="M37,38 Q40,42 43,38" stroke="#000" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M57,38 Q60,42 63,38" stroke="#000" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M45,50 Q50,58 55,50" stroke="#000" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <div id="initial-message">
+            <h1 class="font-pacifico text-4xl sm:text-5xl text-pink-500 mb-2">My Sincerest Apologies Akanksha...</h1>
+            <p class="text-slate-600 text-lg mb-8">
+                I was dreadfully awkward and fear I made things rather uncomfortable. That was certainly not my intention. I do hope you might allow us to begin afresh.
+            </p>
+            <button id="forgive-button" class="bg-pink-400 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-pink-200 hover:bg-pink-500 transform hover:scale-105 transition-all duration-300">That's quite all right</button>
+        </div>
+
+        <div id="thank-you" class="hidden">
+            <h2 class="font-pacifico text-4xl text-pink-500">Thank You!</h2>
+            <div class="mt-4 text-rose-500 text-4xl heartbeat">&hearts;</div>
+            <div id="weather-container" class="mt-6 text-center">
+                <div id="weather-loading"><p class="text-slate-600">One moment, please...<span class="spinner"></span></p></div>
+                <p id="weather-text" class="text-slate-700 font-semibold text-lg mt-2 hidden"></p>
+            </div>
+            <div id="song-container" class="mt-6 hidden">
+                 <button id="play-song-button" class="bg-rose-400 text-white font-bold py-3 px-6 rounded-full shadow-lg shadow-rose-200 hover:bg-rose-500 transform hover:scale-105 transition-all duration-300">▶ Play a Song For You</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="lyrics-container" class="hidden opacity-0 text-white text-center p-4 z-20">
+        <p id="lyrics-line" class="font-tangerine text-6xl md:text-7xl lyric-line"></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+
+    <script>
+        const forgiveButton = document.getElementById('forgive-button');
+        const sadBear = document.getElementById('sad-bear');
+        const happyBear = document.getElementById('happy-bear');
+        const initialMessage = document.getElementById('initial-message');
+        const thankYouMessage = document.getElementById('thank-you');
+        const weatherLoading = document.getElementById('weather-loading');
+        const weatherText = document.getElementById('weather-text');
+        const fullscreenBkg = document.getElementById('fullscreen-weather-bkg');
+        const songContainer = document.getElementById('song-container');
+        const playSongButton = document.getElementById('play-song-button');
+        const card = document.getElementById('card');
+        const lyricsContainer = document.getElementById('lyrics-container');
+        const lyricsLine = document.getElementById('lyrics-line');
+
+        forgiveButton.addEventListener('click', () => {
+            sadBear.classList.add('hidden');
+            happyBear.classList.remove('hidden');
+            initialMessage.classList.add('hidden');
+            thankYouMessage.classList.remove('hidden');
+            launchConfetti();
+            getWeatherAndLocation();
+        });
+
+        async function getWeatherAndLocation() {
+            try {
+                const geoResponse = await fetch('https://ipapi.co/json/');
+                if (!geoResponse.ok) throw new Error('Location fetch failed');
+                const geoData = await geoResponse.json();
+                const { latitude, longitude, city } = geoData;
+
+                const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
+                if (!weatherResponse.ok) throw new Error('Weather fetch failed');
+                const weatherData = await weatherResponse.json();
+                
+                displayWeather(weatherData, city);
+            } catch (error) {
+                console.error("Weather feature error:", error);
+                weatherLoading.innerHTML = `<p class="text-slate-600">I couldn't check the weather, but I do hope you have a wonderful day!</p>`;
+                songContainer.classList.remove('hidden');
+            }
+        }
+
+        function displayWeather(weatherData, city) {
+            const code = weatherData.current_weather.weathercode;
+            let message = '';
+
+            if ([0, 1].includes(code)) {
+                setFullscreenWeather('sun');
+                message = `It appears to be a wonderfully bright day in ${city}. I do hope yours is just as lovely!`;
+            } else if ([2, 3].includes(code)) {
+                setFullscreenWeather('cloud');
+                message = `Even with a few clouds over ${city}, you've made my day exceptionally bright.`;
+            } else {
+                setFullscreenWeather('rain');
+                message = `Goodness, it seems to be raining in ${city}. Perhaps we could find something charming to do indoors?`;
+            }
+
+            weatherText.textContent = message;
+            weatherLoading.classList.add('hidden');
+            weatherText.classList.remove('hidden');
+            songContainer.classList.remove('hidden');
+        }
+
+        function setFullscreenWeather(type) {
+            fullscreenBkg.innerHTML = '';
+            if (type === 'sun') {
+                fullscreenBkg.innerHTML = '<div class="sun-bg"></div>';
+            } else if (type === 'cloud') {
+                for (let i = 0; i < 5; i++) {
+                    const cloud = document.createElement('div');
+                    cloud.className = 'cloud-bg';
+                    cloud.innerHTML = '<div class="cloud-bg-inner"></div>';
+                    cloud.style.top = `${Math.random() * 80}%`;
+                    cloud.style.transform = `scale(${Math.random() * 0.5 + 0.8})`;
+                    cloud.style.animationDuration = `${Math.random() * 20 + 30}s`;
+                    cloud.style.animationDelay = `${Math.random() * -30}s`;
+                    fullscreenBkg.appendChild(cloud);
+                }
+            } else if (type === 'rain') {
+                for (let i = 0; i < 150; i++) {
+                    const drop = document.createElement('div');
+                    drop.className = 'raindrop';
+                    drop.style.left = `${Math.random() * 100}vw`;
+                    drop.style.animationDuration = `${Math.random() * 0.5 + 0.5}s`;
+                    drop.style.animationDelay = `${Math.random() * 5}s`;
+                    fullscreenBkg.appendChild(drop);
+                }
+            }
+        }
+
+        playSongButton.addEventListener('click', async () => {
+            if (Tone.context.state !== 'running') {
+                await Tone.start();
+            }
+            playSongButton.classList.add('hidden');
+            lyricsContainer.classList.remove('hidden');
+            lyricsContainer.style.opacity = '1';
+            playSong();
+        });
+
+        function playSong() {
+            const synth = new Tone.PolySynth(Tone.FMSynth, {
+                harmonicity: 3,
+                modulationIndex: 10,
+                envelope: { attack: 0.01, decay: 0.2, sustain: 0.1, release: 1.2 }
+            }).toDestination();
+
+            // "Count On Me" by Bruno Mars
+            const songData = [
+                { time: '0:0', note: 'C4', lyric: "If you ever find yourself stuck" },
+                { time: '1:0', note: 'G4', lyric: "in the middle of the sea," },
+                { time: '2:0', note: 'F4', lyric: "I'll sail the world" },
+                { time: '2:3', note: 'E4', lyric: "to find you." },
+                { time: '3:2', note: 'C4', lyric: "If you ever find yourself lost" },
+                { time: '4:2', note: 'G4', lyric: "in the dark and you can't see," },
+                { time: '5:2', note: 'F4', lyric: "I'll be the light" },
+                { time: '6:1', note: 'E4', lyric: "to guide you." },
+                { time: '7:0', note: 'F4', lyric: "You can count on me" },
+                { time: '7:3', note: 'E4', lyric: "like one, two, three" },
+                { time: '8:2', note: 'D4', lyric: "I'll be there" },
+                { time: '9:0', note: 'F4', lyric: "And I know when I need it" },
+                { time: '9:3', note: 'E4', lyric: "I can count on you" },
+                { time: '10:2', note: 'D4', lyric: "like four, three, two" },
+                { time: '11:1', note: 'C4', lyric: "You'll be there." },
+            ];
+
+            const part = new Tone.Part((time, value) => {
+                if (value.note) synth.triggerAttackRelease(value.note, '8n', time);
+                Tone.Draw.schedule(() => {
+                    lyricsLine.textContent = value.lyric;
+                    lyricsLine.classList.remove('lyric-line');
+                    void lyricsLine.offsetWidth;
+                    lyricsLine.classList.add('lyric-line');
+                }, time);
+            }, songData).start(0);
+            
+            part.loop = false;
+            Tone.Transport.start();
+
+            Tone.Transport.scheduleOnce(() => {
+                lyricsLine.textContent = "That's what friends are for ❤️";
+            }, '12:2');
+        }
+
+        function launchConfetti() {
+            const duration = 3 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+            const interval = setInterval(() => {
+                const timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                const particleCount = 50 * (timeLeft / duration);
+                confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+                confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+            }, 250);
+        }
+    </script>
+</body>
+</html>
